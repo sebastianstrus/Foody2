@@ -8,32 +8,30 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {//consider change to UITableViewController
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {/
     
-    
-    private let tableView: UITableView = {
-        let tv = UITableView()
-        tv.separatorStyle = .none
-        tv.allowsSelection = false
-        return tv
-    }()
+    private var listView: ListView!
     
     
     private let myCellId = "myCellId"
-    
-    
-    
     private var allMeals: [Meal]  = []
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let listView = ListView()
+        self.listView = listView
+        
+        view.addSubview(listView)
+        listView.pinToEdges(view: view)
+        
+        
         
         //get data from FireBase on background thread
         Data.getMeals(complition: { (meals) in
             self.allMeals = meals
-            self.tableView.reloadData()
+            self.listView.tableView.reloadData()
         })
 
         setupNavigationBar(title: Strings.LIST)
@@ -43,11 +41,11 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     private func setupTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ListCell.self, forCellReuseIdentifier: myCellId)
-        view.addSubview(tableView)
-        tableView.pinToEdges(view: view)
+        listView.tableView.delegate = self
+        listView.tableView.dataSource = self
+        listView.tableView.register(ListCell.self, forCellReuseIdentifier: myCellId)
+        view.addSubview(listView.tableView)
+        listView.tableView.pinToEdges(view: view)
     }
     
     

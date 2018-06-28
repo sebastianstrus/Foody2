@@ -44,6 +44,7 @@
 		7DBCC5D520E4FE33000A6F8B /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58820E4CB5D000A6F8B /* Oswald-Medium.ttf */; };
 		7DBCC5D620E4FE36000A6F8B /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */; };
 		7DBCC5E020E52DF3000A6F8B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5DF20E52DF3000A6F8B /* MapView.swift */; };
+		7DBCC5E220E53056000A6F8B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5E120E53056000A6F8B /* ListView.swift */; };
 		7DE2484620E4C618008E7A49 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2484520E4C618008E7A49 /* SoundManager.swift */; };
 		7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2484F20E4C7B7008E7A49 /* Constants.swift */; };
 		7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2485120E4C949008E7A49 /* HoshiTextField.swift */; };
@@ -93,6 +94,7 @@
 		7DBCC5C720E4D07A000A6F8B /* UIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C820E4D07B000A6F8B /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5DF20E52DF3000A6F8B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		7DBCC5E120E53056000A6F8B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		7DE2484520E4C618008E7A49 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		7DE2484F20E4C7B7008E7A49 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7DE2485120E4C949008E7A49 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		7DBCC5DC20E52B63000A6F8B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				7DBCC5E120E53056000A6F8B /* ListView.swift */,
 				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
 				7DBCC5DF20E52DF3000A6F8B /* MapView.swift */,
 			);
@@ -491,6 +494,7 @@
 				7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */,
 				7DBCC5D020E4D07B000A6F8B /* UIStackView+Extension.swift in Sources */,
 				7DBCC59A20E4CC58000A6F8B /* WelcomeController.swift in Sources */,
+				7DBCC5E220E53056000A6F8B /* ListView.swift in Sources */,
 				7DBCC5B520E4CD0A000A6F8B /* MapController.swift in Sources */,
 				7DBCC5CE20E4D07B000A6F8B /* UITextField+Extension.swift in Sources */,
 				7DE2485420E4C949008E7A49 /* TextFieldEffects.swift in Sources */,
