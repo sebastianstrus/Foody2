@@ -19,9 +19,8 @@ class ListCell: UITableViewCell {
     }()
     
     private let pictureImageView: UIImageView = {
-        let iv = UIImageView()
+        let iv = UIImageView(image: #imageLiteral(resourceName: "table"))
         iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = .red
         return iv
     }()
     
