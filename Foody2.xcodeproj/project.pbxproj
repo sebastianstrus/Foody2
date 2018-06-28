@@ -40,6 +40,9 @@
 		7DBCC5CF20E4D07B000A6F8B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C620E4D07A000A6F8B /* UIView+Extension.swift */; };
 		7DBCC5D020E4D07B000A6F8B /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C720E4D07A000A6F8B /* UIStackView+Extension.swift */; };
 		7DBCC5D120E4D07B000A6F8B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C820E4D07B000A6F8B /* UIColor+Extension.swift */; };
+		7DBCC5D420E4FE31000A6F8B /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */; };
+		7DBCC5D520E4FE33000A6F8B /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58820E4CB5D000A6F8B /* Oswald-Medium.ttf */; };
+		7DBCC5D620E4FE36000A6F8B /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */; };
 		7DE2484620E4C618008E7A49 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2484520E4C618008E7A49 /* SoundManager.swift */; };
 		7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2484F20E4C7B7008E7A49 /* Constants.swift */; };
 		7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2485120E4C949008E7A49 /* HoshiTextField.swift */; };
@@ -431,6 +434,9 @@
 				7DBCC58E20E4CBF4000A6F8B /* foody_background.mov in Resources */,
 				7D467B3620E4563B0011EAA5 /* LaunchScreen.storyboard in Resources */,
 				7DE2485720E4C9BA008E7A49 /* Localizable.strings in Resources */,
+				7DBCC5D620E4FE36000A6F8B /* SeymourOne-Regular.ttf in Resources */,
+				7DBCC5D520E4FE33000A6F8B /* Oswald-Medium.ttf in Resources */,
+				7DBCC5D420E4FE31000A6F8B /* LuckiestGuy-Regular.ttf in Resources */,
 				7DBCC58C20E4CBD0000A6F8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
