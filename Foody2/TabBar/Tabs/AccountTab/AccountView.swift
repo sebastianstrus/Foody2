@@ -61,11 +61,13 @@ class AccountView: UIView {
     // buttons to buttonsContainer
     let logoutButton: UIButton = {
         let button = UIButton(title: Strings.LOG_OUT, color: AppColors.DODGER_BLUE)
+        button.addTarget(self, action: #selector(handleLogOut), for: .touchUpInside)
         return button
     }()
     
     let removeAccountButton: UIButton = {
         let button = UIButton(title: Strings.REMOVE_ACCOUNT, color: AppColors.RED_BORDER)
+        button.addTarget(self, action: #selector(handleRemoveAccount), for: .touchUpInside)
         return button
     }()
 
@@ -86,7 +88,7 @@ class AccountView: UIView {
     // Actions
     var cameraAction: (() -> Void)?
     var libraryAction: (() -> Void)?
-    var logutAction: (() -> Void)?
+    var logoutAction: (() -> Void)?
     var removeAccountAction: (() -> Void)?
     
     @objc func handleCamera() {
@@ -101,7 +103,7 @@ class AccountView: UIView {
     
     @objc func handleLogOut() {
         print("Camera")
-        logutAction?()
+        logoutAction?()
     }
     
     @objc func handleRemoveAccount() {

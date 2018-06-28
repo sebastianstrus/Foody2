@@ -41,16 +41,19 @@ class AccountViewController: UIViewController {
 
     private func setupView() {
         //there is 3 containers in the view
-        accountView = AccountView(frame: self.view.frame)
+        let mainView = AccountView(frame: self.view.frame)
+        self.accountView = mainView
         
         //assign actions
         accountView.cameraAction = cameraPressed
         accountView.libraryAction = libraryPressed
-        accountView.logutAction = logoutPressed
+        accountView.logoutAction = logoutPressed
         accountView.removeAccountAction = removeAccountPressed
         
+        
+        
         self.view.addSubview(accountView)
-        accountView.pinToEdges(view: view)
+        self.accountView.pinToEdges(view: view)
         
         [imageContainer, infoContainer, buttonsContainer].forEach({accountView.addSubview($0)})
         
@@ -93,16 +96,17 @@ class AccountViewController: UIViewController {
         infoContainer.topAnchor.constraint(equalTo: imageContainer.bottomAnchor).isActive = true
         
         let stackview = view.createStackView(views: [accountView.userNameLabel, accountView.emailLabel, accountView.numberOfMealsLabel, accountView.registrationDateLabel])
+        
         infoContainer.addSubview(stackview)
         stackview.setAnchor(top: infoContainer.topAnchor,
                             leading: infoContainer.leadingAnchor,
                             bottom: infoContainer.bottomAnchor,
                             trailing: infoContainer.trailingAnchor,
-                            paddingTop: 0,
-                            paddingLeft: 0,
-                            paddingBottom: 0,
-                            paddingRight: 0)
-        stackview.centerXAnchor.constraint(equalTo: infoContainer.centerXAnchor).isActive = true
+                            paddingTop: 10,
+                            paddingLeft: 80,
+                            paddingBottom: 10,
+                            paddingRight: 10)
+        //stackview.centerXAnchor.constraint(equalTo: infoContainer.centerXAnchor).isActive = true
         
 
         
@@ -150,7 +154,8 @@ class AccountViewController: UIViewController {
     
     private func logoutPressed() {
         Swift.print("Logout pressed")
-        //dismiss(animated: true, completion: nil)
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true, completion: nil)
     }
     
     private func removeAccountPressed() {

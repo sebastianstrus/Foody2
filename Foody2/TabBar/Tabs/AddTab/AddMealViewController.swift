@@ -25,9 +25,7 @@ class AddMealViewController : UIViewController {
     private let mealImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "table"))
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.backgroundColor = .red
-        iv.contentMode = .scaleAspectFill
-        
+        iv.contentMode = .scaleAspectFill        
         iv.contentMode = UIView.ContentMode.scaleAspectFill
         
         return iv

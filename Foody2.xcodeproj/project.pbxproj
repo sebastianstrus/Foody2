@@ -201,8 +201,8 @@
 		7DBCC5A720E4CCC1000A6F8B /* AccountTab */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
 				7DBCC5BB20E4CD1D000A6F8B /* AccountViewController.swift */,
+				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
 			);
 			path = AccountTab;
 			sourceTree = "<group>";

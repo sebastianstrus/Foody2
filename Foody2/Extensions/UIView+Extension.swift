@@ -101,9 +101,9 @@ extension UIView {
     }
     
     func pinToEdges(view: UIView) {
-        setAnchor(top: view.safeAreaLayoutGuide.topAnchor,
+        setAnchor(top: view.safeTopAnchor,
                               leading: view.leadingAnchor,
-                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              bottom: view.safeBottomAnchor,
                               trailing: view.trailingAnchor,
                               paddingTop: 0,
                               paddingLeft: 0,
