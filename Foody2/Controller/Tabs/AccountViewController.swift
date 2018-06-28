@@ -50,11 +50,11 @@ class AccountViewController: UIViewController {
         accountView.logoutAction = logoutPressed
         accountView.removeAccountAction = removeAccountPressed
         
-        
-        
         self.view.addSubview(accountView)
         self.accountView.pinToEdges(view: view)
         
+        
+        /*
         [imageContainer, infoContainer, buttonsContainer].forEach({accountView.addSubview($0)})
         
         //imageContainer
@@ -139,7 +139,7 @@ class AccountViewController: UIViewController {
 //        buttonsContainer.addSubview(accountView.logoutButton)
 //        buttonsContainer.addSubview(accountView.removeAccountButton)
         
-        
+        */
     }
     
     

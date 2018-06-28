@@ -21,3 +21,11 @@ struct Meal {
 //    var price: String?
 //    var user: User?
 }
+
+
+//struct User {
+//    var name: String?//NSData?
+//    var email: String?
+//    var savedMeals: Int?//Int
+//    var registrationDate: Date?
+//}

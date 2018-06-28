@@ -142,8 +142,10 @@
 		7D467B2A20E456390011EAA5 /* Foody2 */ = {
 			isa = PBXGroup;
 			children = (
-				7DE2484020E4C5AC008E7A49 /* Authentication */,
-				7DE2484120E4C5B9008E7A49 /* TabBar */,
+				7DBCC5DD20E52C0D000A6F8B /* Model */,
+				7DBCC5D720E52AC4000A6F8B /* View */,
+				7DBCC5D820E52AD9000A6F8B /* Controller */,
+				7DBCC5DE20E52D10000A6F8B /* Cells */,
 				7DE2484220E4C5CE008E7A49 /* FireBase */,
 				7DE2484320E4C5E2008E7A49 /* XIBs */,
 				7DE2484420E4C5F1008E7A49 /* Helpers */,
@@ -159,106 +161,80 @@
 			path = Foody2;
 			sourceTree = "<group>";
 		};
-		7DBCC59520E4CC24000A6F8B /* WelcomeScreen */ = {
+		7DBCC5D720E52AC4000A6F8B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5DB20E52B41000A6F8B /* Authentication */,
+				7DBCC5DC20E52B63000A6F8B /* Tabs */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DBCC5D820E52AD9000A6F8B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5D920E52B09000A6F8B /* Authentication */,
+				7DBCC5DA20E52B1A000A6F8B /* Tabs */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7DBCC5D920E52B09000A6F8B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				7DBCC59820E4CC57000A6F8B /* WelcomeController.swift */,
-				7DBCC59920E4CC57000A6F8B /* WelcomeView.swift */,
-			);
-			path = WelcomeScreen;
-			sourceTree = "<group>";
-		};
-		7DBCC59620E4CC32000A6F8B /* LoginScreen */ = {
-			isa = PBXGroup;
-			children = (
 				7DBCC59C20E4CC80000A6F8B /* LoginController.swift */,
-				7DBCC59D20E4CC80000A6F8B /* LoginView.swift */,
-			);
-			path = LoginScreen;
-			sourceTree = "<group>";
-		};
-		7DBCC59720E4CC3F000A6F8B /* SignUpScreen */ = {
-			isa = PBXGroup;
-			children = (
 				7DBCC5A020E4CC93000A6F8B /* SignUpController.swift */,
-				7DBCC5A120E4CC93000A6F8B /* SignUpView.swift */,
-			);
-			path = SignUpScreen;
-			sourceTree = "<group>";
-		};
-		7DBCC5A620E4CCAD000A6F8B /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC5AB20E4CCE4000A6F8B /* ListTab */,
-				7DBCC5AA20E4CCDB000A6F8B /* AddTab */,
-				7DBCC5A920E4CCD3000A6F8B /* MapTab */,
-				7DBCC5A820E4CCCA000A6F8B /* FavoritesTab */,
-				7DBCC5A720E4CCC1000A6F8B /* AccountTab */,
-			);
-			path = Tabs;
-			sourceTree = "<group>";
-		};
-		7DBCC5A720E4CCC1000A6F8B /* AccountTab */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC5BB20E4CD1D000A6F8B /* AccountViewController.swift */,
-				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
-			);
-			path = AccountTab;
-			sourceTree = "<group>";
-		};
-		7DBCC5A820E4CCCA000A6F8B /* FavoritesTab */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC5B620E4CD14000A6F8B /* FavoritesViewController.swift */,
-				7DBCC5B720E4CD14000A6F8B /* MealCell.swift */,
-			);
-			path = FavoritesTab;
-			sourceTree = "<group>";
-		};
-		7DBCC5A920E4CCD3000A6F8B /* MapTab */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC5B420E4CD0A000A6F8B /* MapViewController.swift */,
-			);
-			path = MapTab;
-			sourceTree = "<group>";
-		};
-		7DBCC5AA20E4CCDB000A6F8B /* AddTab */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC5B120E4CD01000A6F8B /* AddMealViewController.swift */,
-				7DBCC5B020E4CD01000A6F8B /* Meal.swift */,
-			);
-			path = AddTab;
-			sourceTree = "<group>";
-		};
-		7DBCC5AB20E4CCE4000A6F8B /* ListTab */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */,
-				7DBCC5AC20E4CCF6000A6F8B /* ListViewController.swift */,
-			);
-			path = ListTab;
-			sourceTree = "<group>";
-		};
-		7DE2484020E4C5AC008E7A49 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				7DBCC59520E4CC24000A6F8B /* WelcomeScreen */,
-				7DBCC59620E4CC32000A6F8B /* LoginScreen */,
-				7DBCC59720E4CC3F000A6F8B /* SignUpScreen */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		7DE2484120E4C5B9008E7A49 /* TabBar */ = {
+		7DBCC5DA20E52B1A000A6F8B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
 				7DBCC5A420E4CCA5000A6F8B /* TabBarController.swift */,
-				7DBCC5A620E4CCAD000A6F8B /* Tabs */,
+				7DBCC5AC20E4CCF6000A6F8B /* ListViewController.swift */,
+				7DBCC5B120E4CD01000A6F8B /* AddMealViewController.swift */,
+				7DBCC5B420E4CD0A000A6F8B /* MapViewController.swift */,
+				7DBCC5B620E4CD14000A6F8B /* FavoritesViewController.swift */,
+				7DBCC5BB20E4CD1D000A6F8B /* AccountViewController.swift */,
 			);
-			path = TabBar;
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		7DBCC5DB20E52B41000A6F8B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC59920E4CC57000A6F8B /* WelcomeView.swift */,
+				7DBCC59D20E4CC80000A6F8B /* LoginView.swift */,
+				7DBCC5A120E4CC93000A6F8B /* SignUpView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7DBCC5DC20E52B63000A6F8B /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		7DBCC5DD20E52C0D000A6F8B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5B020E4CD01000A6F8B /* Meal.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DBCC5DE20E52D10000A6F8B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */,
+				7DBCC5B720E4CD14000A6F8B /* MealCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7DE2484220E4C5CE008E7A49 /* FireBase */ = {
