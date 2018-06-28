@@ -35,7 +35,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(title: "Account".localized)
+        setupNavigationBar(title: Strings.ACCOUNT)
         setupView()
     }
 

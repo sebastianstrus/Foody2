@@ -16,7 +16,7 @@ class AddMealViewController : UIViewController {
     // all views
     private let titleTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Enter title".localized
+        tf.placeholder = Strings.ENTER_TITLE
         tf.backgroundColor = .white
         tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 20 : 40)
         return tf
@@ -34,12 +34,12 @@ class AddMealViewController : UIViewController {
     }()
     
     private let cameraButton: UIButton = {
-        let button = UIButton(title: "Camera".localized, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: Strings.CAMERA, color: AppColors.DODGER_BLUE)
         return button
     }()
     
     private let libraryButton: UIButton = {
-        let button = UIButton(title: "Library".localized, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: Strings.LIBRARY, color: AppColors.DODGER_BLUE)
         return button
     }()
     
@@ -58,7 +58,7 @@ class AddMealViewController : UIViewController {
     }()
     
     private let selectDateButton: UIButton = {
-        let button = UIButton(title: "Select date".localized, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: Strings.SELECT_DATE, color: AppColors.DODGER_BLUE)
         return button
     }()
     
@@ -74,13 +74,13 @@ class AddMealViewController : UIViewController {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add description:".localized
+        label.text = Strings.ADD_DESCRIPTION_
         return label
     }()
     
     private let favoriteLabel: UILabel = {
         let label = UILabel()
-        label.text = "Favorite?".localized
+        label.text = Strings.FAVORITE_
         return label
     }()
     
@@ -91,7 +91,7 @@ class AddMealViewController : UIViewController {
     
     private let mealDescriptionTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "It was very tasty. :)".localized
+        tf.placeholder = Strings.VERY_TASTY
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
         tf.layer.borderColor = UIColor.lightGray.cgColor
@@ -107,14 +107,14 @@ class AddMealViewController : UIViewController {
     }()
     
     private let saveButton: UIButton = {
-        let button = UIButton(title: "Save meal".localized, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: Strings.SAVE_MEAL, color: AppColors.DODGER_BLUE)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(title: "Add meal".localized)
+        setupNavigationBar(title: Strings.ADD_MEAL)
         setupScrollView()
         setupViews()
         

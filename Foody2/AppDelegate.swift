@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let vc = AccountViewController()
         //let vc = ListViewController()
         //let vc = AddMealViewController()
+        
         let vc = WelcomeController()
         let navController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navController
@@ -59,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showMessage(_ message: String?, withTitle title: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: Strings.ok, style: .default, handler: nil)
+        let action = UIAlertAction(title: Strings.OK, style: .default, handler: nil)
         alert.addAction(action)
         window?.rootViewController?.present(alert, animated: true)
     }
