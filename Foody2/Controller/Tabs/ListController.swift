@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {/
+class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var listView: ListView!
     
@@ -20,11 +20,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let listView = ListView()
-        self.listView = listView
         
-        view.addSubview(listView)
-        listView.pinToEdges(view: view)
         
         
         
@@ -35,21 +31,25 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
 
         setupNavigationBar(title: Strings.LIST)
-        setupTableView()
+        setupView()
         
     }
     
     
-    private func setupTableView() {
+    private func setupView() {
+        let listView = ListView()
+        self.listView = listView
+        
+        view.addSubview(listView)
+        listView.pinToEdges(view: view)
+        
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
         listView.tableView.register(ListCell.self, forCellReuseIdentifier: myCellId)
-        view.addSubview(listView.tableView)
-        listView.tableView.pinToEdges(view: view)
     }
     
     
-    // MARK: - UITableView delegate methods
+    // MARK: - UITableViewDataSource functions
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

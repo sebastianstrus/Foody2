@@ -1,9 +1,19 @@
+//
+//  AddMealView.swift
+//  Foody2
+//
+//  Created by Sebastian Strus on 2018-06-28.
+//  Copyright © 2018 Sebastian Strus. All rights reserved.
+//
+
+
 import UIKit
 import Cosmos
 import MapKit
-//import PlaygroundSupport
 
-class AddMealViewController : UIViewController {
+class AddMealView: UIView {
+    
+    
     
     // scroll view
     private lazy var scrollView: UIScrollView = {
@@ -25,7 +35,7 @@ class AddMealViewController : UIViewController {
     private let mealImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "table"))
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill        
+        iv.contentMode = .scaleAspectFill
         iv.contentMode = UIView.ContentMode.scaleAspectFill
         
         return iv
@@ -109,24 +119,30 @@ class AddMealViewController : UIViewController {
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavigationBar(title: Strings.ADD_MEAL)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setup() {
         setupScrollView()
         setupViews()
         
         //handle keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(AddMealViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AddMealViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.setAnchor(top: view.safeTopAnchor,
-                             leading: view.safeLeadingAnchor,
-                             bottom: view.safeBottomAnchor,
-                             trailing: view.safeTrailingAnchor,
+        addSubview(scrollView)
+        scrollView.setAnchor(top: safeTopAnchor,
+                             leading: safeLeadingAnchor,
+                             bottom: safeBottomAnchor,
+                             trailing: safeTrailingAnchor,
                              paddingTop: 0,
                              paddingLeft: 0,
                              paddingBottom: 0,
@@ -135,14 +151,14 @@ class AddMealViewController : UIViewController {
     
     private func setupViews() {
         [titleTF, mealImageView, cameraButton, libraryButton, cosmosView, selectDateButton, dateLabel, mealDescriptionTF, descriptionLabel, favoriteLabel, favoriteSwitch, mapView, saveButton].forEach({scrollView.addSubview($0)})
-
+        
         //title textField
         titleTF.translatesAutoresizingMaskIntoConstraints = false
         titleTF.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
         titleTF.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         titleTF.heightAnchor.constraint(equalToConstant: Device.IS_IPHONE ? 40 : 80).isActive = true
-        titleTF.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleTF.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
+        titleTF.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleTF.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         
         //image
         mealImageView.setAnchor(top: titleTF.bottomAnchor,
@@ -253,33 +269,7 @@ class AddMealViewController : UIViewController {
                              paddingRight: 0,
                              width: Device.IS_IPHONE ? 150 : 300,
                              height: Device.IS_IPHONE ? 32 : 64)
-        saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        saveButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-    
-    
-    // Handle keyboard
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
-    
-    
 }
-
 
