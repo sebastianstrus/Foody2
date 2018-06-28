@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
         listController.tabBarItem.title = Strings.LIST
         let addMealController = createNavController(vc: AddMealViewController(), unselected: "add_gray", selected: "add_gray")
         addMealController.tabBarItem.title = Strings.ADD
-        let mapController = createNavController(vc: MapViewController(), unselected: "map_gray", selected: "map_gray")
+        let mapController = createNavController(vc: MapController(), unselected: "map_gray", selected: "map_gray")
         mapController.tabBarItem.title = Strings.MAP
         let favoritesController = createNavController(vc: FavoritesViewController(), unselected: "favorites_gray", selected: "favorites_gray")
         favoritesController.tabBarItem.title = Strings.FAVORITES

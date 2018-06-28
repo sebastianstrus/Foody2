@@ -25,7 +25,7 @@
 		7DBCC5AF20E4CCF7000A6F8B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */; };
 		7DBCC5B220E4CD02000A6F8B /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B020E4CD01000A6F8B /* Meal.swift */; };
 		7DBCC5B320E4CD02000A6F8B /* AddMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B120E4CD01000A6F8B /* AddMealViewController.swift */; };
-		7DBCC5B520E4CD0A000A6F8B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B420E4CD0A000A6F8B /* MapViewController.swift */; };
+		7DBCC5B520E4CD0A000A6F8B /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B420E4CD0A000A6F8B /* MapController.swift */; };
 		7DBCC5B820E4CD14000A6F8B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B620E4CD14000A6F8B /* FavoritesViewController.swift */; };
 		7DBCC5B920E4CD14000A6F8B /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B720E4CD14000A6F8B /* MealCell.swift */; };
 		7DBCC5BC20E4CD1D000A6F8B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */; };
@@ -43,6 +43,7 @@
 		7DBCC5D420E4FE31000A6F8B /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */; };
 		7DBCC5D520E4FE33000A6F8B /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58820E4CB5D000A6F8B /* Oswald-Medium.ttf */; };
 		7DBCC5D620E4FE36000A6F8B /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */; };
+		7DBCC5E020E52DF3000A6F8B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5DF20E52DF3000A6F8B /* MapView.swift */; };
 		7DE2484620E4C618008E7A49 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2484520E4C618008E7A49 /* SoundManager.swift */; };
 		7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2484F20E4C7B7008E7A49 /* Constants.swift */; };
 		7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2485120E4C949008E7A49 /* HoshiTextField.swift */; };
@@ -76,7 +77,7 @@
 		7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		7DBCC5B020E4CD01000A6F8B /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		7DBCC5B120E4CD01000A6F8B /* AddMealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealViewController.swift; sourceTree = "<group>"; };
-		7DBCC5B420E4CD0A000A6F8B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7DBCC5B420E4CD0A000A6F8B /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		7DBCC5B620E4CD14000A6F8B /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		7DBCC5B720E4CD14000A6F8B /* MealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		7DBCC5C620E4D07A000A6F8B /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C720E4D07A000A6F8B /* UIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C820E4D07B000A6F8B /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7DBCC5DF20E52DF3000A6F8B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		7DE2484520E4C618008E7A49 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		7DE2484F20E4C7B7008E7A49 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7DE2485120E4C949008E7A49 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -195,7 +197,7 @@
 				7DBCC5A420E4CCA5000A6F8B /* TabBarController.swift */,
 				7DBCC5AC20E4CCF6000A6F8B /* ListViewController.swift */,
 				7DBCC5B120E4CD01000A6F8B /* AddMealViewController.swift */,
-				7DBCC5B420E4CD0A000A6F8B /* MapViewController.swift */,
+				7DBCC5B420E4CD0A000A6F8B /* MapController.swift */,
 				7DBCC5B620E4CD14000A6F8B /* FavoritesViewController.swift */,
 				7DBCC5BB20E4CD1D000A6F8B /* AccountViewController.swift */,
 			);
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
+				7DBCC5DF20E52DF3000A6F8B /* MapView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				7DBCC5AF20E4CCF7000A6F8B /* ListCell.swift in Sources */,
 				7DBCC5CC20E4D07B000A6F8B /* Notification.Name+extension.swift in Sources */,
 				7D467B2C20E456390011EAA5 /* AppDelegate.swift in Sources */,
+				7DBCC5E020E52DF3000A6F8B /* MapView.swift in Sources */,
 				7DBCC5A220E4CC93000A6F8B /* SignUpController.swift in Sources */,
 				7DBCC5C920E4D07B000A6F8B /* String+Extension.swift in Sources */,
 				7DBCC5CD20E4D07B000A6F8B /* UIButton+Extension.swift in Sources */,
@@ -487,7 +491,7 @@
 				7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */,
 				7DBCC5D020E4D07B000A6F8B /* UIStackView+Extension.swift in Sources */,
 				7DBCC59A20E4CC58000A6F8B /* WelcomeController.swift in Sources */,
-				7DBCC5B520E4CD0A000A6F8B /* MapViewController.swift in Sources */,
+				7DBCC5B520E4CD0A000A6F8B /* MapController.swift in Sources */,
 				7DBCC5CE20E4D07B000A6F8B /* UITextField+Extension.swift in Sources */,
 				7DE2485420E4C949008E7A49 /* TextFieldEffects.swift in Sources */,
 				7DBCC5CA20E4D07B000A6F8B /* UIViewController+Extension.swift in Sources */,

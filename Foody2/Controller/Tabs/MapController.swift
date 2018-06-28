@@ -10,16 +10,16 @@ import UIKit
 import MapKit
 
 
-class MapViewController: UIViewController {
+class MapController: UIViewController {
     
+    private var mapView: MapView!
     
-    private let mapView: MKMapView = {
-        let mv = MKMapView()
-        return mv
-    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         setupNavigationBar(title: Strings.MAP)
         setupMapView()
@@ -28,6 +28,8 @@ class MapViewController: UIViewController {
     }
     
     private func setupMapView() {
+        let mapView = MapView()
+        self.mapView = mapView
         view.addSubview(mapView)
         mapView.pinToEdges(view: view)
     }
