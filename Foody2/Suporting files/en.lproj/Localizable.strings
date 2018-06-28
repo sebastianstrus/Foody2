@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  Foody2
+
+  Created by Sebastian Strus on 2018-06-28.
+  Copyright © 2018 Sebastian Strus. All rights reserved.
+*/
+
+"Find your meal" = "Find your meal";
+"OK" = "OK";
+"Login" = "Login";
+"Sign up" = "Sign up";
+"Name" = "Name";
+"Email" = "Email";
+"Email: " = "Email: ";
+"Password" = "Password";
+"Confirm password" = "Confirm password";
+"Cancel" = "Cancel";
+"Submit" = "Submit";
+"List" = "List";
+"Add" = "Add";
+"Map" = "Map";
+"Favorites" = "Favorites";
+"Account" = "Account";
+"Enter title" = "Enter title";
+"Camera" = "Camera";
+"Library" = "Library";
+"Select date" = "Select date";
+"Add description:" = "Add description:";
+"Favorite?" = "Favorite?";
+"It was very tasty. :)" = "It was very tasty. :)";
+"Save meal" = "Save meal";
+"Add meal" = "Add meal";
+"Username: " = "Username: ";
+"Saved meals: " = "Saved meals: ";
+"Registration date: " = "Registration date: ";
+"Log out" = "Log out";
+"Remove account" = "Remove account";

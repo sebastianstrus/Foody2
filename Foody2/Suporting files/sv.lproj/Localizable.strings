@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  Foody2
+
+  Created by Sebastian Strus on 2018-06-28.
+  Copyright © 2018 Sebastian Strus. All rights reserved.
+*/
+
+"Find your meal" = "Hitta din måltid";
+"OK" = "OK";
+"Login" = "Logga in";
+"Sign up" = "Nytt konto";
+"Name" = "Namn";
+"Email" = "E-post";
+"Email: " = "E-post: ";
+"Password" = "Lösenord";
+"Confirm password" = "Bekräfta lösenord";
+"Cancel" = "Avbryt";
+"Submit" = "Bekräfta";
+"List" = "Lista";
+"Add" = "Lägga till";
+"Map" = "Karta";
+"Favorites" = "Favoriter";
+"Account" = "Konto";
+"Enter title" = "Ange titel";
+"Camera" = "Kamera";
+"Library" = "Bibliotek";
+"Select date" = "Välj datum";
+"Add description:" = "Lägg till beskrivning:";
+"Favorite?" = "Favorit?";
+"It was very tasty. :)" = "Det var väldigt gott. :)";
+"Save meal" = "Spara måltid";
+"Add meal" = "Lägg till måltid";
+"Username: " = "Användarnamn: ";
+"Saved meals: " = "Sparade måltider: ";
+"Registration date: " = "Registreringsdatum: ";
+"Log out" = "Logga ut";
+"Remove account" = "Radera konto";
+
