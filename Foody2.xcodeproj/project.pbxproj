@@ -12,6 +12,9 @@
 		7D467B3620E4563B0011EAA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D467B3420E4563B0011EAA5 /* LaunchScreen.storyboard */; };
 		7DA2340620E539CF00DD0606 /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340520E539CF00DD0606 /* AddMealView.swift */; };
 		7DA2340820E53E1D00DD0606 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340720E53E1D00DD0606 /* FavoritesView.swift */; };
+		7DA2340A20E5881F00DD0606 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340920E5881F00DD0606 /* AppFonts.swift */; };
+		7DA2340C20E5885E00DD0606 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340B20E5885E00DD0606 /* AppColors.swift */; };
+		7DA2340E20E5902E00DD0606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */; };
 		7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */; };
 		7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58920E4CB70000A6F8B /* Strings.swift */; };
 		7DBCC58C20E4CBD0000A6F8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58B20E4CBD0000A6F8B /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 		7D467B3720E4563B0011EAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DA2340520E539CF00DD0606 /* AddMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		7DA2340720E53E1D00DD0606 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		7DA2340920E5881F00DD0606 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		7DA2340B20E5885E00DD0606 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePopupView.swift; sourceTree = "<group>"; };
 		7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
 		7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
@@ -155,7 +161,6 @@
 				7DBCC5D820E52AD9000A6F8B /* Controller */,
 				7DBCC5DE20E52D10000A6F8B /* Cells */,
 				7DE2484220E4C5CE008E7A49 /* FireBase */,
-				7DE2484320E4C5E2008E7A49 /* XIBs */,
 				7DE2484420E4C5F1008E7A49 /* Helpers */,
 				7DE2484720E4C630008E7A49 /* Resources */,
 				7DE2484C20E4C6A2008E7A49 /* Custom Controls */,
@@ -164,7 +169,7 @@
 				7D467B2B20E456390011EAA5 /* AppDelegate.swift */,
 				7D467B3420E4563B0011EAA5 /* LaunchScreen.storyboard */,
 				7D467B3720E4563B0011EAA5 /* Info.plist */,
-				7DE2484F20E4C7B7008E7A49 /* Constants.swift */,
+				7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */,
 			);
 			path = Foody2;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			children = (
 				7DBCC5DB20E52B41000A6F8B /* Authentication */,
 				7DBCC5DC20E52B63000A6F8B /* Tabs */,
+				7DE2484320E4C5E2008E7A49 /* XIBs */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBCC5D920E52B09000A6F8B /* Authentication */,
+				7DBCC5A420E4CCA5000A6F8B /* TabBarController.swift */,
 				7DBCC5DA20E52B1A000A6F8B /* Tabs */,
 			);
 			path = Controller;
@@ -200,7 +207,6 @@
 		7DBCC5DA20E52B1A000A6F8B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5A420E4CCA5000A6F8B /* TabBarController.swift */,
 				7DBCC5AC20E4CCF6000A6F8B /* ListController.swift */,
 				7DBCC5B120E4CD01000A6F8B /* AddMealControler.swift */,
 				7DBCC5B420E4CD0A000A6F8B /* MapController.swift */,
@@ -279,6 +285,7 @@
 				7DE2484920E4C647008E7A49 /* Strings */,
 				7DE2484B20E4C667008E7A49 /* Images */,
 				7DE2484A20E4C655008E7A49 /* Videos */,
+				7DA2340B20E5885E00DD0606 /* AppColors.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -289,6 +296,7 @@
 				7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */,
 				7DBCC58820E4CB5D000A6F8B /* Oswald-Medium.ttf */,
 				7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */,
+				7DA2340920E5881F00DD0606 /* AppFonts.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBCC58920E4CB70000A6F8B /* Strings.swift */,
+				7DE2485920E4C9BA008E7A49 /* Localizable.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -344,7 +353,7 @@
 		7DE2484E20E4C705008E7A49 /* Suporting files */ = {
 			isa = PBXGroup;
 			children = (
-				7DE2485920E4C9BA008E7A49 /* Localizable.strings */,
+				7DE2484F20E4C7B7008E7A49 /* Constants.swift */,
 			);
 			path = "Suporting files";
 			sourceTree = "<group>";
@@ -426,6 +435,7 @@
 				7DBCC5D520E4FE33000A6F8B /* Oswald-Medium.ttf in Resources */,
 				7DBCC5D420E4FE31000A6F8B /* LuckiestGuy-Regular.ttf in Resources */,
 				7DBCC58C20E4CBD0000A6F8B /* Assets.xcassets in Resources */,
+				7DA2340E20E5902E00DD0606 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +496,7 @@
 				7DBCC5B920E4CD14000A6F8B /* MealCell.swift in Sources */,
 				7DBCC5B220E4CD02000A6F8B /* Meal.swift in Sources */,
 				7DBCC5BD20E4CD1D000A6F8B /* AccountController.swift in Sources */,
+				7DA2340C20E5885E00DD0606 /* AppColors.swift in Sources */,
 				7DBCC5D120E4D07B000A6F8B /* UIColor+Extension.swift in Sources */,
 				7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */,
 				7DBCC59E20E4CC80000A6F8B /* LoginController.swift in Sources */,
@@ -517,6 +528,7 @@
 				7DBCC5B820E4CD14000A6F8B /* FavoritesController.swift in Sources */,
 				7DBCC5CF20E4D07B000A6F8B /* UIView+Extension.swift in Sources */,
 				7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */,
+				7DA2340A20E5881F00DD0606 /* AppFonts.swift in Sources */,
 				7DBCC5BF20E4CDEF000A6F8B /* Data.swift in Sources */,
 				7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */,
 				7DBCC5CB20E4D07B000A6F8B /* UITabBarController+Extension.swift in Sources */,

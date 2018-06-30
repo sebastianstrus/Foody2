@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MapController.swift
 //  Foody2
 //
 //  Created by Sebastian Strus on 2018-06-12.

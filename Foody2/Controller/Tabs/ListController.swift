@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  ListController.swift
 //  Foody2
 //
 //  Created by Sebastian Strus on 2018-06-12.
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,8 +22,8 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+//        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
+//        ref.updateChildValues(["someValue" : 123123])
         
         //get data from FireBase on background thread
         Data.getMeals(complition: { (meals) in

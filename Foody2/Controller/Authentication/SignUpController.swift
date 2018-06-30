@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SignUpController: UIViewController {
     
@@ -28,7 +30,23 @@ class SignUpController: UIViewController {
     }
     
     func submitPressed() {
-        Swift.print("Username: \(String(describing: signUpView.nameTextField.text))\nEmail: \(String(describing: signUpView.emailTextField.text))")
+        guard let email = signUpView.emailTF.text, let password = signUpView.passwordTF.text else {
+            print("Wrong user data")
+            return
+        }
+        Swift.print("submitPressed")
+        Swift.print(signUpView.nameTF.text!)
+        Swift.print(email)
+        Swift.print(password)
+        Swift.print(signUpView.confirmPasswordTF.text!)
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            //successfully authenticated user
+            
+        }
     }
     
     func cancelPressed() {

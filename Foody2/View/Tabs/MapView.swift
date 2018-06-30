@@ -11,13 +11,10 @@ import MapKit
 
 class MapView: UIView {
     
-    
-    
     private let mapView: MKMapView = {
         let mv = MKMapView()
         return mv
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,11 +24,8 @@ class MapView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func setup() {
         addSubview(mapView)
         mapView.pinToEdges(view: self)
     }
-    
-
 }

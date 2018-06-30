@@ -1,3 +1,11 @@
+//
+//  AddMealControler.swift
+//  Foody2
+//
+//  Created by Sebastian Strus on 2018-06-12.
+//  Copyright © 2018 Sebastian Strus. All rights reserved.
+//
+
 import UIKit
 import Cosmos
 import MapKit

@@ -16,7 +16,7 @@ class SignUpView: UIView {
         return iv
     }()
     
-    let nameTextField: HoshiTextField = {
+    let nameTF: HoshiTextField = {
         let tf = HoshiTextField(placeHolder: Strings.NAME)
 
         tf.borderActiveColor = .orange
@@ -24,21 +24,21 @@ class SignUpView: UIView {
         return tf
     }()
     
-    let emailTextField: HoshiTextField = {
+    let emailTF: HoshiTextField = {
         let tf = HoshiTextField(placeHolder: Strings.EMAIL)
         tf.borderActiveColor = .orange
         tf.borderInactiveColor = .yellow
         return tf
     }()
     
-    let passwordTextField: HoshiTextField = {
+    let passwordTF: HoshiTextField = {
         let tf = HoshiTextField(placeHolder: Strings.PASSWORD)
         tf.borderActiveColor = .orange
         tf.borderInactiveColor = .yellow
         return tf
     }()
     
-    let confirmPasswordTextField: HoshiTextField = {
+    let confirmPasswordTF: HoshiTextField = {
         let tf = HoshiTextField(placeHolder: Strings.CONFIRM_PASSWORD)
         tf.borderActiveColor = .orange
         tf.borderInactiveColor = .yellow
@@ -67,7 +67,7 @@ class SignUpView: UIView {
     }
     
     func setupViews() {
-        let stackView = createStackView(views: [nameTextField, emailTextField, passwordTextField, confirmPasswordTextField, submitButton, cancelButton])
+        let stackView = createStackView(views: [nameTF, emailTF, passwordTF, confirmPasswordTF, submitButton, cancelButton])
         addSubview(backgroundImageView)
         addSubview(stackView)
         backgroundImageView.setAnchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
