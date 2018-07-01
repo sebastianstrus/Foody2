@@ -15,9 +15,9 @@
 		7DA2340A20E5881F00DD0606 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340920E5881F00DD0606 /* AppFonts.swift */; };
 		7DA2340C20E5885E00DD0606 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340B20E5885E00DD0606 /* AppColors.swift */; };
 		7DA2340E20E5902E00DD0606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */; };
+		7DA2341020E9994000DD0606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA2340F20E9994000DD0606 /* Assets.xcassets */; };
 		7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */; };
 		7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58920E4CB70000A6F8B /* Strings.swift */; };
-		7DBCC58C20E4CBD0000A6F8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58B20E4CBD0000A6F8B /* Assets.xcassets */; };
 		7DBCC58E20E4CBF4000A6F8B /* foody_background.mov in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58D20E4CBF4000A6F8B /* foody_background.mov */; };
 		7DBCC59A20E4CC58000A6F8B /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC59820E4CC57000A6F8B /* WelcomeController.swift */; };
 		7DBCC59B20E4CC58000A6F8B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC59920E4CC57000A6F8B /* WelcomeView.swift */; };
@@ -70,12 +70,12 @@
 		7DA2340920E5881F00DD0606 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		7DA2340B20E5885E00DD0606 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7DA2340F20E9994000DD0606 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePopupView.swift; sourceTree = "<group>"; };
 		7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
 		7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
 		7DBCC58820E4CB5D000A6F8B /* Oswald-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Medium.ttf"; sourceTree = "<group>"; };
 		7DBCC58920E4CB70000A6F8B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		7DBCC58B20E4CBD0000A6F8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DBCC58D20E4CBF4000A6F8B /* foody_background.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = foody_background.mov; sourceTree = "<group>"; };
 		7DBCC59820E4CC57000A6F8B /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		7DBCC59920E4CC57000A6F8B /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 		7DE2484B20E4C667008E7A49 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC58B20E4CBD0000A6F8B /* Assets.xcassets */,
+				7DA2340F20E9994000DD0606 /* Assets.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -434,7 +434,7 @@
 				7DBCC5D620E4FE36000A6F8B /* SeymourOne-Regular.ttf in Resources */,
 				7DBCC5D520E4FE33000A6F8B /* Oswald-Medium.ttf in Resources */,
 				7DBCC5D420E4FE31000A6F8B /* LuckiestGuy-Regular.ttf in Resources */,
-				7DBCC58C20E4CBD0000A6F8B /* Assets.xcassets in Resources */,
+				7DA2341020E9994000DD0606 /* Assets.xcassets in Resources */,
 				7DA2340E20E5902E00DD0606 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

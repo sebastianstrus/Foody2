@@ -53,17 +53,13 @@ class LoginView: UIView {
         return iv
     }()
     
-    let emailTextField: HoshiTextField = {
-        let tf = HoshiTextField(placeHolder: Strings.EMAIL)
-        tf.borderActiveColor = .orange
-        tf.borderInactiveColor = .yellow
+    let emailTextField: UITextField = {
+        let tf = UITextField(placeHolder: Strings.EMAIL)
         return tf
     }()
     
-    let passwordTextField: HoshiTextField = {
-        let tf = HoshiTextField(placeHolder: Strings.PASSWORD)
-        tf.borderActiveColor = .orange
-        tf.borderInactiveColor = .yellow
+    let passwordTextField: UITextField = {
+        let tf = UITextField(placeHolder: Strings.PASSWORD)
         return tf
     }()
     

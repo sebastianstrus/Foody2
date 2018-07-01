@@ -30,7 +30,7 @@ class SignUpController: UIViewController {
     }
     
     func submitPressed() {
-        guard let email = signUpView.emailTF.text, let password = signUpView.passwordTF.text else {
+        guard let name = signUpView.nameTF.text, let email = signUpView.emailTF.text, let password = signUpView.passwordTF.text else {
             print("Wrong user data")
             return
         }
@@ -39,12 +39,32 @@ class SignUpController: UIViewController {
         Swift.print(email)
         Swift.print(password)
         Swift.print(signUpView.confirmPasswordTF.text!)
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
+            guard let uid = authResult?.user.uid else {
+                return
+            }
+
+            
             //successfully authenticated user
+            let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
+            let usersReference = ref.child("users").child(uid)
+            let values = ["name" : name, "email": email]
+            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                if err != nil {
+                    print("Couldn't save child values")
+                    print(err!)
+                    return
+                }
+                
+                print("User saved successfully into Firebase database")
+                let tabBarVC = TabBarController()
+                self.present(tabBarVC, animated: true, completion: nil)
+            })
             
         }
     }

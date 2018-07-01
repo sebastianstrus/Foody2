@@ -16,32 +16,23 @@ class SignUpView: UIView {
         return iv
     }()
     
-    let nameTF: HoshiTextField = {
-        let tf = HoshiTextField(placeHolder: Strings.NAME)
-
-        tf.borderActiveColor = .orange
-        tf.borderInactiveColor = .yellow
+    let nameTF: UITextField = {
+        let tf = UITextField(placeHolder: Strings.NAME)
         return tf
     }()
     
-    let emailTF: HoshiTextField = {
-        let tf = HoshiTextField(placeHolder: Strings.EMAIL)
-        tf.borderActiveColor = .orange
-        tf.borderInactiveColor = .yellow
+    let emailTF: UITextField = {
+        let tf = UITextField(placeHolder: Strings.EMAIL)
         return tf
     }()
     
-    let passwordTF: HoshiTextField = {
-        let tf = HoshiTextField(placeHolder: Strings.PASSWORD)
-        tf.borderActiveColor = .orange
-        tf.borderInactiveColor = .yellow
+    let passwordTF: UITextField = {
+        let tf = UITextField(placeHolder: Strings.PASSWORD)
         return tf
     }()
     
-    let confirmPasswordTF: HoshiTextField = {
-        let tf = HoshiTextField(placeHolder: Strings.CONFIRM_PASSWORD)
-        tf.borderActiveColor = .orange
-        tf.borderInactiveColor = .yellow
+    let confirmPasswordTF: UITextField = {
+        let tf = UITextField(placeHolder: Strings.CONFIRM_PASSWORD)
         return tf
     }()
     
