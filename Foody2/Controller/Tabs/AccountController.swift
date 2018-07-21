@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class AccountController: UIViewController {
+class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate {
     
     private var accountView: AccountView!
     
@@ -43,19 +44,59 @@ class AccountController: UIViewController {
     //actions
     private func cameraPressed() {
         Swift.print("Camera pressed")
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
     private func libraryPressed() {
         Swift.print("Library pressed")
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
     private func logoutPressed() {
         Swift.print("Logout pressed")
-        let welcomeController = WelcomeController()
-        present(welcomeController, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Logout from Foody", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (UIAlertAction) in
+            self.handleLogout()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
     }
     
     private func removeAccountPressed() {
         Swift.print("Remove account pressed")
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate functions
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        print("imagePickerController run")
+        accountView.profileImageView.image = image
+        //saveImageInFirebase()
+        self.dismiss(animated: true, completion: nil);
+    }
+    
+    // MARK: - Helpers
+    private func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true)
     }
 }

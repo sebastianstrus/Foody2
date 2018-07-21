@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let vc = ListViewController()
         //let vc = AddMealViewController()
         
-        let vc = WelcomeController()
-        let navController = UINavigationController(rootViewController: vc)
-        window?.rootViewController = navController
+//        let vc = WelcomeController()
+//        let navController = UINavigationController(rootViewController: vc)
+//        window?.rootViewController = navController
         
-        //let tabBarVC = TabBarController()
-        //window?.rootViewController = tabBarVC
+        let tabBarVC = TabBarController()
+        window?.rootViewController = tabBarVC
         
         return true
     }

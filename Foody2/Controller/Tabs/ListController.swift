@@ -22,6 +22,13 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Auth.auth().currentUser?.uid == nil {
+            // remove warning by performSelector
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+            //handleLogout()
+        }
+        
+        
 //        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
 //        ref.updateChildValues(["someValue" : 123123])
         
@@ -67,5 +74,17 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Device.IS_IPHONE ? 80 : 160
+    }
+    
+    // MARK: - Helpers
+    @objc func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true)
     }
 }

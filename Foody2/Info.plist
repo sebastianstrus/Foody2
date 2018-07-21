@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Focus on user.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To show a photo.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To take a photo.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SeymourOne-Regular.ttf</string>
