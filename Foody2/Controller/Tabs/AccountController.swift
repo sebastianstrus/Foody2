@@ -37,6 +37,21 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         self.view.addSubview(accountView)
         self.accountView.pinToEdges(view: view)
         
+
+        // get details for current user
+        let currentUser = Auth.auth().currentUser
+        let uid = currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
+            print(snapshot)
+            if let dict = snapshot.value as? [String: AnyObject] {
+                let username = dict["name"] as! String
+                let email = dict["email"] as! String
+                self.accountView.userNameLabel.text = (self.accountView.userNameLabel.text)! + username
+                self.accountView.emailLabel.text = (self.accountView.emailLabel.text)! + email
+            }
+        }
+        let creationDate = currentUser?.metadata.creationDate?.formatedString()
+        self.accountView.registrationDateLabel.text = (self.accountView.registrationDateLabel.text)! + creationDate!
         
     }
     
@@ -67,26 +82,30 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     private func logoutPressed() {
         Swift.print("Logout pressed")
         let alert = UIAlertController(title: "Logout from Foody", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (UIAlertAction) in
             self.handleLogout()
         }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
     private func removeAccountPressed() {
         Swift.print("Remove account pressed")
+        let alert = UIAlertController(title: "Remove account from Foody", message: "Are you sure you want to remove your account?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (UIAlertAction) in
+            self.handleRemoveAccount()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
     // MARK: - UIImagePickerControllerDelegate functions
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        print("imagePickerController run")
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         accountView.profileImageView.image = image
-        //saveImageInFirebase()
+        //saveImageInFirebase() for current user
         self.dismiss(animated: true, completion: nil);
     }
+    
     
     // MARK: - Helpers
     private func handleLogout() {
@@ -98,5 +117,9 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         
         let welcomeController = WelcomeController()
         present(welcomeController, animated: true)
+    }
+    
+    private func handleRemoveAccount() {
+        
     }
 }

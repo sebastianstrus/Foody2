@@ -153,12 +153,7 @@ class AccountView: UIView {
                             paddingLeft: 80,
                             paddingBottom: 10,
                             paddingRight: 10)
-        //stackview.centerXAnchor.constraint(equalTo: infoContainer.centerXAnchor).isActive = true
-        
-        
-        
-        
-        
+
         // two buttons container
         buttonsContainer.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         buttonsContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20).isActive = true

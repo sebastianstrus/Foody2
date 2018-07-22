@@ -22,11 +22,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if Auth.auth().currentUser?.uid == nil {
-            // remove warning by performSelector
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-            //handleLogout()
-        }
+        checkIfUserIsLoggedIn()
         
         
 //        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
@@ -76,7 +72,23 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return Device.IS_IPHONE ? 80 : 160
     }
     
+    // MARK: - UITableViewDelegate functions
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //TODO: remove from firebase
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
+    
     // MARK: - Helpers
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser?.uid == nil {
+            // remove warning from the console by using performSelector
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        }
+    }
+    
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()

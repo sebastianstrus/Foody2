@@ -55,6 +55,7 @@
 		7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2485120E4C949008E7A49 /* HoshiTextField.swift */; };
 		7DE2485420E4C949008E7A49 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE2485220E4C949008E7A49 /* TextFieldEffects.swift */; };
 		7DE2485720E4C9BA008E7A49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DE2485920E4C9BA008E7A49 /* Localizable.strings */; };
+		7DE442412104181D00C020F9 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE442402104181D00C020F9 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		7DE2485220E4C949008E7A49 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		7DE2485820E4C9BA008E7A49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DE2485A20E4C9D5008E7A49 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7DE442402104181D00C020F9 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,9 +233,9 @@
 			children = (
 				7DBCC5E120E53056000A6F8B /* ListView.swift */,
 				7DA2340520E539CF00DD0606 /* AddMealView.swift */,
-				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
 				7DBCC5DF20E52DF3000A6F8B /* MapView.swift */,
 				7DA2340720E53E1D00DD0606 /* FavoritesView.swift */,
+				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -346,6 +348,7 @@
 				7DBCC5C520E4D07A000A6F8B /* UITextField+Extension.swift */,
 				7DBCC5C620E4D07A000A6F8B /* UIView+Extension.swift */,
 				7D61F6CB2103A9A500D9B5D4 /* UIViewController+Extension.swift */,
+				7DE442402104181D00C020F9 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				7DBCC5BD20E4CD1D000A6F8B /* AccountController.swift in Sources */,
 				7DA2340C20E5885E00DD0606 /* AppColors.swift in Sources */,
 				7DBCC5D120E4D07B000A6F8B /* UIColor+Extension.swift in Sources */,
+				7DE442412104181D00C020F9 /* Date+Extension.swift in Sources */,
 				7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */,
 				7DBCC59E20E4CC80000A6F8B /* LoginController.swift in Sources */,
 				7DBCC5AF20E4CCF7000A6F8B /* ListCell.swift in Sources */,
