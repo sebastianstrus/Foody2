@@ -9,9 +9,14 @@
 import UIKit
 
 class MealCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .red
+        //temporary
+        let iv = UIImageView(image: #imageLiteral(resourceName: "table"))
+        self.addSubview(iv)
+        iv.pinToEdges(view: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

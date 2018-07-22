@@ -12,15 +12,16 @@ import Firebase
 class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate {
     
     private var accountView: AccountView!
-    
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar(title: Strings.ACCOUNT)
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateUserDetails()
     }
 
     private func setupView() {
@@ -36,27 +37,10 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         
         self.view.addSubview(accountView)
         self.accountView.pinToEdges(view: view)
-        
-
-        // get details for current user
-        let currentUser = Auth.auth().currentUser
-        let uid = currentUser?.uid
-        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
-            print(snapshot)
-            if let dict = snapshot.value as? [String: AnyObject] {
-                let username = dict["name"] as! String
-                let email = dict["email"] as! String
-                self.accountView.userNameLabel.text = (self.accountView.userNameLabel.text)! + username
-                self.accountView.emailLabel.text = (self.accountView.emailLabel.text)! + email
-            }
-        }
-        let creationDate = currentUser?.metadata.creationDate?.formatedString()
-        self.accountView.registrationDateLabel.text = (self.accountView.registrationDateLabel.text)! + creationDate!
-        
     }
     
     
-    //actions
+    // MARK: - Buttons Actions
     private func cameraPressed() {
         Swift.print("Camera pressed")
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
@@ -100,12 +84,20 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     // MARK: - UIImagePickerControllerDelegate functions
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        accountView.profileImageView.image = image
-        //saveImageInFirebase() for current user
-        self.dismiss(animated: true, completion: nil);
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        Swift.print("imagePickerController didFinishPickingImage")
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            accountView.profileImageView.image = selectedImage
+        }
+        picker.dismiss(animated: true)
     }
-    
     
     // MARK: - Helpers
     private func handleLogout() {
@@ -120,6 +112,26 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func handleRemoveAccount() {
-        
+//        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+//        appDelegate?.showMessage("Your account has been removed", withTitle: "Remove account")
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true)
+    }
+    
+    // set details for current user
+    func updateUserDetails() {
+        let currentUser = Auth.auth().currentUser
+        let uid = currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
+            print(snapshot)
+            if let dict = snapshot.value as? [String: AnyObject] {
+                let username = dict["name"] as! String
+                let email = dict["email"] as! String
+                self.accountView.userNameLabel.text = Strings.USERNAME_ + username
+                self.accountView.emailLabel.text = Strings.EMAIL_ + email
+            }
+        }
+        let creationDate = currentUser?.metadata.creationDate?.formatedString()
+        self.accountView.registrationDateLabel.text = Strings.REG_DATE_ + creationDate!
     }
 }

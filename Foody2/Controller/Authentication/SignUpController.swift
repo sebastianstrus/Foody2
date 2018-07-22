@@ -34,11 +34,6 @@ class SignUpController: UIViewController {
             print("Wrong user data")
             return
         }
-        Swift.print("submitPressed")
-        Swift.print(signUpView.nameTF.text!)
-        Swift.print(email)
-        Swift.print(password)
-        Swift.print(signUpView.confirmPasswordTF.text!)
 
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error != nil {
@@ -49,22 +44,9 @@ class SignUpController: UIViewController {
                 return
             }
 
-            
+            let values = ["name" : name, "email": email] as [String : AnyObject]
             //successfully authenticated user
-            let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
-            let usersReference = ref.child("users").child(uid)
-            let values = ["name" : name, "email": email]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print("Couldn't save child values")
-                    print(err!)
-                    return
-                }
-                
-                print("User saved successfully into Firebase database")
-                let tabBarVC = TabBarController()
-                self.present(tabBarVC, animated: true, completion: nil)
-            })
+            self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
             
         }
     }
@@ -72,4 +54,23 @@ class SignUpController: UIViewController {
     func cancelPressed() {
         dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: - Helpers
+    func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
+        let usersReference = ref.child("users").child(uid)
+        //let values = ["name" : name, "email": email]
+        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print("Couldn't save child values")
+                print(err!)
+                return
+            }
+            
+            print("User saved successfully into Firebase database")
+            let tabBarVC = TabBarController()
+            self.present(tabBarVC, animated: true, completion: nil)
+        })
+    }
+    
 }
