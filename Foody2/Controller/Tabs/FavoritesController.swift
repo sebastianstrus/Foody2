@@ -19,7 +19,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         
         //get data from FireBase on background thread
-        Data.getMeals(complition: { (meals) in
+        TestData.getMeals(complition: { (meals) in
             self.favoritesMeals = meals
             self.favoritesView.collectionView.reloadData()
         })

@@ -17,6 +17,9 @@
 		7DA2340C20E5885E00DD0606 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340B20E5885E00DD0606 /* AppColors.swift */; };
 		7DA2340E20E5902E00DD0606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */; };
 		7DA2341020E9994000DD0606 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA2340F20E9994000DD0606 /* Assets.xcassets */; };
+		7DA6A79F2107D7E200D533B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A79E2107D7E200D533B2 /* User.swift */; };
+		7DA6A7A12107DA9F00D533B2 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A7A02107DA9F00D533B2 /* ImageLoader.swift */; };
+		7DA6A7A32107E13200D533B2 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A7A22107E13200D533B2 /* UIImageView+Extension.swift */; };
 		7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */; };
 		7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58920E4CB70000A6F8B /* Strings.swift */; };
 		7DBCC58E20E4CBF4000A6F8B /* foody_background.mov in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58D20E4CBF4000A6F8B /* foody_background.mov */; };
@@ -36,7 +39,7 @@
 		7DBCC5B920E4CD14000A6F8B /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B720E4CD14000A6F8B /* MealCell.swift */; };
 		7DBCC5BC20E4CD1D000A6F8B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */; };
 		7DBCC5BD20E4CD1D000A6F8B /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */; };
-		7DBCC5BF20E4CDEF000A6F8B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BE20E4CDEF000A6F8B /* Data.swift */; };
+		7DBCC5BF20E4CDEF000A6F8B /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */; };
 		7DBCC5C920E4D07B000A6F8B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C020E4D079000A6F8B /* String+Extension.swift */; };
 		7DBCC5CB20E4D07B000A6F8B /* UITabBarController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C220E4D079000A6F8B /* UITabBarController+Extension.swift */; };
 		7DBCC5CC20E4D07B000A6F8B /* Notification.Name+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C320E4D079000A6F8B /* Notification.Name+extension.swift */; };
@@ -73,6 +76,9 @@
 		7DA2340B20E5885E00DD0606 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DA2340F20E9994000DD0606 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DA6A79E2107D7E200D533B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7DA6A7A02107DA9F00D533B2 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		7DA6A7A22107E13200D533B2 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePopupView.swift; sourceTree = "<group>"; };
 		7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
 		7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
@@ -95,7 +101,7 @@
 		7DBCC5B720E4CD14000A6F8B /* MealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
-		7DBCC5BE20E4CDEF000A6F8B /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		7DBCC5C020E4D079000A6F8B /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C220E4D079000A6F8B /* UITabBarController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C320E4D079000A6F8B /* Notification.Name+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification.Name+extension.swift"; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBCC5B020E4CD01000A6F8B /* Meal.swift */,
+				7DA6A79E2107D7E200D533B2 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,7 +267,7 @@
 		7DE2484220E4C5CE008E7A49 /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5BE20E4CDEF000A6F8B /* Data.swift */,
+				7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -276,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE2484520E4C618008E7A49 /* SoundManager.swift */,
+				7DA6A7A02107DA9F00D533B2 /* ImageLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -349,6 +357,7 @@
 				7DBCC5C620E4D07A000A6F8B /* UIView+Extension.swift */,
 				7D61F6CB2103A9A500D9B5D4 /* UIViewController+Extension.swift */,
 				7DE442402104181D00C020F9 /* Date+Extension.swift */,
+				7DA6A7A22107E13200D533B2 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -510,10 +519,12 @@
 				7DBCC5E020E52DF3000A6F8B /* MapView.swift in Sources */,
 				7DBCC5A220E4CC93000A6F8B /* SignUpController.swift in Sources */,
 				7DBCC5C920E4D07B000A6F8B /* String+Extension.swift in Sources */,
+				7DA6A7A12107DA9F00D533B2 /* ImageLoader.swift in Sources */,
 				7DBCC5CD20E4D07B000A6F8B /* UIButton+Extension.swift in Sources */,
 				7DBCC5A520E4CCA5000A6F8B /* TabBarController.swift in Sources */,
 				7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */,
 				7DA2340620E539CF00DD0606 /* AddMealView.swift in Sources */,
+				7DA6A79F2107D7E200D533B2 /* User.swift in Sources */,
 				7DBCC5D020E4D07B000A6F8B /* UIStackView+Extension.swift in Sources */,
 				7DBCC59A20E4CC58000A6F8B /* WelcomeController.swift in Sources */,
 				7DBCC5E220E53056000A6F8B /* ListView.swift in Sources */,
@@ -527,13 +538,14 @@
 				7D61F6CC2103A9A500D9B5D4 /* UIViewController+Extension.swift in Sources */,
 				7DBCC5BC20E4CD1D000A6F8B /* AccountView.swift in Sources */,
 				7DE2484620E4C618008E7A49 /* SoundManager.swift in Sources */,
+				7DA6A7A32107E13200D533B2 /* UIImageView+Extension.swift in Sources */,
 				7DBCC5B320E4CD02000A6F8B /* AddMealControler.swift in Sources */,
 				7DA2340820E53E1D00DD0606 /* FavoritesView.swift in Sources */,
 				7DBCC5B820E4CD14000A6F8B /* FavoritesController.swift in Sources */,
 				7DBCC5CF20E4D07B000A6F8B /* UIView+Extension.swift in Sources */,
 				7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */,
 				7DA2340A20E5881F00DD0606 /* AppFonts.swift in Sources */,
-				7DBCC5BF20E4CDEF000A6F8B /* Data.swift in Sources */,
+				7DBCC5BF20E4CDEF000A6F8B /* TestData.swift in Sources */,
 				7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */,
 				7DBCC5CB20E4D07B000A6F8B /* UITabBarController+Extension.swift in Sources */,
 			);

@@ -120,13 +120,22 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     
     // set details for current user
     func updateUserDetails() {
+        
+
         let currentUser = Auth.auth().currentUser
         let uid = currentUser?.uid
         Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
+            
+            //let user = UserClass(snapshot: snapshot)
+            //user?.photoURL
+            
             if let dict = snapshot.value as? [String: AnyObject] {
                 let username = dict["name"] as! String
                 let email = dict["email"] as! String
+                let imageUrl = dict["profileImageUrl"] as! String
+
+                self.accountView.profileImageView.load(urlString: imageUrl)
                 self.accountView.userNameLabel.text = Strings.USERNAME_ + username
                 self.accountView.emailLabel.text = Strings.EMAIL_ + email
             }
@@ -134,4 +143,28 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         let creationDate = currentUser?.metadata.creationDate?.formatedString()
         self.accountView.registrationDateLabel.text = Strings.REG_DATE_ + creationDate!
     }
+    
+    func getImageFromUrl(_ urlString: String, closure: @escaping (UIImage?) -> ()) {
+        guard let url = URL(string: urlString) else {
+            return closure(nil)
+        }
+        let task = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                print("error: \(String(describing: error))")
+                return closure(nil)
+            }
+            guard response != nil else {
+                print("no response")
+                return closure(nil)
+            }
+            guard data != nil else {
+                print("no data")
+                return closure(nil)
+            }
+            DispatchQueue.main.async {
+                closure(UIImage(data: data!))
+            }
+        }; task.resume()
+    }
+
 }

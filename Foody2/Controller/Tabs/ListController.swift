@@ -29,7 +29,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        ref.updateChildValues(["someValue" : 123123])
         
         //get data from FireBase on background thread
-        Data.getMeals(complition: { (meals) in
+        TestData.getMeals(complition: { (meals) in
             self.allMeals = meals
             self.listView.tableView.reloadData()
         })

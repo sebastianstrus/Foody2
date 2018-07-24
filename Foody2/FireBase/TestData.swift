@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Data {
+class TestData {
     
     static func getMeals(complition: @escaping ([Meal]) -> Void) {
         DispatchQueue.global(qos: .userInteractive).async {

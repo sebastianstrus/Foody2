@@ -44,11 +44,30 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             guard let uid = authResult?.user.uid else {
                 return
             }
-
-            let values = ["name" : name, "email": email] as [String : AnyObject]
-            //successfully authenticated user
-            self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
             
+            //successfully authenticated user
+            let imageName = NSUUID().uuidString
+            
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
+            if let uploadData = self.signUpView.profileImageView.image!.pngData() {
+                storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    
+                    storageRef.downloadURL(completion: { (url, error) in
+                        if error != nil {
+                            print(error!.localizedDescription)
+                            return
+                        }
+                        if let profileImageUrl = url?.absoluteString {
+                            let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl]
+                            self.registerUserIntoDatabaseWithUID(uid: uid, values: values as [String : AnyObject])
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -83,10 +102,9 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
     }
     
     // MARK: - Helpers
-    func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
+    private func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
         let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
         let usersReference = ref.child("users").child(uid)
-        //let values = ["name" : name, "email": email]
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
             if err != nil {
                 print("Couldn't save child values")
@@ -99,5 +117,4 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             self.present(tabBarVC, animated: true, completion: nil)
         })
     }
-    
 }
