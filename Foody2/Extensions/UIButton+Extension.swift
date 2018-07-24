@@ -15,9 +15,9 @@ extension UIButton {
         let attributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: Device.IS_IPHONE ? 18 : 36), .foregroundColor: UIColor.white]))
         self.setAttributedTitle(attributedString, for: .normal)
         self.layer.cornerRadius = Device.IS_IPHONE ? 5 : 10
-        self.layer.borderWidth = 1
+        self.layer.borderWidth = Device.IS_IPHONE ? 1 : 2
         self.layer.borderColor = borderColor.cgColor
-        self.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
+        self.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
     }
     
     public convenience init(title: String, color: UIColor?, filled: Bool) {

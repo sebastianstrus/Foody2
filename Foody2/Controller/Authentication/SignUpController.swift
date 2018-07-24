@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class SignUpController: UIViewController {
+class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate  {
     
     var signUpView: SignUpView!
     
@@ -26,6 +26,7 @@ class SignUpController: UIViewController {
         self.signUpView = signUpView
         self.signUpView.submitAction = submitPressed
         self.signUpView.cancelAction = cancelPressed
+        self.signUpView.selectProfileImageViewAction = imageViewTapped
         view.addSubview(signUpView)
     }
     
@@ -53,6 +54,32 @@ class SignUpController: UIViewController {
     
     func cancelPressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func imageViewTapped() {
+        print("imageTapped")
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate functions
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            signUpView.profileImageView.image = selectedImage
+        }
+        picker.dismiss(animated: true)
     }
     
     // MARK: - Helpers

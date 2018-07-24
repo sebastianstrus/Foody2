@@ -41,7 +41,7 @@ class LoginView: UIView {
                             paddingBottom: 0,
                             paddingRight: 0,
                             width: self.frame.width - (Device.IS_IPHONE ? 60 : 300),
-                            height: Device.IS_IPHONE ? 210 : 420)
+                            height: Device.IS_IPHONE ? 190 : 380)
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
