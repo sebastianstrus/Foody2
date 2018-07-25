@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class ListCell: UITableViewCell {
+class MealListCell: UITableViewCell {
     
     private let cellView: UIView = {
         let view = UIView()

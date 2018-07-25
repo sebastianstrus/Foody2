@@ -69,7 +69,14 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (UIAlertAction) in
             self.handleLogout()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: Device.IS_IPAD ? .default : .cancel, handler: nil))
+        
+        // support for iPAD:
+        if Device.IS_IPAD {
+            alert.popoverPresentationController?.sourceView = self.accountView
+            alert.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
+            alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
         self.present(alert, animated: true)
     }
     
@@ -79,8 +86,17 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (UIAlertAction) in
             self.handleRemoveAccount()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: Device.IS_IPAD ? .default : .cancel, handler: nil))
+        
+        // support for iPAD:
+        if Device.IS_IPAD {
+            alert.popoverPresentationController?.sourceView = self.accountView
+            alert.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
+            alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
+        
         self.present(alert, animated: true)
+        
     }
     
     // MARK: - UIImagePickerControllerDelegate functions

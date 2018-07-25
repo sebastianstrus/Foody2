@@ -36,7 +36,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
 
         favoritesView.collectionView.delegate = self
         favoritesView.collectionView.dataSource = self
-        favoritesView.collectionView.register(MealCell.self, forCellWithReuseIdentifier: cellId)
+        favoritesView.collectionView.register(MealCollectionCell.self, forCellWithReuseIdentifier: cellId)
     }
 
 // MARK: - UICollectionViewDataSource functions
@@ -50,20 +50,21 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MealCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MealCollectionCell
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 3 - 16, height: view.frame.width / 3 - 16)
+        print("screen width: \(view.frame.width)")
+        print("cell width: \(view.frame.width/3 - 12)")
+        let side = view.frame.width / 3 -  (Device.IS_IPHONE ? 12 : 24)
+        return CGSize(width: side, height: side)
     }
-    
+    //364 maja na wszystko
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 0 {
-            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        } else {
-            return UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
-        }
+            let space: CGFloat = Device.IS_IPHONE ? 8 : 16
+            return UIEdgeInsets(top: space, left: space, bottom: space, right: space)//UIEdgeInsets(top: space, left: space, bottom: space, right: space)
+        
     }
     
 }

@@ -49,7 +49,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
-        listView.tableView.register(ListCell.self, forCellReuseIdentifier: myCellId)
+        listView.tableView.register(MealListCell.self, forCellReuseIdentifier: myCellId)
     }
     
     
@@ -63,7 +63,7 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: myCellId, for: indexPath) as! ListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: myCellId, for: indexPath) as! MealListCell
         cell.titleLabel.text = allMeals[indexPath.item].title
         return cell
     }

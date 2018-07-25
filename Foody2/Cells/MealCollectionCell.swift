@@ -1,5 +1,5 @@
 //
-//  MealCell.swift
+//  MealCollectionCell.swift
 //  Foody2
 //
 //  Created by Sebastian Strus on 2018-06-27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MealCell: UICollectionViewCell {
+class MealCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

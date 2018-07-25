@@ -31,12 +31,12 @@
 		7DBCC5A320E4CC93000A6F8B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5A120E4CC93000A6F8B /* SignUpView.swift */; };
 		7DBCC5A520E4CCA5000A6F8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5A420E4CCA5000A6F8B /* TabBarController.swift */; };
 		7DBCC5AE20E4CCF7000A6F8B /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5AC20E4CCF6000A6F8B /* ListController.swift */; };
-		7DBCC5AF20E4CCF7000A6F8B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */; };
+		7DBCC5AF20E4CCF7000A6F8B /* MealListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5AD20E4CCF6000A6F8B /* MealListCell.swift */; };
 		7DBCC5B220E4CD02000A6F8B /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B020E4CD01000A6F8B /* Meal.swift */; };
 		7DBCC5B320E4CD02000A6F8B /* AddMealControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B120E4CD01000A6F8B /* AddMealControler.swift */; };
 		7DBCC5B520E4CD0A000A6F8B /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B420E4CD0A000A6F8B /* MapController.swift */; };
 		7DBCC5B820E4CD14000A6F8B /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B620E4CD14000A6F8B /* FavoritesController.swift */; };
-		7DBCC5B920E4CD14000A6F8B /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B720E4CD14000A6F8B /* MealCell.swift */; };
+		7DBCC5B920E4CD14000A6F8B /* MealCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B720E4CD14000A6F8B /* MealCollectionCell.swift */; };
 		7DBCC5BC20E4CD1D000A6F8B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */; };
 		7DBCC5BD20E4CD1D000A6F8B /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */; };
 		7DBCC5BF20E4CDEF000A6F8B /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */; };
@@ -93,12 +93,12 @@
 		7DBCC5A120E4CC93000A6F8B /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7DBCC5A420E4CCA5000A6F8B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7DBCC5AC20E4CCF6000A6F8B /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
-		7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		7DBCC5AD20E4CCF6000A6F8B /* MealListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealListCell.swift; sourceTree = "<group>"; };
 		7DBCC5B020E4CD01000A6F8B /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		7DBCC5B120E4CD01000A6F8B /* AddMealControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealControler.swift; sourceTree = "<group>"; };
 		7DBCC5B420E4CD0A000A6F8B /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		7DBCC5B620E4CD14000A6F8B /* FavoritesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
-		7DBCC5B720E4CD14000A6F8B /* MealCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
+		7DBCC5B720E4CD14000A6F8B /* MealCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealCollectionCell.swift; sourceTree = "<group>"; };
 		7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 		7DBCC5DE20E52D10000A6F8B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5AD20E4CCF6000A6F8B /* ListCell.swift */,
-				7DBCC5B720E4CD14000A6F8B /* MealCell.swift */,
+				7DBCC5AD20E4CCF6000A6F8B /* MealListCell.swift */,
+				7DBCC5B720E4CD14000A6F8B /* MealCollectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -505,7 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DBCC5B920E4CD14000A6F8B /* MealCell.swift in Sources */,
+				7DBCC5B920E4CD14000A6F8B /* MealCollectionCell.swift in Sources */,
 				7DBCC5B220E4CD02000A6F8B /* Meal.swift in Sources */,
 				7DBCC5BD20E4CD1D000A6F8B /* AccountController.swift in Sources */,
 				7DA2340C20E5885E00DD0606 /* AppColors.swift in Sources */,
@@ -513,7 +513,7 @@
 				7DE442412104181D00C020F9 /* Date+Extension.swift in Sources */,
 				7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */,
 				7DBCC59E20E4CC80000A6F8B /* LoginController.swift in Sources */,
-				7DBCC5AF20E4CCF7000A6F8B /* ListCell.swift in Sources */,
+				7DBCC5AF20E4CCF7000A6F8B /* MealListCell.swift in Sources */,
 				7DBCC5CC20E4D07B000A6F8B /* Notification.Name+extension.swift in Sources */,
 				7D467B2C20E456390011EAA5 /* AppDelegate.swift in Sources */,
 				7DBCC5E020E52DF3000A6F8B /* MapView.swift in Sources */,

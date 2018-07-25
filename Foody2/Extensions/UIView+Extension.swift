@@ -92,9 +92,9 @@ extension UIView {
     
     func setCellShadow() {
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
         self.layer.shadowOpacity = 0.4
-        self.layer.shadowRadius = 1.0
+        self.layer.shadowRadius = 4.0
         self.layer.masksToBounds = false
         self.clipsToBounds = false
         self.layer.cornerRadius = 4
