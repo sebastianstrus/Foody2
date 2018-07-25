@@ -11,7 +11,7 @@ import MapKit
 
 class MapView: UIView {
     
-    private let mapView: MKMapView = {
+    let mapView: MKMapView = {
         let mv = MKMapView()
         return mv
     }()

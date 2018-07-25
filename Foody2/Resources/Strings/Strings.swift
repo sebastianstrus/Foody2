@@ -28,7 +28,7 @@ struct Strings {
     static let ENTER_TITLE = "Enter title".localized
     static let CAMERA = "Camera".localized
     static let LIBRARY = "Library".localized
-    static let SELECT_DATE = "Select date".localized
+    static let DATE = "Date".localized
     static let ADD_DESCRIPTION_ = "Add description:".localized
     static let FAVORITE_ = "Favorite?".localized
     static let VERY_TASTY = "It was very tasty. :)".localized
@@ -40,5 +40,7 @@ struct Strings {
     static let REG_DATE_ = "Registration date: ".localized
     static let LOG_OUT = "Log out".localized
     static let REMOVE_ACCOUNT = "Remove account".localized
+    static let PRICE_ = "Price:".localized
+    static let SEK = "100 kr".localized
     
 }

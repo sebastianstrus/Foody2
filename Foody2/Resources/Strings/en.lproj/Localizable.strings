@@ -25,7 +25,7 @@
 "Enter title" = "Enter title";
 "Camera" = "Camera";
 "Library" = "Library";
-"Select date" = "Select date";
+"Date" = "Date";
 "Add description:" = "Add description:";
 "Favorite?" = "Favorite?";
 "It was very tasty. :)" = "It was very tasty. :)";
@@ -36,3 +36,6 @@
 "Registration date: " = "Registration date: ";
 "Log out" = "Log out";
 "Remove account" = "Remove account";
+"Price:" = "Price:";
+"100 kr" = "100 kr";
+"Title can't be empty!" = "Title can't be empty!";

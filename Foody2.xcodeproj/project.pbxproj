@@ -20,6 +20,8 @@
 		7DA6A79F2107D7E200D533B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A79E2107D7E200D533B2 /* User.swift */; };
 		7DA6A7A12107DA9F00D533B2 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A7A02107DA9F00D533B2 /* ImageLoader.swift */; };
 		7DA6A7A32107E13200D533B2 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A7A22107E13200D533B2 /* UIImageView+Extension.swift */; };
+		7DA6A7AF2108C95600D533B2 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A7AE2108C95600D533B2 /* MealView.swift */; };
+		7DA6A7B12108C96B00D533B2 /* MealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA6A7B02108C96B00D533B2 /* MealController.swift */; };
 		7DBCC58520E4CB3E000A6F8B /* DatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */; };
 		7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC58920E4CB70000A6F8B /* Strings.swift */; };
 		7DBCC58E20E4CBF4000A6F8B /* foody_background.mov in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCC58D20E4CBF4000A6F8B /* foody_background.mov */; };
@@ -79,6 +81,8 @@
 		7DA6A79E2107D7E200D533B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7DA6A7A02107DA9F00D533B2 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		7DA6A7A22107E13200D533B2 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		7DA6A7AE2108C95600D533B2 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
+		7DA6A7B02108C96B00D533B2 /* MealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealController.swift; sourceTree = "<group>"; };
 		7DBCC58420E4CB3E000A6F8B /* DatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePopupView.swift; sourceTree = "<group>"; };
 		7DBCC58620E4CB5C000A6F8B /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
 		7DBCC58720E4CB5C000A6F8B /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
@@ -168,7 +172,7 @@
 				7DBCC5D720E52AC4000A6F8B /* View */,
 				7DBCC5D820E52AD9000A6F8B /* Controller */,
 				7DBCC5DE20E52D10000A6F8B /* Cells */,
-				7DE2484220E4C5CE008E7A49 /* FireBase */,
+				7DE2484220E4C5CE008E7A49 /* Data */,
 				7DE2484420E4C5F1008E7A49 /* Helpers */,
 				7DE2484720E4C630008E7A49 /* Resources */,
 				7DE2484C20E4C6A2008E7A49 /* Custom Controls */,
@@ -180,6 +184,88 @@
 				7DA2340D20E5902E00DD0606 /* GoogleService-Info.plist */,
 			);
 			path = Foody2;
+			sourceTree = "<group>";
+		};
+		7DA6A7A42108C8AF00D533B2 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5AC20E4CCF6000A6F8B /* ListController.swift */,
+				7DA6A7B02108C96B00D533B2 /* MealController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		7DA6A7A52108C8BA00D533B2 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5B120E4CD01000A6F8B /* AddMealControler.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		7DA6A7A62108C8D100D533B2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5B420E4CD0A000A6F8B /* MapController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7DA6A7A72108C8DB00D533B2 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5B620E4CD14000A6F8B /* FavoritesController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		7DA6A7A82108C8E600D533B2 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		7DA6A7A92108C8FF00D533B2 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5E120E53056000A6F8B /* ListView.swift */,
+				7DA6A7AE2108C95600D533B2 /* MealView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		7DA6A7AA2108C90700D533B2 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				7DA2340520E539CF00DD0606 /* AddMealView.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		7DA6A7AB2108C91000D533B2 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5DF20E52DF3000A6F8B /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7DA6A7AC2108C91900D533B2 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				7DA2340720E53E1D00DD0606 /* FavoritesView.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		7DA6A7AD2108C92400D533B2 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		7DBCC5D720E52AC4000A6F8B /* View */ = {
@@ -215,11 +301,11 @@
 		7DBCC5DA20E52B1A000A6F8B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5AC20E4CCF6000A6F8B /* ListController.swift */,
-				7DBCC5B120E4CD01000A6F8B /* AddMealControler.swift */,
-				7DBCC5B420E4CD0A000A6F8B /* MapController.swift */,
-				7DBCC5B620E4CD14000A6F8B /* FavoritesController.swift */,
-				7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */,
+				7DA6A7A42108C8AF00D533B2 /* List */,
+				7DA6A7A52108C8BA00D533B2 /* Add */,
+				7DA6A7A62108C8D100D533B2 /* Map */,
+				7DA6A7A72108C8DB00D533B2 /* Favorites */,
+				7DA6A7A82108C8E600D533B2 /* Account */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -237,11 +323,11 @@
 		7DBCC5DC20E52B63000A6F8B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5E120E53056000A6F8B /* ListView.swift */,
-				7DA2340520E539CF00DD0606 /* AddMealView.swift */,
-				7DBCC5DF20E52DF3000A6F8B /* MapView.swift */,
-				7DA2340720E53E1D00DD0606 /* FavoritesView.swift */,
-				7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */,
+				7DA6A7A92108C8FF00D533B2 /* List */,
+				7DA6A7AA2108C90700D533B2 /* Add */,
+				7DA6A7AB2108C91000D533B2 /* Map */,
+				7DA6A7AC2108C91900D533B2 /* Favorites */,
+				7DA6A7AD2108C92400D533B2 /* Account */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -264,12 +350,12 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		7DE2484220E4C5CE008E7A49 /* FireBase */ = {
+		7DE2484220E4C5CE008E7A49 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */,
 			);
-			path = FireBase;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		7DE2484320E4C5E2008E7A49 /* XIBs */ = {
@@ -512,6 +598,7 @@
 				7DBCC5D120E4D07B000A6F8B /* UIColor+Extension.swift in Sources */,
 				7DE442412104181D00C020F9 /* Date+Extension.swift in Sources */,
 				7DBCC58A20E4CB70000A6F8B /* Strings.swift in Sources */,
+				7DA6A7AF2108C95600D533B2 /* MealView.swift in Sources */,
 				7DBCC59E20E4CC80000A6F8B /* LoginController.swift in Sources */,
 				7DBCC5AF20E4CCF7000A6F8B /* MealListCell.swift in Sources */,
 				7DBCC5CC20E4D07B000A6F8B /* Notification.Name+extension.swift in Sources */,
@@ -536,6 +623,7 @@
 				7DBCC5A320E4CC93000A6F8B /* SignUpView.swift in Sources */,
 				7DBCC5AE20E4CCF7000A6F8B /* ListController.swift in Sources */,
 				7D61F6CC2103A9A500D9B5D4 /* UIViewController+Extension.swift in Sources */,
+				7DA6A7B12108C96B00D533B2 /* MealController.swift in Sources */,
 				7DBCC5BC20E4CD1D000A6F8B /* AccountView.swift in Sources */,
 				7DE2484620E4C618008E7A49 /* SoundManager.swift in Sources */,
 				7DA6A7A32107E13200D533B2 /* UIImageView+Extension.swift in Sources */,

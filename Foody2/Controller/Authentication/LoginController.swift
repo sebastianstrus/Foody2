@@ -40,14 +40,12 @@ class LoginController: UIViewController {
     }
     
     func loginPressed() {
-        print("login pressed")
-        
         guard let email = loginView.emailTextField.text, let password = loginView.passwordTextField.text else {
             print("Wrong user data")
             return
         }
-        Swift.print("email: \(email)")
-        Swift.print("password: \(password)")
+        print("email: \(email)")
+        print("password: \(password)")
         
         Auth.auth().signIn(withEmail: email, password: password) { (loginResult, error) in
             if error != nil {

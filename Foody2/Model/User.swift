@@ -8,7 +8,8 @@
 
 import Foundation
 import Firebase
-struct UserClass {
+
+struct User {
     
     var name: String!
     var email: String!
@@ -30,9 +31,4 @@ struct UserClass {
         self.photoURL = photoURL
         self.name = name
     }
-    
-    func getName() -> String {
-        return ("\(name!)")
-    }
-    
 }

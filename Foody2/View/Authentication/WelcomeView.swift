@@ -98,12 +98,10 @@ class WelcomeView: UIView {
     
     
     @objc func handleGoToLogin() {
-        print("Go to login page")
         toLoginAction?()
     }
     
     @objc func handleGoToSignup() {
-        print("To to sign up page")
         toSignupAction?()
         
     }

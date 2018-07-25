@@ -13,18 +13,19 @@ import MapKit
 
 class AddMealView: UIView {
     
-    
+
     
     // scroll view
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
+        sv.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag;
         sv.backgroundColor = .white
         //sv.contentSize.height = 2000 // automatically
         return sv
     }()
     
-    // all views
-    private let titleTF: UITextField = {
+    // all views in the scrollView
+    let titleTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = Strings.ENTER_TITLE
         tf.backgroundColor = .white
@@ -32,27 +33,34 @@ class AddMealView: UIView {
         return tf
     }()
     
-    private let mealImageView: UIImageView = {
+    let mealImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "table"))
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         iv.contentMode = UIView.ContentMode.scaleAspectFill
-        
+        //iv.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(mapLongPressed)))
+        iv.isUserInteractionEnabled = true
         return iv
     }()
+
+//    @objc func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
+//        mapAction?()
+//    }
     
     private let cameraButton: UIButton = {
         let button = UIButton(title: Strings.CAMERA, color: AppColors.DODGER_BLUE)
+        button.addTarget(self, action: #selector(handleCamera), for: .touchUpInside)
         return button
     }()
     
     private let libraryButton: UIButton = {
         let button = UIButton(title: Strings.LIBRARY, color: AppColors.DODGER_BLUE)
+        button.addTarget(self, action: #selector(handleLibrary), for: .touchUpInside)
         return button
     }()
     
     
-    private let cosmosView: CosmosView = {
+    let cosmosView: CosmosView = {
         let cv = CosmosView()
         cv.settings.updateOnTouch = true
         cv.settings.fillMode = .half
@@ -66,21 +74,38 @@ class AddMealView: UIView {
     }()
     
     private let selectDateButton: UIButton = {
-        let button = UIButton(title: Strings.SELECT_DATE, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: Strings.DATE, color: AppColors.DODGER_BLUE)
+        button.addTarget(self, action: #selector(handlePopup), for: .touchUpInside)
         return button
     }()
     
-    private let dateLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
         //set current Date as default
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        label.text = formatter.string(from: date)
+        let date = Date()//just for now
+        label.text = date.formatedString()
         return label
     }()
     
-    private let descriptionLabel: UILabel = {
+    let priceLabel: UILabel = {
+        let label = UILabel()
+        label.text = Strings.PRICE_
+        label.textAlignment = .right
+        return label
+    }()
+    
+    let priceTF: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = Strings.SEK
+        tf.keyboardType = UIKeyboardType.numberPad
+        tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 10 : 20)
+        tf.layer.borderWidth = 1
+        tf.layer.cornerRadius = 5
+        tf.layer.borderColor = UIColor.lightGray.cgColor
+        return tf
+    }()
+    
+    let descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = Strings.ADD_DESCRIPTION_
         return label
@@ -92,21 +117,21 @@ class AddMealView: UIView {
         return label
     }()
     
-    private let favoriteSwitch: UISwitch = {
+    let favoriteSwitch: UISwitch = {
         let sw = UISwitch()
         return sw
     }()
     
-    private let mealDescriptionTF: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = Strings.VERY_TASTY
+    let mealDescriptionTF: UITextView = {
+        let tf = UITextView()
+        tf.text = Strings.VERY_TASTY
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
         tf.layer.borderColor = UIColor.lightGray.cgColor
         return tf
     }()
     
-    private let mapView: MKMapView = {
+    let mapView: MKMapView = {
         let mv = MKMapView()
         mv.layer.borderWidth = 1
         mv.layer.cornerRadius = 5
@@ -116,6 +141,7 @@ class AddMealView: UIView {
     
     private let saveButton: UIButton = {
         let button = UIButton(title: Strings.SAVE_MEAL, color: AppColors.DODGER_BLUE)
+        button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
         return button
     }()
     
@@ -132,9 +158,9 @@ class AddMealView: UIView {
         setupScrollView()
         setupViews()
         
-        //handle keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        //handle keyboard
+//        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupScrollView() {
@@ -150,7 +176,7 @@ class AddMealView: UIView {
     }
     
     private func setupViews() {
-        [titleTF, mealImageView, cameraButton, libraryButton, cosmosView, selectDateButton, dateLabel, mealDescriptionTF, descriptionLabel, favoriteLabel, favoriteSwitch, mapView, saveButton].forEach({scrollView.addSubview($0)})
+        [titleTF, mealImageView, cameraButton, libraryButton, cosmosView, selectDateButton, dateLabel, priceLabel, priceTF, mealDescriptionTF, descriptionLabel, favoriteLabel, favoriteSwitch, mapView, saveButton].forEach({scrollView.addSubview($0)})
         
         //title textField
         titleTF.translatesAutoresizingMaskIntoConstraints = false
@@ -172,7 +198,7 @@ class AddMealView: UIView {
         mealImageView.widthAnchor.constraint(equalTo: titleTF.widthAnchor).isActive = true
         mealImageView.heightAnchor.constraint(equalTo: titleTF.widthAnchor).isActive = true
         mealImageView.centerXAnchor.constraint(equalTo: titleTF.centerXAnchor).isActive = true
-        mealImageView.alpha = 0.4
+        //mealImageView.alpha = 0.4
         
         // camera and library buttons
         cameraButton.setAnchor(top: mealImageView.bottomAnchor,
@@ -218,21 +244,29 @@ class AddMealView: UIView {
                                    paddingLeft: 0,
                                    paddingBottom: 0,
                                    paddingRight: 0,
-                                   width: Device.IS_IPHONE ? 100 : 200,
+                                   width: Device.IS_IPHONE ? 80 : 160,
                                    height: Device.IS_IPHONE ? 32 : 64)
         dateLabel.setAnchor(top: nil,
                             leading: selectDateButton.trailingAnchor,
                             bottom: nil,
                             trailing: nil,
-                            paddingTop: 10,
-                            paddingLeft: 10,
+                            paddingTop: Device.IS_IPHONE ? 10 : 20,
+                            paddingLeft: Device.IS_IPHONE ? 10 : 20,
                             paddingBottom: 0,
                             paddingRight: 0,
                             width: Device.IS_IPHONE ? 100 : 200,
                             height: Device.IS_IPHONE ? 32 : 64)
         dateLabel.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
         
-        descriptionLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: selectDateButton.leadingAnchor, bottom: nil, trailing: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 140 : 200, height: Device.IS_IPHONE ? 32 : 64)
+        
+        priceTF.setAnchor(top: nil, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 70 : 140, height: Device.IS_IPHONE ? 32 : 64)
+        priceTF.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
+        
+        priceLabel.setAnchor(top: nil, leading: nil, bottom: nil, trailing: priceTF.leadingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: Device.IS_IPHONE ? 10 : 20, width: Device.IS_IPHONE ? 70 : 140, height: Device.IS_IPHONE ? 32 : 64)
+        priceLabel.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
+        
+        
+        descriptionLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: selectDateButton.leadingAnchor, bottom: nil, trailing: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 160 : 200, height: Device.IS_IPHONE ? 32 : 64)
         favoriteSwitch.setAnchor(top: selectDateButton.bottomAnchor, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 50 : 100, height: Device.IS_IPHONE ? 32 : 64)
         favoriteLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: nil, bottom: nil, trailing: favoriteSwitch.leadingAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 5, width: 0, height: Device.IS_IPHONE ? 32 : 64)
         
@@ -271,5 +305,31 @@ class AddMealView: UIView {
                              height: Device.IS_IPHONE ? 32 : 64)
         saveButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
+    
+    
+    // Actions
+    var cameraAction: (() -> Void)?
+    var libraryAction: (() -> Void)?
+    var popupAction: (() -> Void)?
+    var saveAction: (() -> Void)?
+    //var mapAction: (() -> Void)?
+    
+    @objc func handleCamera() {
+        cameraAction?()
+    }
+    
+    @objc func handleLibrary() {
+        libraryAction?()
+    }
+    
+    @objc func handlePopup() {
+        popupAction?()
+    }
+    
+    @objc func handleSave() {
+        saveAction?()
+    }
+    
+
 }
 

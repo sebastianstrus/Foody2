@@ -192,22 +192,18 @@ class AccountView: UIView {
     var removeAccountAction: (() -> Void)?
     
     @objc func handleCamera() {
-        print("Camera")
         cameraAction?()
     }
 
     @objc func handleLibrary() {
-        print("Library")
         libraryAction?()
     }
     
     @objc func handleLogOut() {
-        print("Camera")
         logoutAction?()
     }
     
     @objc func handleRemoveAccount() {
-        print("RemoveAccount")
         removeAccountAction?()
     }
 }

@@ -76,12 +76,10 @@ class LoginView: UIView {
     }()
     
     @objc func handleLogin() {
-        print("Cancel")
         loginAction?()
     }
     
     @objc func handleSignup() {
-        print("Cancel")
         cancelAction?()
         
     }

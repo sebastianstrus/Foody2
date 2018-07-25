@@ -76,7 +76,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
     }
     
     func imageViewTapped() {
-        print("imageTapped")
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self

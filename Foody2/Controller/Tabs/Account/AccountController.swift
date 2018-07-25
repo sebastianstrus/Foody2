@@ -27,7 +27,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     private func setupView() {
         //there is 3 containers in the view
         let mainView = AccountView(frame: self.view.frame)
-        self.accountView = mainView
+        accountView = mainView
         
         //assign actions
         accountView.cameraAction = cameraPressed
@@ -42,7 +42,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     
     // MARK: - Buttons Actions
     private func cameraPressed() {
-        Swift.print("Camera pressed")
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -53,7 +52,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func libraryPressed() {
-        Swift.print("Library pressed")
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -64,7 +62,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func logoutPressed() {
-        Swift.print("Logout pressed")
         let alert = UIAlertController(title: "Logout from Foody", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (UIAlertAction) in
             self.handleLogout()
@@ -81,7 +78,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func removeAccountPressed() {
-        Swift.print("Remove account pressed")
         let alert = UIAlertController(title: "Remove account from Foody", message: "Are you sure you want to remove your account?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (UIAlertAction) in
             self.handleRemoveAccount()
@@ -101,7 +97,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     
     // MARK: - UIImagePickerControllerDelegate functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        Swift.print("imagePickerController didFinishPickingImage")
         var selectedImageFromPicker: UIImage?
         if let editedImage = info[.editedImage] as? UIImage {
             selectedImageFromPicker = editedImage
@@ -159,28 +154,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         let creationDate = currentUser?.metadata.creationDate?.formatedString()
         self.accountView.registrationDateLabel.text = Strings.REG_DATE_ + creationDate!
     }
-    
-    func getImageFromUrl(_ urlString: String, closure: @escaping (UIImage?) -> ()) {
-        guard let url = URL(string: urlString) else {
-            return closure(nil)
-        }
-        let task = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
-            guard error == nil else {
-                print("error: \(String(describing: error))")
-                return closure(nil)
-            }
-            guard response != nil else {
-                print("no response")
-                return closure(nil)
-            }
-            guard data != nil else {
-                print("no data")
-                return closure(nil)
-            }
-            DispatchQueue.main.async {
-                closure(UIImage(data: data!))
-            }
-        }; task.resume()
-    }
+
 
 }

@@ -9,23 +9,14 @@
 import Foundation
 
 struct Meal {
-    var image: String?//NSData?
     var title: String?
-    var rating: Float?//Int
-    
-//    var date: Date?
-//    var isFavorite: Bool
-//    var mealDescription: String?
-//    var placeLatitude: Double
-//    var placeLongitude: Double
-//    var price: String?
-//    var user: User?
+    var imageUrlString: String?//Data?
+    var rating: Double?
+    var date: String?//Date?
+    var isFavorite: Bool
+    var mealDescription: String?
+    var placeLatitude: Double
+    var placeLongitude: Double
+    var price: String?
 }
 
-
-//struct User {
-//    var name: String?//NSData?
-//    var email: String?
-//    var savedMeals: Int?//Int
-//    var registrationDate: Date?
-//}

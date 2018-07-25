@@ -55,19 +55,14 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("screen width: \(view.frame.width)")
-        print("cell width: \(view.frame.width/3 - 12)")
         let side = view.frame.width / 3 -  (Device.IS_IPHONE ? 12 : 24)
         return CGSize(width: side, height: side)
     }
-    //364 maja na wszystko
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             let space: CGFloat = Device.IS_IPHONE ? 8 : 16
-            return UIEdgeInsets(top: space, left: space, bottom: space, right: space)//UIEdgeInsets(top: space, left: space, bottom: space, right: space)
+            return UIEdgeInsets(top: space, left: space, bottom: space, right: space)
         
     }
     
 }
-
-
-

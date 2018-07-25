@@ -25,7 +25,7 @@
 "Enter title" = "Ange titel";
 "Camera" = "Kamera";
 "Library" = "Bibliotek";
-"Select date" = "Välj datum";
+"Date" = "Datum";
 "Add description:" = "Lägg till beskrivning:";
 "Favorite?" = "Favorit?";
 "It was very tasty. :)" = "Det var väldigt gott. :)";
@@ -36,4 +36,6 @@
 "Registration date: " = "Registreringsdatum: ";
 "Log out" = "Logga ut";
 "Remove account" = "Radera konto";
-
+"Price:" = "Pris:";
+"100 kr" = "100 kr";
+"Title can't be empty!" = "Titeln kan inte vara tom.";
