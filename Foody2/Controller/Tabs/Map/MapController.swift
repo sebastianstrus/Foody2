@@ -9,50 +9,41 @@
 import UIKit
 import MapKit
 
-
 class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    private var mainMapView: MapView!
-    
-    private var allMeals: [Meal]  = []
-    
-    var locationManager: CLLocationManager!
+    var mainMapView: MapView!
+    var allMeals: [Meal] = []
     var thumbnailImageByAnnotation = [NSValue : UIImage]()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar(title: Strings.MAP)
         setupMapView()
-        setupLocationManager()
         
-        //get data from FireBase on background thread
         TestData.getMeals(complition: { (meals) in
             self.allMeals = meals
-            self.reloadMarkers()
+            self.addImageAnnotations()
         })
-        
+    }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mainMapView.mapView.removeAnnotations(mainMapView.mapView.annotations)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addImageAnnotations()
     }
     
     private func setupMapView() {
         let mainView = MapView()
         mainMapView = mainView
-        //mainView.mapView.delegate = self
+        mainView.mapView.delegate = self
         view.addSubview(mainMapView)
         mainMapView.pinToEdges(view: view)
-    }
-    
-
-    func setupLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.distanceFilter = 1000
-        locationManager.desiredAccuracy = 1000
-        locationManager.startUpdatingLocation()
-        locationManager.requestWhenInUseAuthorization()
+        mainMapView.mapView.delegate = self
     }
     
     // MARK: - CLLocationManagerDelegate functions
@@ -64,48 +55,6 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         }
     }
     
-    // MARK: - Helpers
-    func addAnnotationWithThumbnailImage(thumbnail: UIImage) {
-        let annotation = MKPointAnnotation()
-        let locationCoordinate = CLLocationCoordinate2DMake(37.783333, -122.416667)
-        annotation.coordinate = locationCoordinate
-        
-        thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)] = thumbnail
-        mainMapView.mapView.addAnnotation(annotation)
-    }
-    
-    func getOurThumbnailForAnnotation(annotation : MKAnnotation) -> UIImage?{
-        return thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)]
-    }
-    
-    func scaleImage(image: UIImage, maximumWidth: CGFloat) -> UIImage {
-        let rect: CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-        let cgImage: CGImage = image.cgImage!.cropping(to: rect)!
-        return UIImage(cgImage: cgImage, scale: image.size.width / maximumWidth, orientation: image.imageOrientation)
-    }
-    
-    func reloadMarkers() {
-        //clear map
-        mainMapView.mapView.removeAnnotations(mainMapView.mapView.annotations)
-        
-        //add all
-        for meal in allMeals as [Meal] {
-            let coordinate = CLLocationCoordinate2D(latitude: meal.placeLatitude, longitude: meal.placeLongitude)
-            let  annotation = MKPointAnnotation()
-            var myImage = #imageLiteral(resourceName: "table")//UIImage(named: "table.png")
-            
-            //scale image
-            myImage = scaleImage(image: myImage, maximumWidth: 50)
-            
-            thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)] = myImage
-            annotation.title = meal.title
-            mapView(mainMapView.mapView, viewFor: annotation)?.annotation = annotation
-            annotation.coordinate = coordinate
-            mainMapView.mapView.addAnnotation(annotation)
-        }
-    }
-    
-    // MARK: - MKMapViewDelegate functions
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "myAnnotationView"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
@@ -117,5 +66,32 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         annotationView?.image = getOurThumbnailForAnnotation(annotation: annotation)
         
         return annotationView
+    }
+    
+    // MARK: - Helpers
+    func getOurThumbnailForAnnotation(annotation : MKAnnotation) -> UIImage?{
+        return thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)]
+    }
+    
+    func scaleImage(image: UIImage, maximumWidth: CGFloat) -> UIImage {
+        let rect: CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        let cgImage: CGImage = image.cgImage!.cropping(to: rect)!
+        return UIImage(cgImage: cgImage, scale: image.size.width / maximumWidth, orientation: image.imageOrientation)
+    }
+    
+    func addImageAnnotations() {
+        for meal in (allMeals) {
+            let coordinate = CLLocationCoordinate2D(latitude: meal.placeLatitude, longitude: meal.placeLongitude)
+            let  annotation = MKPointAnnotation()
+            //var myImage = UIImage(data: meal.image as! Data)!
+            var myImage = UIImage(named: "chicken")!
+            //scale image
+            myImage = scaleImage(image: myImage, maximumWidth: 50)
+            thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)] = myImage
+            annotation.title = meal.title
+            mapView(mainMapView.mapView, viewFor: annotation)?.annotation = annotation
+            annotation.coordinate = coordinate
+            mainMapView.mapView.addAnnotation(annotation)
+        }
     }
 }

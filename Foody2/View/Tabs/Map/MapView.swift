@@ -11,8 +11,8 @@ import MapKit
 
 class MapView: UIView {
     
-    let mapView: MKMapView = {
-        let mv = MKMapView()
+    lazy var mapView: MKMapView = {
+        var mv = MKMapView()
         return mv
     }()
     
