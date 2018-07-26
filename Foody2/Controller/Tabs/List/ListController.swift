@@ -68,11 +68,11 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
+    // MARK: - UITableViewDelegate functions
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Device.IS_IPHONE ? 80 : 160
     }
     
-    // MARK: - UITableViewDelegate functions
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //TODO: remove from firebase

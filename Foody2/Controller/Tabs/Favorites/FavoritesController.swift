@@ -39,8 +39,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
         favoritesView.collectionView.register(MealCollectionCell.self, forCellWithReuseIdentifier: cellId)
     }
 
-// MARK: - UICollectionViewDataSource functions
-    
+    // MARK: - UICollectionViewDataSource functions
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -54,6 +53,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
         return cell
     }
     
+    // MARK: - UICollectionViewDelegateFlowLayout functions
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let side = view.frame.width / 3 -  (Device.IS_IPHONE ? 12 : 24)
         return CGSize(width: side, height: side)

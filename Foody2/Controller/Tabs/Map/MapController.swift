@@ -84,7 +84,7 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
             let coordinate = CLLocationCoordinate2D(latitude: meal.placeLatitude, longitude: meal.placeLongitude)
             let  annotation = MKPointAnnotation()
             //var myImage = UIImage(data: meal.image as! Data)!
-            var myImage = UIImage(named: "chicken")!
+            var myImage = UIImage(named: "chicken")!//for testing
             //scale image
             myImage = scaleImage(image: myImage, maximumWidth: 50)
             thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)] = myImage

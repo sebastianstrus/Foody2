@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import Foundation
 import Cosmos
 import MapKit
@@ -43,7 +44,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         addMealView.pinToEdges(view: view)
     }
     
-    // MARK: - Buttons Actions
+     // MARK: - Events
     private func cameraPressed() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             let imagePicker = UIImagePickerController()
@@ -69,6 +70,24 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func saveMealPressed() {
+        var ref: DatabaseReference!
+        
+        ref = Database.database().reference()
+        
+//        let mealObject = ["title": addMealView.titleTF.text,
+//                          "timestamp": [".sv":"timestamp"]
+//        ] as [String: Any]
+//
+//        let mealRef = Database.database().reference().child("meals").childByAutoId()
+//        mealRef.setValue(nil) { (error, ref) in
+//            if error != nil {
+//                print(error!)
+//                return
+//            }
+//
+//            print("New meal succesfully saved!")
+//        }
+        
         let meal = Meal(title: addMealView.titleTF.text,
                         imageUrlString: "test/image.jpg",
                         rating: addMealView.cosmosView.rating,

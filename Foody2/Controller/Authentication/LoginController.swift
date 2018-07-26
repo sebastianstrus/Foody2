@@ -39,6 +39,7 @@ class LoginController: UIViewController {
                             paddingRight: 0)
     }
     
+     // MARK: - Events
     func loginPressed() {
         guard let email = loginView.emailTextField.text, let password = loginView.passwordTextField.text else {
             print("Wrong user data")

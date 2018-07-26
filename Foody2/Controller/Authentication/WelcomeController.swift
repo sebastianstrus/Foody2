@@ -43,6 +43,7 @@ class WelcomeController: UIViewController {
                               paddingRight: 0)
     }
     
+     // MARK: - Events
     func toLoginPressed() {
         let loginController = LoginController()
         present(loginController, animated: true, completion: nil)

@@ -30,6 +30,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         view.addSubview(signUpView)
     }
     
+    // MARK: - Events
     func submitPressed() {
         guard let name = signUpView.nameTF.text, let email = signUpView.emailTF.text, let password = signUpView.passwordTF.text else {
             print("Wrong user data")
@@ -112,8 +113,16 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             }
             
             print("User saved successfully into Firebase database")
+            self.clearForm()
             let tabBarVC = TabBarController()
             self.present(tabBarVC, animated: true, completion: nil)
         })
+    }
+    
+    private func clearForm() {
+        signUpView.nameTF.text = ""
+        signUpView.emailTF.text = ""
+        signUpView.passwordTF.text = ""
+        signUpView.confirmPasswordTF.text = ""
     }
 }
