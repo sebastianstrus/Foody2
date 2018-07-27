@@ -1,5 +1,5 @@
 //
-//  ListCell.swift
+//  MealListCell.swift
 //  Foody2
 //
 //  Created by Sebastian Strus on 2018-06-18.
