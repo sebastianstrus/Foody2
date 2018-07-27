@@ -18,6 +18,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         super.viewDidLoad()
         
         setupViews()
+        hideKeyboardWhenTappedAround()
         
     }
     

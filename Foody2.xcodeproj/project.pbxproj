@@ -41,7 +41,7 @@
 		7DBCC5B920E4CD14000A6F8B /* MealCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5B720E4CD14000A6F8B /* MealCollectionCell.swift */; };
 		7DBCC5BC20E4CD1D000A6F8B /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */; };
 		7DBCC5BD20E4CD1D000A6F8B /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */; };
-		7DBCC5BF20E4CDEF000A6F8B /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */; };
+		7DBCC5BF20E4CDEF000A6F8B /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5BE20E4CDEF000A6F8B /* FirebaseHandler.swift */; };
 		7DBCC5C920E4D07B000A6F8B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C020E4D079000A6F8B /* String+Extension.swift */; };
 		7DBCC5CB20E4D07B000A6F8B /* UITabBarController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C220E4D079000A6F8B /* UITabBarController+Extension.swift */; };
 		7DBCC5CC20E4D07B000A6F8B /* Notification.Name+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBCC5C320E4D079000A6F8B /* Notification.Name+extension.swift */; };
@@ -105,7 +105,7 @@
 		7DBCC5B720E4CD14000A6F8B /* MealCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealCollectionCell.swift; sourceTree = "<group>"; };
 		7DBCC5BA20E4CD1C000A6F8B /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		7DBCC5BB20E4CD1D000A6F8B /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
-		7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		7DBCC5BE20E4CDEF000A6F8B /* FirebaseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
 		7DBCC5C020E4D079000A6F8B /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C220E4D079000A6F8B /* UITabBarController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Extension.swift"; sourceTree = "<group>"; };
 		7DBCC5C320E4D079000A6F8B /* Notification.Name+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification.Name+extension.swift"; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 		7DE2484220E4C5CE008E7A49 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				7DBCC5BE20E4CDEF000A6F8B /* TestData.swift */,
+				7DBCC5BE20E4CDEF000A6F8B /* FirebaseHandler.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				7DBCC5CF20E4D07B000A6F8B /* UIView+Extension.swift in Sources */,
 				7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */,
 				7DA2340A20E5881F00DD0606 /* AppFonts.swift in Sources */,
-				7DBCC5BF20E4CDEF000A6F8B /* TestData.swift in Sources */,
+				7DBCC5BF20E4CDEF000A6F8B /* FirebaseHandler.swift in Sources */,
 				7DE2485320E4C949008E7A49 /* HoshiTextField.swift in Sources */,
 				7DBCC5CB20E4D07B000A6F8B /* UITabBarController+Extension.swift in Sources */,
 			);

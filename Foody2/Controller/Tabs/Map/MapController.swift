@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -21,10 +22,17 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         setupNavigationBar(title: Strings.MAP)
         setupMapView()
         
-        TestData.getMeals(complition: { (meals) in
-            self.allMeals = meals
-            self.addImageAnnotations()
-        })
+        allMeals = getMealsFromFirebase()
+        
+        //TODO
+        perform(#selector(addImageAnnotations), with: nil, afterDelay: 1.0)
+        //self.addImageAnnotations()
+        
+        
+//        TestData.getMeals(complition: { (meals) in
+//            self.allMeals = meals
+//            self.addImageAnnotations()
+//        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +42,8 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        Swift.print("viewDidAppear run")
+        print("count: \(self.allMeals.count)")
         addImageAnnotations()
     }
     
@@ -79,9 +89,10 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         return UIImage(cgImage: cgImage, scale: image.size.width / maximumWidth, orientation: image.imageOrientation)
     }
     
-    func addImageAnnotations() {
+    @objc func addImageAnnotations() {
+        print("Adding annotations - count: \(self.allMeals.count)")
         for meal in (allMeals) {
-            let coordinate = CLLocationCoordinate2D(latitude: meal.placeLatitude, longitude: meal.placeLongitude)
+            let coordinate = CLLocationCoordinate2D(latitude: meal.placeLatitude!, longitude: meal.placeLongitude!)
             let  annotation = MKPointAnnotation()
             //var myImage = UIImage(data: meal.image as! Data)!
             var myImage = UIImage(named: "chicken")!//for testing
@@ -93,5 +104,51 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
             annotation.coordinate = coordinate
             mainMapView.mapView.addAnnotation(annotation)
         }
+    }
+    
+    func getMealsFromFirebase() -> [Meal] {
+        var meals: [Meal] = []
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).child("meals").observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let mealsDict = snapshot.value as? NSDictionary
+            print("Meals:")
+            if mealsDict != nil {
+                print(mealsDict!)
+
+                for json in (mealsDict!) {
+                    let mJson = json.value as! [String : AnyObject]
+                    //print("mealJson: \(mealJson["title"])")
+                    guard let title = mJson["title"] as? String else { return }
+                    guard let imageUrlString = mJson["imageUrlString"] as? String else { return }
+                    guard let rating = mJson["rating"] as? Double else { return }
+                    guard let date = mJson["date"] as? String else { return }
+                    guard let isFavorite = mJson["isFavorite"] as? Bool else { return }
+                    guard let mealDescription = mJson["mealDescription"] as? String else { return }
+                    guard let placeLatitude = mJson["placeLatitude"] as? Double else { return }
+                    guard let placeLongitude = mJson["placeLongitude"] as? Double else { return }
+                    guard let price = mJson["price"] as? String else { return }
+                        
+                    let meal = Meal(title: title,
+                                    imageUrlString: imageUrlString,
+                                    rating: rating,
+                                    date: date,
+                                    isFavorite: isFavorite,
+                                    mealDescription: mealDescription,
+                                    placeLatitude: placeLatitude,
+                                    placeLongitude: placeLongitude,
+                                    price: price)
+                    self.allMeals.append(meal)
+                    print("title: \(meal.title) isFavorite: \(meal.isFavorite)")
+                    print("count: \(self.allMeals.count)")
+                }
+            } else {
+                print("No meals found")
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        return meals
     }
 }

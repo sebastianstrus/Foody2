@@ -17,6 +17,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {

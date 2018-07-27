@@ -10,7 +10,6 @@ import Foundation
 import AudioToolbox
 
 class SoundManager {
-    //  Converted to Swift 4 by Swiftify v4.1.6738 - https://objectivec2swift.com/
 //    class func playAlertSound() {
 //        let fileURL = URL(string: "/System/Library/Audio/UISounds/sq_alarm.caf")
 //        var soundID: SystemSoundID

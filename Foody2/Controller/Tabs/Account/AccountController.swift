@@ -123,8 +123,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func handleRemoveAccount() {
-//        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-//        appDelegate?.showMessage("Your account has been removed", withTitle: "Remove account")
         let welcomeController = WelcomeController()
         present(welcomeController, animated: true)
     }

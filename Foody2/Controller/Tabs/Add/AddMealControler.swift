@@ -11,7 +11,6 @@ import Firebase
 import Foundation
 import Cosmos
 import MapKit
-//import PlaygroundSupport
 
 class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate  {
     
@@ -70,38 +69,53 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func saveMealPressed() {
-        var ref: DatabaseReference!
         
-        ref = Database.database().reference()
+        let currentUser = Auth.auth().currentUser
+        let userUid = currentUser?.uid
         
-//        let mealObject = ["title": addMealView.titleTF.text,
-//                          "timestamp": [".sv":"timestamp"]
-//        ] as [String: Any]
-//
-//        let mealRef = Database.database().reference().child("meals").childByAutoId()
-//        mealRef.setValue(nil) { (error, ref) in
-//            if error != nil {
-//                print(error!)
-//                return
-//            }
-//
-//            print("New meal succesfully saved!")
-//        }
-        
-        let meal = Meal(title: addMealView.titleTF.text,
+        let meal = Meal(title: addMealView.titleTF.text!,
                         imageUrlString: "test/image.jpg",
                         rating: addMealView.cosmosView.rating,
-                        date: addMealView.dateLabel.text,
+                        date: addMealView.dateLabel.text!,
                         isFavorite: addMealView.favoriteSwitch.isOn,
                         mealDescription: addMealView.mealDescriptionTF.text,
                         placeLatitude: currentLatitude,
                         placeLongitude: currentLongitude,
-                        price: addMealView.priceTF.text)
-        print("meal:")
+                        price: addMealView.priceTF.text!)
+        print("eal:")
         debugPrint(meal)
+        
+        let mealImageName = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child("meals_images").child("\(mealImageName).png")
+        
+        if let uploadData = addMealView.mealImageView.image!.pngData() {
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                storageRef.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    if let mealImageUrl = url?.absoluteString {
+                        let values = ["title": self.addMealView.titleTF.text! ,
+                                      "imageUrlString": mealImageUrl,
+                                      "rating": self.addMealView.cosmosView.rating,
+                                      "date": self.addMealView.dateLabel.text!,
+                                      "isFavorite": self.addMealView.favoriteSwitch.isOn,
+                                      "mealDescription": self.addMealView.mealDescriptionTF.text,
+                                      "placeLatitude": self.currentLatitude,
+                                      "placeLongitude": self.currentLongitude,
+                                      "price": self.addMealView.priceTF.text!] as [String: AnyObject]
+                        self.saveMealWith(uid: userUid!, values: values)
+                    }
+                })
+            }
+        }
     }
-    
-    
     
     // MARK: - UIImagePickerControllerDelegate functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -143,6 +157,19 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
                 addMealView.mapView.addAnnotation(annotation)
                 goal = annotation
             }
+        }
+    }
+    
+    // MARK: - Helpers
+    private func saveMealWith(uid: String, values: [String: AnyObject]) {
+        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
+        let key = ref.child("meals").childByAutoId().key
+        let childUpdates = ["/users/\(uid)/meals/\(key)/": values]
+        ref.updateChildValues(childUpdates) { (error, ref) in
+            if error != nil {
+                debugPrint(error!)
+            }
+            self.showMessage("New meal has been saved into Firebase!", withTitle: "New meal")
         }
     }
 }
