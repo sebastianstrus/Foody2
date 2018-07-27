@@ -32,7 +32,7 @@ class AccountView: UIView {
     
     
     // views to imageContainer
-    var profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "image_user"))
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.borderWidth = Device.IS_IPHONE ? 0.5 : 1

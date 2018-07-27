@@ -133,7 +133,8 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
 
         let currentUser = Auth.auth().currentUser
         let uid = currentUser?.uid
-        Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
+        let ref = Database.database().reference()
+        ref.child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
             
             //let user = UserClass(snapshot: snapshot)
@@ -143,7 +144,10 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
                 let username = dict["name"] as! String
                 let email = dict["email"] as! String
                 let imageUrl = dict["profileImageUrl"] as! String
+                let meals = dict["meals"]
+                //print("meals: \(meals)")
 
+                self.accountView.numberOfMealsLabel.text = Strings.SAVED_MEALS_ + "\(meals?.count ?? 0)"
                 self.accountView.profileImageView.load(urlString: imageUrl)
                 self.accountView.userNameLabel.text = Strings.USERNAME_ + username
                 self.accountView.emailLabel.text = Strings.EMAIL_ + email
@@ -152,6 +156,4 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         let creationDate = currentUser?.metadata.creationDate?.formatedString()
         self.accountView.registrationDateLabel.text = Strings.REG_DATE_ + creationDate!
     }
-
-
 }

@@ -16,6 +16,9 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private let myCellId = "myCellId"
     private var allMeals: [Meal]  = []
     
+    //data for testing:
+//    private var allMeals: [Meal]  = [Meal(title: "meal1", imageUrlString: "https://firebasestorage.googleapis.com/v0/b/foody-4454f.appspot.com/o/meals_images%2FB9C5CD46-3456-466D-9CE5-E5775A98F59E.png?alt=media&token=fa322f67-638f-4236-9f55-8dc837467065", rating: 3.5, date: "27.07.2018", isFavorite: true, mealDescription: "Det var soligt", placeLatitude: 65.83220512169559, placeLongitude: 17.39847067977414, price: "101"), Meal(title: "meal2", imageUrlString: "https://firebasestorage.googleapis.com/v0/b/foody-4454f.appspot.com/o/meals_images%2FB9C5CD46-3456-466D-9CE5-E5775A98F59E.png?alt=media&token=fa322f67-638f-4236-9f55-8dc837467065", rating: 1.5, date: "27.07.2018", isFavorite: true, mealDescription: "Det var soligt", placeLatitude: 20.83220512169559, placeLongitude: 20.39847067977414, price: "101")]
+    
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
@@ -81,7 +84,8 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellId, for: indexPath) as! MealListCell
 
         cell.titleLabel.text = allMeals[indexPath.item].title
-        //cell.imageView?.load(urlString: allMeals[indexPath.item].imageUrlString!)
+        cell.pictureImageView.load(urlString: allMeals[indexPath.item].imageUrlString!)
+        cell.cosmosView.rating = allMeals[indexPath.item].rating!
         
         return cell
     }

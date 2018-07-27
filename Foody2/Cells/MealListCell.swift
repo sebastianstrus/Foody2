@@ -11,15 +11,16 @@ import Cosmos
 
 class MealListCell: UITableViewCell {
     
-    private let cellView: UIView = {
+    let cellView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.setCellShadow()
         return view
     }()
     
-    private let pictureImageView: UIImageView = {
-        let iv = UIImageView(image: #imageLiteral(resourceName: "table"))
+    let pictureImageView: UIImageView = {
+        var iv = UIImageView()
+        //iv.backgroundColor = AppColors.SILVER_GREY
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -31,7 +32,7 @@ class MealListCell: UITableViewCell {
         return label
     }()
     
-    private let cosmosView: CosmosView = {
+    let cosmosView: CosmosView = {
         let cv = CosmosView()
         cv.settings.updateOnTouch = false
         cv.settings.fillMode = .half
