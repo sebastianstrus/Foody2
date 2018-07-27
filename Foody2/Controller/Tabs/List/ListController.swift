@@ -12,7 +12,7 @@ import Firebase
 class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var listView: ListView!
-    
+    var isLogged: Bool!
     private let myCellId = "myCellId"
     private var allMeals: [Meal]  = []
     
@@ -21,17 +21,21 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkIfUserIsLoggedIn()
-        
-        print("checked")
-        
-        setupNavigationBar(title: Strings.LIST)
-        setupView()
-        
-        allMeals = getMealsFromFirebase()
-        //TODO
-        perform(#selector(updateTableView), with: nil, afterDelay: 2)
-        
+        isLogged = Auth.auth().currentUser?.uid != nil
+        if (isLogged) {
+            setupNavigationBar(title: Strings.LIST)
+            setupView()
+            
+            getMealsFromFirebase()
+            //allMeals = getMealsFromFirebase()
+            //TODO
+            perform(#selector(updateTableView), with: nil, afterDelay: 2)
+        }
+        else {
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        }
+
+
         //get data for testing on background thread
 //        FirebaseHandler.getMeals(complition: { (meals) in
 //            self.allMeals = meals
@@ -47,6 +51,9 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if isLogged {
+            listView.tableView.reloadData()
+        }
     }
     
     private func setupView() {
@@ -72,7 +79,10 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellId, for: indexPath) as! MealListCell
+
         cell.titleLabel.text = allMeals[indexPath.item].title
+        //cell.imageView?.load(urlString: allMeals[indexPath.item].imageUrlString!)
+        
         return cell
     }
 
@@ -89,14 +99,6 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // MARK: - Helpers
-    func checkIfUserIsLoggedIn() {
-        if Auth.auth().currentUser?.uid == nil {
-            // remove warning from the console by using performSelector
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-            //return
-        }
-    }
-    
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()
@@ -108,9 +110,20 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(welcomeController, animated: true)
     }
     
+    func getImage(url: String, completion: @escaping (UIImage?) -> ()) {
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
+            if error == nil {
+                completion(UIImage(data: data!))
+            } else {
+                completion(nil)
+            }
+        }.resume()
+    }
+    
     // temp firebase
     func getMealsFromFirebase() -> [Meal] {
         var meals: [Meal] = []
+        
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).child("meals").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -158,3 +171,21 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         listView.tableView.reloadData()
     }
 }
+
+
+//        cell.tag += 1
+//        let tag = cell.tag
+
+//        let photoUrl = allMeals[indexPath.row].imageUrlString
+//        print("photoUrl: \(photoUrl)")
+//        getImage(url: photoUrl!) { img in
+//            if img != nil {
+//                print("size1: \(img!.size)")
+//                if cell.tag == tag {
+//                    DispatchQueue.main.async {
+//                        cell.imageView?.image = img
+//                        print("size2: \(img!.size)")
+//                    }
+//                }
+//            }
+//        }

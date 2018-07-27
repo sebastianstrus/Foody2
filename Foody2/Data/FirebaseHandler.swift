@@ -11,6 +11,10 @@ import Firebase
 
 class FirebaseHandler {
     
+    
+    
+    
+    
     static func getMeals(complition: @escaping ([Meal]) -> Void) {
         DispatchQueue.global(qos: .userInteractive).async {
             
@@ -42,7 +46,7 @@ class FirebaseHandler {
                 let mealsDict = snapshot.value as? NSDictionary
                 print("Meals:")
                 if mealsDict != nil {
-                    print(mealsDict!)
+                    print(mealsDict)
                     
                     for json in (mealsDict!) {
                         
@@ -67,7 +71,7 @@ class FirebaseHandler {
                                         placeLongitude: placeLongitude,
                                         price: price)
                         meals.append(meal)
-                        print("title: \((meal.title)!) isFavorite: \((meal.isFavorite)!)")
+                        print("title: \(meal.title) isFavorite: \(meal.isFavorite)")
                         print("count: \(meals.count)")
                     }
                 } else {
@@ -77,9 +81,12 @@ class FirebaseHandler {
                 print(error.localizedDescription)
             }
 
+        
             DispatchQueue.main.async {
                 complition(meals)
             }
         }
     }
+    
+
 }
