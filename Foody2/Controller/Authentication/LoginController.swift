@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import KVNProgress
 
 class LoginController: UIViewController {
     
@@ -49,12 +50,15 @@ class LoginController: UIViewController {
         print("email: \(email)")
         print("password: \(password)")
         
+        KVNProgress.show(withStatus: "Loading...")
         Auth.auth().signIn(withEmail: email, password: password) { (loginResult, error) in
             if error != nil {
                 print(error!)
+                KVNProgress.showError(withStatus: "Wrong email or password.")
                 return
             }
             
+            KVNProgress.dismiss()
             let tabBarVC = TabBarController()
             self.present(tabBarVC, animated: true, completion: nil)
         }

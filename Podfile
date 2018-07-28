@@ -11,5 +11,6 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'Cosmos', '~> 16.0'
+pod 'KVNProgress'
 
 end

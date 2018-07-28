@@ -8,13 +8,15 @@
 
 import UIKit
 import Firebase
+import KVNProgress
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var basicConfiguration: KVNProgressConfiguration?
     
-    
+    // MARK: - UIApplication functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
@@ -33,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarVC = TabBarController()
         window?.rootViewController = tabBarVC
         
+        presetProgressHUD()
         return true
     }
     
@@ -59,13 +62,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    
-    func showMessage(_ message: String?, withTitle title: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: Strings.OK, style: .default, handler: nil)
-        alert.addAction(action)
-        window?.rootViewController?.present(alert, animated: true)
+    // MARK: - Helpers
+    func presetProgressHUD() {
+        basicConfiguration = KVNProgressConfiguration.default()
+        basicConfiguration?.isFullScreen = true
+        basicConfiguration?.backgroundType = KVNProgressBackgroundType.blurred
+        basicConfiguration?.statusFont = UIFont(name: "HelveticaNeue", size: 24.0)
+        basicConfiguration?.minimumSuccessDisplayTime = 0.5
+        KVNProgress.setConfiguration(self.basicConfiguration)
+        
+        //! workaround to solve problem with displaying "frosted glass" for the full screen messages
+        KVNProgress.show(0.0, status: "Loading".localized, on: nil)
+        KVNProgress.dismiss()
     }
+    
+    
     
 }
 

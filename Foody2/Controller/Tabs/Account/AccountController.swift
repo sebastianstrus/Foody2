@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import KVNProgress
 
 class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate {
     
@@ -79,7 +80,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     
     private func removeAccountPressed() {
         let alert = UIAlertController(title: "Remove account from Foody", message: "Are you sure you want to remove your account?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { (UIAlertAction) in
             self.handleRemoveAccount()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: Device.IS_IPAD ? .default : .cancel, handler: nil))
@@ -125,10 +126,10 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     private func handleRemoveAccount() {
         let user = Auth.auth().currentUser
         let userRef = Database.database().reference().child("users").child(user!.uid)
-        //userRef.removeValue()
         user?.delete { error in
             if let error = error {
                 print(error)
+                KVNProgress.showError(withStatus: "Error \nRemoving account requires recent authentication")
             } else {
                 userRef.removeValue()
                 let welcomeController = WelcomeController()
@@ -139,8 +140,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     
     // set details for current user
     func updateUserDetails() {
-        
-
         let currentUser = Auth.auth().currentUser
         let uid = currentUser?.uid
         let ref = Database.database().reference()

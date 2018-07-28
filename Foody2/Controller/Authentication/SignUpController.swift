@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import KVNProgress
 
 class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate  {
     
@@ -38,14 +39,14 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             return
         }
 
+        KVNProgress.show(withStatus: "Creating account...")
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error != nil {
+                KVNProgress.showError(withStatus: "Couldn't create account.", on: nil)
                 print(error!)
                 return
             }
-            guard let uid = authResult?.user.uid else {
-                return
-            }
+            guard let uid = authResult?.user.uid else { return }
             
             //successfully authenticated user
             let imageName = NSUUID().uuidString
@@ -108,6 +109,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         let usersReference = ref.child("users").child(uid)
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
             if err != nil {
+                KVNProgress.dismiss()
                 print("Couldn't save child values")
                 print(err!)
                 return
@@ -115,6 +117,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             
             print("User saved successfully into Firebase database")
             self.clearForm()
+            KVNProgress.dismiss()
             let tabBarVC = TabBarController()
             self.present(tabBarVC, animated: true, completion: nil)
         })

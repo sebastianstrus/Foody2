@@ -11,6 +11,7 @@ import Firebase
 import Foundation
 import Cosmos
 import MapKit
+import KVNProgress
 
 class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate  {
     
@@ -76,16 +77,19 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         let mealImageName = NSUUID().uuidString
         let storageRef = Storage.storage().reference().child("meals_images").child("\(mealImageName).png")
         
+        KVNProgress.show(withStatus: "Saving...")
         if let uploadData = addMealView.mealImageView.image!.pngData() {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print(error!)
+                    KVNProgress.showError(withStatus: "Couln't save new meal!")
                     return
                 }
                 
                 storageRef.downloadURL(completion: { (url, error) in
                     if error != nil {
                         print(error!.localizedDescription)
+                        KVNProgress.showError(withStatus: "Couln't save new meal!")
                         return
                     }
                     if let mealImageUrl = url?.absoluteString {
@@ -129,8 +133,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     
     @objc func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
         if (addMealView.titleTF.text?.isEmpty)! {
-            let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.showMessage("Title can't be empty!".localized, withTitle: "Adding marker")
+            showMessage("Title can't be empty!".localized, withTitle: "Adding marker")
         } else {
             if sender.state == UIGestureRecognizer.State.began {
                 let position = sender.location(in: addMealView.mapView)
@@ -157,8 +160,9 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         ref.updateChildValues(childUpdates) { (error, ref) in
             if error != nil {
                 debugPrint(error!)
+                KVNProgress.showError(withStatus: "Couln't save new meal!")
             }
-            self.showMessage("New meal has been saved into Firebase!", withTitle: "New meal")
+            KVNProgress.showSuccess(withStatus: "Successfully saved!")
         }
     }
 }
