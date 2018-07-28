@@ -11,6 +11,7 @@
 		7D467B2C20E456390011EAA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D467B2B20E456390011EAA5 /* AppDelegate.swift */; };
 		7D467B3620E4563B0011EAA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D467B3420E4563B0011EAA5 /* LaunchScreen.storyboard */; };
 		7D61F6CC2103A9A500D9B5D4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61F6CB2103A9A500D9B5D4 /* UIViewController+Extension.swift */; };
+		7D72B9F3210BF33E0073E550 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72B9F2210BF33E0073E550 /* Double+Extension.swift */; };
 		7DA2340620E539CF00DD0606 /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340520E539CF00DD0606 /* AddMealView.swift */; };
 		7DA2340820E53E1D00DD0606 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340720E53E1D00DD0606 /* FavoritesView.swift */; };
 		7DA2340A20E5881F00DD0606 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2340920E5881F00DD0606 /* AppFonts.swift */; };
@@ -72,6 +73,7 @@
 		7D467B3520E4563B0011EAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D467B3720E4563B0011EAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D61F6CB2103A9A500D9B5D4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		7D72B9F2210BF33E0073E550 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		7DA2340520E539CF00DD0606 /* AddMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		7DA2340720E53E1D00DD0606 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		7DA2340920E5881F00DD0606 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				7D61F6CB2103A9A500D9B5D4 /* UIViewController+Extension.swift */,
 				7DE442402104181D00C020F9 /* Date+Extension.swift */,
 				7DA6A7A22107E13200D533B2 /* UIImageView+Extension.swift */,
+				7D72B9F2210BF33E0073E550 /* Double+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				7DA6A7A32107E13200D533B2 /* UIImageView+Extension.swift in Sources */,
 				7DBCC5B320E4CD02000A6F8B /* AddMealControler.swift in Sources */,
 				7DA2340820E53E1D00DD0606 /* FavoritesView.swift in Sources */,
+				7D72B9F3210BF33E0073E550 /* Double+Extension.swift in Sources */,
 				7DBCC5B820E4CD14000A6F8B /* FavoritesController.swift in Sources */,
 				7DBCC5CF20E4D07B000A6F8B /* UIView+Extension.swift in Sources */,
 				7DE2485020E4C7B7008E7A49 /* Constants.swift in Sources */,

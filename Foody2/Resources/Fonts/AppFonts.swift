@@ -14,4 +14,5 @@ struct AppFonts {
     static let BTN_FONT = UIFont(name: "SeymourOne", size: Device.IS_IPHONE ? 26 : 52)
     static let NAV_BAR_FONT = UIFont(name: "Georgia-Bold", size: Device.IS_IPHONE ? 24 : 40)
     static let LIST_CELL_FONT = UIFont.boldSystemFont(ofSize: Device.IS_IPHONE ? 26 : 52)
+    static let LIST_CELL_DISTANCE_FONT = UIFont.systemFont(ofSize: Device.IS_IPHONE ? 13 : 26)
 }

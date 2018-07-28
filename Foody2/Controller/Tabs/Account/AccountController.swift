@@ -123,8 +123,18 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func handleRemoveAccount() {
-        let welcomeController = WelcomeController()
-        present(welcomeController, animated: true)
+        let user = Auth.auth().currentUser
+        let userRef = Database.database().reference().child("users").child(user!.uid)
+        //userRef.removeValue()
+        user?.delete { error in
+            if let error = error {
+                print(error)
+            } else {
+                userRef.removeValue()
+                let welcomeController = WelcomeController()
+                self.present(welcomeController, animated: true)
+            }
+        }
     }
     
     // set details for current user

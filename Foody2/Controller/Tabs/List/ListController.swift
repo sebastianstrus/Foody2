@@ -8,13 +8,16 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class ListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     private var listView: ListView!
+    var locationManager = CLLocationManager()
     var isLogged: Bool!
     private let myCellId = "myCellId"
     private var allMeals: [Meal]  = []
+    var userLocation: CLLocation?
     
     //data for testing:
 //    private var allMeals: [Meal]  = [Meal(title: "meal1", imageUrlString: "https://firebasestorage.googleapis.com/v0/b/foody-4454f.appspot.com/o/meals_images%2FB9C5CD46-3456-466D-9CE5-E5775A98F59E.png?alt=media&token=fa322f67-638f-4236-9f55-8dc837467065", rating: 3.5, date: "27.07.2018", isFavorite: true, mealDescription: "Det var soligt", placeLatitude: 65.83220512169559, placeLongitude: 17.39847067977414, price: "101"), Meal(title: "meal2", imageUrlString: "https://firebasestorage.googleapis.com/v0/b/foody-4454f.appspot.com/o/meals_images%2FB9C5CD46-3456-466D-9CE5-E5775A98F59E.png?alt=media&token=fa322f67-638f-4236-9f55-8dc837467065", rating: 1.5, date: "27.07.2018", isFavorite: true, mealDescription: "Det var soligt", placeLatitude: 20.83220512169559, placeLongitude: 20.39847067977414, price: "101")]
@@ -26,13 +29,19 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         isLogged = Auth.auth().currentUser?.uid != nil
         if (isLogged) {
+            
+            locationManager.delegate = self
+            //locationManager.requestLocation()
+            locationManager.startUpdatingLocation()//much faster
+
+            
             setupNavigationBar(title: Strings.LIST)
             setupView()
             
-            getMealsFromFirebase()
+            //getMealsFromFirebase()
             //allMeals = getMealsFromFirebase()
             //TODO
-            perform(#selector(updateTableView), with: nil, afterDelay: 2)
+            //perform(#selector(updateTableView), with: nil, afterDelay: 2)
         }
         else {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
@@ -54,10 +63,16 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("viewDidAppear run")
+        
         if isLogged {
-            listView.tableView.reloadData()
+            allMeals = []
+            getMealsFromFirebase()
+            perform(#selector(updateTableView), with: nil, afterDelay: 2)
         }
     }
+    
+    
     
     private func setupView() {
         let listView = ListView()
@@ -84,8 +99,23 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellId, for: indexPath) as! MealListCell
 
         cell.titleLabel.text = allMeals[indexPath.item].title
+        cell.pictureImageView.image = nil
         cell.pictureImageView.load(urlString: allMeals[indexPath.item].imageUrlString!)
         cell.cosmosView.rating = allMeals[indexPath.item].rating!
+        // set distance
+        if let useLoc = userLocation {
+            let mealLocation = CLLocation(latitude: allMeals[indexPath.item].placeLatitude!, longitude: allMeals[indexPath.item].placeLongitude!)
+            let distanceInMeters = useLoc.distance(from: mealLocation)
+            if distanceInMeters > 1000 {
+                if distanceInMeters < 100000 {
+                    cell.distanceLabel.text = "\(Double(distanceInMeters/1000).roundedDecimal(to: 1)) km"
+                } else {
+                    cell.distanceLabel.text = "\(Int(distanceInMeters/1000)) km"
+                }
+            } else {
+                cell.distanceLabel.text = "\(Int(distanceInMeters)) m"
+            }
+        }
         
         return cell
     }
@@ -174,22 +204,19 @@ class ListController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func updateTableView() {
         listView.tableView.reloadData()
     }
+    
+    
+    //MARK: - location delegate methods
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Found user's location: \(location)")
+            self.userLocation = location
+            locationManager.stopUpdatingLocation()
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+    }
 }
-
-
-//        cell.tag += 1
-//        let tag = cell.tag
-
-//        let photoUrl = allMeals[indexPath.row].imageUrlString
-//        print("photoUrl: \(photoUrl)")
-//        getImage(url: photoUrl!) { img in
-//            if img != nil {
-//                print("size1: \(img!.size)")
-//                if cell.tag == tag {
-//                    DispatchQueue.main.async {
-//                        cell.imageView?.image = img
-//                        print("size2: \(img!.size)")
-//                    }
-//                }
-//            }
-//        }

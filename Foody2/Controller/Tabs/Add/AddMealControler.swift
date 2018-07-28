@@ -73,18 +73,6 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         let currentUser = Auth.auth().currentUser
         let userUid = currentUser?.uid
         
-        let meal = Meal(title: addMealView.titleTF.text!,
-                        imageUrlString: "test/image.jpg",
-                        rating: addMealView.cosmosView.rating,
-                        date: addMealView.dateLabel.text!,
-                        isFavorite: addMealView.favoriteSwitch.isOn,
-                        mealDescription: addMealView.mealDescriptionTF.text,
-                        placeLatitude: currentLatitude,
-                        placeLongitude: currentLongitude,
-                        price: addMealView.priceTF.text!)
-        print("eal:")
-        debugPrint(meal)
-        
         let mealImageName = NSUUID().uuidString
         let storageRef = Storage.storage().reference().child("meals_images").child("\(mealImageName).png")
         
@@ -136,6 +124,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     func setupMapView() {
         let tap = UILongPressGestureRecognizer(target: self, action: #selector(self.mapLongPressed(_:)))
         addMealView.mapView.addGestureRecognizer(tap)
+        addMealView.mapView.showsUserLocation = true
     }
     
     @objc func mapLongPressed(_ sender: UILongPressGestureRecognizer) {

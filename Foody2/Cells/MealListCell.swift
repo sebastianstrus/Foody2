@@ -20,7 +20,6 @@ class MealListCell: UITableViewCell {
     
     let pictureImageView: UIImageView = {
         var iv = UIImageView()
-        //iv.backgroundColor = AppColors.SILVER_GREY
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -44,6 +43,14 @@ class MealListCell: UITableViewCell {
         return cv
     }()
     
+    let distanceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .darkGray
+        label.textAlignment = .right
+        label.font = AppFonts.LIST_CELL_DISTANCE_FONT
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -60,7 +67,7 @@ class MealListCell: UITableViewCell {
         stackView.distribution = .fillProportionally
         stackView.spacing = 4
         cellView.addSubview(stackView)
-        
+        cellView.addSubview(distanceLabel)
         
         cellView.setAnchor(top: topAnchor,
                            leading: leadingAnchor,
@@ -117,6 +124,17 @@ class MealListCell: UITableViewCell {
                              paddingRight: 0,
                              width: 0,
                              height: Device.IS_IPHONE ? 28 : 58)
+        
+        distanceLabel.setAnchor(top: nil,
+                                leading: nil,
+                                bottom: stackView.bottomAnchor,
+                                trailing: stackView.trailingAnchor,
+                                paddingTop: 0,
+                                paddingLeft: 0,
+                                paddingBottom: 0,
+                                paddingRight: 0,
+                                width: 70,
+                                height: Device.IS_IPHONE ? 28 : 58)
     }
     
     required init?(coder aDecoder: NSCoder) {
