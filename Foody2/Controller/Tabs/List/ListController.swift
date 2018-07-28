@@ -67,7 +67,7 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
         if isLogged {
             allMeals = []
-            getMealsFromFirebase()
+            getMealsFromFirebase()//TODO: change
             perform(#selector(updateTableView), with: nil, afterDelay: 2)
         }
     }
@@ -83,6 +83,7 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
+        listView.tableView.allowsSelection = true
         listView.tableView.register(MealListCell.self, forCellReuseIdentifier: myCellId)
     }
     
@@ -130,6 +131,16 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             //TODO: remove from firebase
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("didSelectRowAt")
+        let mealController = MealController()
+        mealController.meal = allMeals[indexPath.row]
+        print(mealController.meal ?? "meal is nil")
+        //present()
+        navigationController?.pushViewController(mealController, animated: true)
     }
     
     // MARK: - Helpers
@@ -189,8 +200,6 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                     placeLongitude: placeLongitude,
                                     price: price)
                     self.allMeals.append(meal)
-                    print("title: \(meal.title) isFavorite: \(meal.isFavorite)")
-                    print("count: \(self.allMeals.count)")
                 }
             } else {
                 print("No meals found")

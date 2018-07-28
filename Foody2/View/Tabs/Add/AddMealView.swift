@@ -244,7 +244,7 @@ class AddMealView: UIView {
                                    paddingLeft: 0,
                                    paddingBottom: 0,
                                    paddingRight: 0,
-                                   width: Device.IS_IPHONE ? 80 : 160,
+                                   width: Device.IS_IPHONE ? 60 : 120,
                                    height: Device.IS_IPHONE ? 32 : 64)
         dateLabel.setAnchor(top: nil,
                             leading: selectDateButton.trailingAnchor,
