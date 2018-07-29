@@ -18,11 +18,24 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for i in 1...30 {
+            let meal = Meal(title: "Title\(i)",
+                imageUrlString: "image\(i).png",
+                rating: 3.0,
+                date: "10.10.2000",
+                isFavorite: true,
+                mealDescription: "Description\(i)",
+                placeLatitude: Double(((Float.random(in: 0 ..< 1)) - 0.5) * 140),
+                placeLongitude: Double(((Float.random(in: 0 ..< 1)) - 0.5) * 140),
+                price: "2\(i)")
+            self.favoritesMeals.append(meal)
+        }
+        
         //get data from FireBase on background thread
-        FirebaseHandler.getMeals(complition: { (meals) in
-            self.favoritesMeals = meals
-            self.favoritesView.collectionView.reloadData()
-        })
+//        FirebaseHandler.getMeals(complition: { (meals) in
+//            self.favoritesMeals = meals
+//            self.favoritesView.collectionView.reloadData()
+//        })
         
         setupNavigationBar(title: "Favorites".localized)
         setupView()

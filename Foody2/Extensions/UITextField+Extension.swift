@@ -18,6 +18,7 @@ extension UITextField {
         self.textColor = UIColor(white: 0.9, alpha: 0.8)
         self.font = UIFont.systemFont(ofSize: Device.IS_IPHONE ? 17 : 34)
         self.autocorrectionType = .no
+        self.autocapitalizationType = .none
         // placeholder
         var placeholder = NSMutableAttributedString()
         placeholder = NSMutableAttributedString(attributedString: NSAttributedString(string: placeHolder, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: Device.IS_IPHONE ? 18 : 36), .foregroundColor: UIColor(white: 1, alpha: 0.7)]))

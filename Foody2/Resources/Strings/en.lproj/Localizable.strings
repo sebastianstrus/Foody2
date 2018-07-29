@@ -26,6 +26,7 @@
 "Camera" = "Camera";
 "Library" = "Library";
 "Date" = "Date";
+"Date: " = "Date: ";
 "Add description:" = "Add description:";
 "Favorite?" = "Favorite?";
 "It was very tasty. :)" = "It was very tasty. :)";
@@ -39,3 +40,4 @@
 "Price:" = "Price:";
 "100 kr" = "100 kr";
 "Title can't be empty!" = "Title can't be empty!";
+"Description:" = "Description:";

@@ -36,11 +36,13 @@ class MealController : UIViewController  {
         view.addSubview(mealView)
         mealView.pinToEdges(view: view)
         
-        mealView.titleTF.text = meal?.title
+        mealView.titleLabel.text = meal?.title
         mealView.mealImageView.load(urlString: (meal?.imageUrlString)!)
         mealView.cosmosView.rating = (meal?.rating)!
+        mealView.dateLabel.text = "Date: ".localized + Date().formatedString()//temp//meal?.date
+        
+        mealView.priceLabel.text = "Price: ".localized + "\(meal?.price ?? "0") kr"
         mealView.mealDescriptionTF.text = meal?.mealDescription
-        mealView.priceLabel.text = "\(meal?.price ?? "0") kr"
         let coordinate = CLLocationCoordinate2D(latitude: (meal?.placeLatitude)!, longitude: (meal?.placeLongitude)!)
         let  annotation = MKPointAnnotation()
         annotation.title = meal?.title

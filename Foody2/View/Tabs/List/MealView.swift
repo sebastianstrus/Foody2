@@ -24,12 +24,13 @@ class MealView: UIView {
     }()
     
     // all views in the scrollView
-    let titleTF: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Enter title".localized
-        tf.backgroundColor = .white
-        tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 20 : 40)
-        return tf
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textAlignment = .center
+        label.textColor = UIColor.darkGray
+        label.font = AppFonts.LIST_CELL_FONT
+        return label
     }()
     
     let mealImageView: UIImageView = {
@@ -41,20 +42,9 @@ class MealView: UIView {
         return iv
     }()
     
-    private let cameraButton: UIButton = {
-        let button = UIButton(title: "Camera".localized, color: AppColors.DODGER_BLUE)
-        return button
-    }()
-    
-    private let libraryButton: UIButton = {
-        let button = UIButton(title: "Library".localized, color: AppColors.DODGER_BLUE)
-        return button
-    }()
-    
-    
     let cosmosView: CosmosView = {
         let cv = CosmosView()
-        cv.settings.updateOnTouch = true
+        cv.settings.updateOnTouch = false
         cv.settings.fillMode = .half
         cv.settings.starSize = 40
         cv.settings.starMargin = 10
@@ -65,56 +55,37 @@ class MealView: UIView {
         return cv
     }()
     
-    private let selectDateButton: UIButton = {
-        let button = UIButton(title: "Date".localized, color: AppColors.DODGER_BLUE)
-        return button
-    }()
+//    private let selectDateButton: UIButton = {
+//        let button = UIButton(title: "Date".localized, color: AppColors.DODGER_BLUE)
+//        return button
+//    }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor.darkGray
         //set current Date as default
-        let date = Date()//just for now
-        label.text = date.formatedString()
+        label.text = "Date: ".localized + Date().formatedString()//temp
         return label
     }()
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "Price:".localized
-        label.textAlignment = .right
+        label.textColor = UIColor.darkGray
+        label.text = "Price: 100 kr"//temp
         return label
-    }()
-    
-    let priceTF: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "100 kr".localized
-        tf.keyboardType = UIKeyboardType.numberPad
-        tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 10 : 20)
-        tf.layer.borderWidth = 1
-        tf.layer.cornerRadius = 5
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        return tf
     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add description:".localized
+        label.textColor = UIColor.darkGray
+        label.text = "Description:".localized
         return label
-    }()
-    
-    private let favoriteLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Favorite?".localized
-        return label
-    }()
-    
-    let favoriteSwitch: UISwitch = {
-        let sw = UISwitch()
-        return sw
     }()
     
     let mealDescriptionTF: UITextView = {
         let tf = UITextView()
+        tf.isUserInteractionEnabled = false
+        tf.textColor = UIColor.darkGray
         tf.text = "It was very tasty. :)".localized
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
@@ -162,18 +133,18 @@ class MealView: UIView {
     }
     
     private func setupViews() {
-        [titleTF, mealImageView, cosmosView, selectDateButton, dateLabel, priceLabel, priceTF, mealDescriptionTF, descriptionLabel, /*favoriteLabel, favoriteSwitch, */mapView/*, saveButton*/].forEach({scrollView.addSubview($0)})
+        [titleLabel, mealImageView, cosmosView, dateLabel, priceLabel, mealDescriptionTF, descriptionLabel, mapView].forEach({scrollView.addSubview($0)})
         
         //title textField
-        titleTF.translatesAutoresizingMaskIntoConstraints = false
-        titleTF.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
-        titleTF.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        titleTF.heightAnchor.constraint(equalToConstant: Device.IS_IPHONE ? 40 : 80).isActive = true
-        titleTF.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleTF.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: Device.IS_IPHONE ? 40 : 80).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         
         //image
-        mealImageView.setAnchor(top: titleTF.bottomAnchor,
+        mealImageView.setAnchor(top: titleLabel.bottomAnchor,
                                 leading: nil,
                                 bottom: nil,
                                 trailing: nil,
@@ -181,11 +152,9 @@ class MealView: UIView {
                                 paddingLeft: 0,
                                 paddingBottom: 0,
                                 paddingRight: 0)
-        mealImageView.widthAnchor.constraint(equalTo: titleTF.widthAnchor).isActive = true
-        mealImageView.heightAnchor.constraint(equalTo: titleTF.widthAnchor).isActive = true
-        mealImageView.centerXAnchor.constraint(equalTo: titleTF.centerXAnchor).isActive = true
-        //mealImageView.alpha = 0.4
-        
+        mealImageView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor).isActive = true
+        mealImageView.heightAnchor.constraint(equalTo: titleLabel.widthAnchor).isActive = true
+        mealImageView.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor).isActive = true
 
         //cosmos view
         cosmosView.setAnchor(top: mealImageView.bottomAnchor,
@@ -201,40 +170,22 @@ class MealView: UIView {
         cosmosView.centerXAnchor.constraint(equalTo: mealImageView.centerXAnchor).isActive = true
         
         //date info
-        selectDateButton.setAnchor(top: cosmosView.bottomAnchor,
-                                   leading: mealImageView.leadingAnchor,
-                                   bottom: nil,
-                                   trailing: nil,
-                                   paddingTop: Device.IS_IPHONE ? 10 : 20,
-                                   paddingLeft: 0,
-                                   paddingBottom: 0,
-                                   paddingRight: 0,
-                                   width: Device.IS_IPHONE ? 60 : 120,
-                                   height: Device.IS_IPHONE ? 32 : 64)
-        dateLabel.setAnchor(top: nil,
-                            leading: selectDateButton.trailingAnchor,
+        dateLabel.setAnchor(top: cosmosView.bottomAnchor,
+                            leading: mealImageView.leadingAnchor,
                             bottom: nil,
                             trailing: nil,
                             paddingTop: Device.IS_IPHONE ? 10 : 20,
-                            paddingLeft: Device.IS_IPHONE ? 10 : 20,
+                            paddingLeft: 0,
                             paddingBottom: 0,
                             paddingRight: 0,
-                            width: Device.IS_IPHONE ? 100 : 200,
+                            width: Device.IS_IPHONE ? 160 : 320,
                             height: Device.IS_IPHONE ? 32 : 64)
-        dateLabel.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
         
+        priceLabel.setAnchor(top: nil, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 140 : 280, height: Device.IS_IPHONE ? 32 : 64)
+        priceLabel.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor).isActive = true
         
-        priceTF.setAnchor(top: nil, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 70 : 140, height: Device.IS_IPHONE ? 32 : 64)
-        priceTF.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
-        
-        priceLabel.setAnchor(top: nil, leading: nil, bottom: nil, trailing: priceTF.leadingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: Device.IS_IPHONE ? 10 : 20, width: Device.IS_IPHONE ? 70 : 140, height: Device.IS_IPHONE ? 32 : 64)
-        priceLabel.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
-        
-        
-        descriptionLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: selectDateButton.leadingAnchor, bottom: nil, trailing: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 160 : 200, height: Device.IS_IPHONE ? 32 : 64)
-//        favoriteSwitch.setAnchor(top: selectDateButton.bottomAnchor, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 50 : 100, height: Device.IS_IPHONE ? 32 : 64)
-//        favoriteLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: nil, bottom: nil, trailing: favoriteSwitch.leadingAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 5, width: 0, height: Device.IS_IPHONE ? 32 : 64)
-        
+        descriptionLabel.setAnchor(top: dateLabel.bottomAnchor, leading: dateLabel.leadingAnchor, bottom: nil, trailing: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 160 : 200, height: Device.IS_IPHONE ? 32 : 64)
+
         //description field
         mealDescriptionTF.setAnchor(top: descriptionLabel.bottomAnchor,
                                     leading: mealImageView.leadingAnchor,

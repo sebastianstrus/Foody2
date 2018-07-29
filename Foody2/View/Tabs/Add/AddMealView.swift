@@ -27,9 +27,15 @@ class AddMealView: UIView {
     // all views in the scrollView
     let titleTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Enter title".localized
+        tf.layer.borderWidth = Device.IS_IPHONE ? 0.5 : 1
+        tf.layer.cornerRadius = Device.IS_IPHONE ? 5 : 10
+        tf.tintColor = .black
+        tf.layer.borderColor = UIColor.darkGray.cgColor
         tf.backgroundColor = .white
-        tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 20 : 40)
+        tf.placeholder = "Enter title".localized
+        tf.font = AppFonts.LIST_CELL_FONT
+        tf.textAlignment = .center
+        tf.textColor = UIColor.darkGray
         return tf
     }()
     
@@ -84,6 +90,7 @@ class AddMealView: UIView {
         //set current Date as default
         let date = Date()//just for now
         label.text = date.formatedString()
+        label.textColor = UIColor.darkGray
         return label
     }()
     
@@ -91,6 +98,7 @@ class AddMealView: UIView {
         let label = UILabel()
         label.text = "Price:".localized
         label.textAlignment = .right
+        label.textColor = UIColor.darkGray
         return label
     }()
     
@@ -102,17 +110,21 @@ class AddMealView: UIView {
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
         tf.layer.borderColor = UIColor.lightGray.cgColor
+        tf.textColor = UIColor.darkGray
+        tf.tintColor = .black
         return tf
     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor.darkGray
         label.text = "Add description:".localized
         return label
     }()
     
     private let favoriteLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor.darkGray
         label.text = "Favorite?".localized
         return label
     }()
@@ -122,13 +134,14 @@ class AddMealView: UIView {
         return sw
     }()
     
-    let mealDescriptionTF: UITextView = {
-        let tf = UITextView()
-        tf.text = "It was very tasty. :)".localized
-        tf.layer.borderWidth = 1
-        tf.layer.cornerRadius = 5
-        tf.layer.borderColor = UIColor.lightGray.cgColor
-        return tf
+    let mealDescriptionTV: UITextView = {
+        let tv = UITextView()
+        tv.text = "It was very tasty. :)".localized
+        tv.textColor = UIColor.darkGray
+        tv.layer.borderWidth = 1
+        tv.layer.cornerRadius = 5
+        tv.layer.borderColor = UIColor.lightGray.cgColor
+        return tv
     }()
     
     let mapView: MKMapView = {
@@ -176,13 +189,13 @@ class AddMealView: UIView {
     }
     
     private func setupViews() {
-        [titleTF, mealImageView, cameraButton, libraryButton, cosmosView, selectDateButton, dateLabel, priceLabel, priceTF, mealDescriptionTF, descriptionLabel, favoriteLabel, favoriteSwitch, mapView, saveButton].forEach({scrollView.addSubview($0)})
+        [titleTF, mealImageView, cameraButton, libraryButton, cosmosView, selectDateButton, dateLabel, priceLabel, priceTF, mealDescriptionTV, descriptionLabel, favoriteLabel, favoriteSwitch, mapView, saveButton].forEach({scrollView.addSubview($0)})
         
         //title textField
         titleTF.translatesAutoresizingMaskIntoConstraints = false
         titleTF.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
         titleTF.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        titleTF.heightAnchor.constraint(equalToConstant: Device.IS_IPHONE ? 40 : 80).isActive = true
+        titleTF.heightAnchor.constraint(equalToConstant: Device.IS_IPHONE ? 60 : 120).isActive = true
         titleTF.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleTF.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
         
@@ -271,7 +284,7 @@ class AddMealView: UIView {
         favoriteLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: nil, bottom: nil, trailing: favoriteSwitch.leadingAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 5, width: 0, height: Device.IS_IPHONE ? 32 : 64)
         
         //description field
-        mealDescriptionTF.setAnchor(top: descriptionLabel.bottomAnchor,
+        mealDescriptionTV.setAnchor(top: descriptionLabel.bottomAnchor,
                                     leading: mealImageView.leadingAnchor,
                                     bottom: nil,
                                     trailing: mealImageView.trailingAnchor,
@@ -282,10 +295,10 @@ class AddMealView: UIView {
                                     width: 0,
                                     height: Device.IS_IPHONE ? 70 : 100)
         
-        mapView.setAnchor(top: mealDescriptionTF.bottomAnchor,
-                          leading: mealDescriptionTF.leadingAnchor,
+        mapView.setAnchor(top: mealDescriptionTV.bottomAnchor,
+                          leading: mealDescriptionTV.leadingAnchor,
                           bottom: nil,
-                          trailing: mealDescriptionTF.trailingAnchor,
+                          trailing: mealDescriptionTV.trailingAnchor,
                           paddingTop: Device.IS_IPHONE ? 10 : 20,
                           paddingLeft: 0,
                           paddingBottom: 0,

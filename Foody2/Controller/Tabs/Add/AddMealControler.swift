@@ -44,7 +44,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         addMealView.pinToEdges(view: view)
     }
     
-     // MARK: - Events
+    // MARK: - Events
     private func cameraPressed() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             let imagePicker = UIImagePickerController()
@@ -98,7 +98,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
                                       "rating": self.addMealView.cosmosView.rating,
                                       "date": self.addMealView.dateLabel.text!,
                                       "isFavorite": self.addMealView.favoriteSwitch.isOn,
-                                      "mealDescription": self.addMealView.mealDescriptionTF.text,
+                                      "mealDescription": self.addMealView.mealDescriptionTV.text,
                                       "placeLatitude": self.currentLatitude,
                                       "placeLongitude": self.currentLongitude,
                                       "price": self.addMealView.priceTF.text!] as [String: AnyObject]
