@@ -23,15 +23,15 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = AppColors.MAIN_PURPLE
 
         let listController = createNavController(vc: ListController(), unselected: "list_unselected", selected: "list_selected")
-        listController.tabBarItem.title = Strings.LIST
+        listController.tabBarItem.title = "List".localized
         let addMealController = createNavController(vc: AddMealControler(), unselected: "add_unselected", selected: "add_selected")
-        addMealController.tabBarItem.title = Strings.ADD
+        addMealController.tabBarItem.title = "Add".localized
         let mapController = createNavController(vc: MapController(), unselected: "map_unselected", selected: "map_selected")
-        mapController.tabBarItem.title = Strings.MAP
+        mapController.tabBarItem.title = "Map".localized
         let favoritesController = createNavController(vc: FavoritesController(), unselected: "favorites_unselected", selected: "favorites_selected")
-        favoritesController.tabBarItem.title = Strings.FAVORITES
+        favoritesController.tabBarItem.title = "Favorites".localized
         let accountController = createNavController(vc: AccountController(), unselected: "account_unselected", selected: "account_selected")
-        accountController.tabBarItem.title = Strings.ACCOUNT
+        accountController.tabBarItem.title = "Account".localized
 
         //list, add, map, favorite, account
         viewControllers = [listController, addMealController, mapController, favoritesController, accountController]

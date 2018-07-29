@@ -73,7 +73,7 @@ class WelcomeView: UIView {
     
     let secondLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: Strings.APP_SUBTITLE, attributes: [NSAttributedString.Key.font: AppFonts.SUBTITLE_FONT!, .foregroundColor: UIColor.white]))
+        let attributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: "Find your meal".localized, attributes: [NSAttributedString.Key.font: AppFonts.SUBTITLE_FONT!, .foregroundColor: UIColor.white]))
         label.attributedText = attributedString
         label.textAlignment = NSTextAlignment.center
         label.shadowColor = .black
@@ -84,13 +84,13 @@ class WelcomeView: UIView {
 
     
     let loginButton: UIButton = {
-        let button = UIButton(title: Strings.LOGIN, color: AppColors.DODGER_BLUE, filled: true)
+        let button = UIButton(title: "Login".localized, color: AppColors.DODGER_BLUE, filled: true)
         button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
         return button
     }()
     
     let signupButton: UIButton = {
-        let button = UIButton(title: Strings.SIGN_UP, color: .white, filled: false)
+        let button = UIButton(title: "Sign up".localized, color: .white, filled: false)
         button.addTarget(self, action: #selector(handleGoToSignup), for: .touchUpInside)
         return button
     }()

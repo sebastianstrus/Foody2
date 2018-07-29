@@ -17,7 +17,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(title: Strings.ACCOUNT)
+        setupNavigationBar(title: "Account".localized)
         setupView()
     }
     
@@ -156,13 +156,13 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
                 let meals = dict["meals"]
                 //print("meals: \(meals)")
 
-                self.accountView.numberOfMealsLabel.text = Strings.SAVED_MEALS_ + "\(meals?.count ?? 0)"
+                self.accountView.numberOfMealsLabel.text = "Saved meals: ".localized + "\(meals?.count ?? 0)"
                 self.accountView.profileImageView.load(urlString: imageUrl)
-                self.accountView.userNameLabel.text = Strings.USERNAME_ + username
-                self.accountView.emailLabel.text = Strings.EMAIL_ + email
+                self.accountView.userNameLabel.text = "Username: ".localized + username
+                self.accountView.emailLabel.text = "Email: ".localized + email
             }
         }
         let creationDate = currentUser?.metadata.creationDate?.formatedString()
-        self.accountView.registrationDateLabel.text = Strings.REG_DATE_ + creationDate!
+        self.accountView.registrationDateLabel.text = "Registration date: ".localized + creationDate!
     }
 }

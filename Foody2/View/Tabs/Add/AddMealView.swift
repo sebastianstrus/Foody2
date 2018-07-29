@@ -27,7 +27,7 @@ class AddMealView: UIView {
     // all views in the scrollView
     let titleTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = Strings.ENTER_TITLE
+        tf.placeholder = "Enter title".localized
         tf.backgroundColor = .white
         tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 20 : 40)
         return tf
@@ -48,13 +48,13 @@ class AddMealView: UIView {
 //    }
     
     private let cameraButton: UIButton = {
-        let button = UIButton(title: Strings.CAMERA, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Camera".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleCamera), for: .touchUpInside)
         return button
     }()
     
     private let libraryButton: UIButton = {
-        let button = UIButton(title: Strings.LIBRARY, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Library".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleLibrary), for: .touchUpInside)
         return button
     }()
@@ -74,7 +74,7 @@ class AddMealView: UIView {
     }()
     
     private let selectDateButton: UIButton = {
-        let button = UIButton(title: Strings.DATE, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Date".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handlePopup), for: .touchUpInside)
         return button
     }()
@@ -89,14 +89,14 @@ class AddMealView: UIView {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.PRICE_
+        label.text = "Price:".localized
         label.textAlignment = .right
         return label
     }()
     
     let priceTF: UITextField = {
         let tf = UITextField()
-        tf.placeholder = Strings.SEK
+        tf.placeholder = "100 kr".localized
         tf.keyboardType = UIKeyboardType.numberPad
         tf.setLeftPaddiingPoints(Device.IS_IPHONE ? 10 : 20)
         tf.layer.borderWidth = 1
@@ -107,13 +107,13 @@ class AddMealView: UIView {
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.ADD_DESCRIPTION_
+        label.text = "Add description:".localized
         return label
     }()
     
     private let favoriteLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.FAVORITE_
+        label.text = "Favorite?".localized
         return label
     }()
     
@@ -124,7 +124,7 @@ class AddMealView: UIView {
     
     let mealDescriptionTF: UITextView = {
         let tf = UITextView()
-        tf.text = Strings.VERY_TASTY
+        tf.text = "It was very tasty. :)".localized
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 5
         tf.layer.borderColor = UIColor.lightGray.cgColor
@@ -140,7 +140,7 @@ class AddMealView: UIView {
     }()
     
     private let saveButton: UIButton = {
-        let button = UIButton(title: Strings.SAVE_MEAL, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Save meal".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
         return button
     }()

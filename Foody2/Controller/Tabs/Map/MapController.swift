@@ -19,7 +19,7 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(title: Strings.MAP)
+        setupNavigationBar(title: "Map".localized)
         setupMapView()
         
         allMeals = getMealsFromFirebase()

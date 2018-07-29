@@ -25,7 +25,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(title: Strings.ADD_MEAL)
+        setupNavigationBar(title: "Add meal".localized)
         setupView()
 
     }

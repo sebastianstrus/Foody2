@@ -54,23 +54,23 @@ class LoginView: UIView {
     }()
     
     let emailTextField: UITextField = {
-        let tf = UITextField(placeHolder: Strings.EMAIL)
+        let tf = UITextField(placeHolder: "Email".localized)
         return tf
     }()
     
     let passwordTextField: UITextField = {
-        let tf = UITextField(placeHolder: Strings.PASSWORD)
+        let tf = UITextField(placeHolder: "Password".localized)
         return tf
     }()
     
     let loginButton: UIButton = {
-        let button = UIButton(title: Strings.LOGIN, borderColor: AppColors.GREEN_BORDER)
+        let button = UIButton(title: "Login".localized, borderColor: AppColors.GREEN_BORDER)
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
     let cancelButton: UIButton = {
-        let button = UIButton(title: Strings.CANCEL, borderColor: AppColors.RED_BORDER)
+        let button = UIButton(title: "Cancel".localized, borderColor: AppColors.RED_BORDER)
         button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         return button
     }()

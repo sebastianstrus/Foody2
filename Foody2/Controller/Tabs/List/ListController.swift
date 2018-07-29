@@ -35,7 +35,7 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             locationManager.startUpdatingLocation()//much faster
 
             
-            setupNavigationBar(title: Strings.LIST)
+            setupNavigationBar(title: "List".localized)
             setupView()
             
             //getMealsFromFirebase()

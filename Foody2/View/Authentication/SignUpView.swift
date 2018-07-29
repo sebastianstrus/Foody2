@@ -34,33 +34,33 @@ class SignUpView: UIView {
     }
     
     let nameTF: UITextField = {
-        let tf = UITextField(placeHolder: Strings.NAME)
+        let tf = UITextField(placeHolder: "Name".localized)
         return tf
     }()
     
     let emailTF: UITextField = {
-        let tf = UITextField(placeHolder: Strings.EMAIL)
+        let tf = UITextField(placeHolder: "Email".localized)
         return tf
     }()
     
     let passwordTF: UITextField = {
-        let tf = UITextField(placeHolder: Strings.PASSWORD)
+        let tf = UITextField(placeHolder: "Password".localized)
         return tf
     }()
     
     let confirmPasswordTF: UITextField = {
-        let tf = UITextField(placeHolder: Strings.CONFIRM_PASSWORD)
+        let tf = UITextField(placeHolder: "Confirm password".localized)
         return tf
     }()
     
     let submitButton: UIButton = {
-        let button = UIButton(title: Strings.SUBMIT, borderColor: AppColors.GREEN_BORDER)
+        let button = UIButton(title: "Submit".localized, borderColor: AppColors.GREEN_BORDER)
         button.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         return button
     }()
     
     let cancelButton: UIButton = {
-        let button = UIButton(title: Strings.CANCEL, borderColor: AppColors.RED_BORDER)
+        let button = UIButton(title: "Cancel".localized, borderColor: AppColors.RED_BORDER)
         button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         return button
     }()

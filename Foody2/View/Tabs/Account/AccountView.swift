@@ -41,13 +41,13 @@ class AccountView: UIView {
     }()
     
     let cameraButton: UIButton = {
-        let button = UIButton(title: Strings.CAMERA, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Camera".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleCamera), for: .touchUpInside)
         return button
     }()
     
     let libraryButton: UIButton = {
-        let button = UIButton(title: Strings.LIBRARY, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Library".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleLibrary), for: .touchUpInside)
         return button
     }()
@@ -56,38 +56,38 @@ class AccountView: UIView {
     // views to info container
     let userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.USERNAME_
+        label.text = "Username: ".localized
         return label
     }()
     
     let emailLabel: UILabel = {
         let label = UILabel()
         
-        label.text = Strings.EMAIL_
+        label.text = "Email: ".localized
         return label
     }()
     
     let numberOfMealsLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.SAVED_MEALS_
+        label.text = "Saved meals: ".localized
         return label
     }()
     
     let registrationDateLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.REG_DATE_
+        label.text = "Registration date: ".localized
         return label
     }()
     
     // buttons to buttonsContainer
     let logoutButton: UIButton = {
-        let button = UIButton(title: Strings.LOG_OUT, color: AppColors.DODGER_BLUE)
+        let button = UIButton(title: "Log out".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleLogOut), for: .touchUpInside)
         return button
     }()
     
     let removeAccountButton: UIButton = {
-        let button = UIButton(title: Strings.REMOVE_ACCOUNT, color: AppColors.RED_BORDER)
+        let button = UIButton(title: "Remove account".localized, color: AppColors.RED_BORDER)
         button.addTarget(self, action: #selector(handleRemoveAccount), for: .touchUpInside)
         return button
     }()

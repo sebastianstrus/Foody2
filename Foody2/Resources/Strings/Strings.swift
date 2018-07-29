@@ -6,8 +6,7 @@
 //  Copyright © 2018 Sebastian Strus. All rights reserved.
 //
 
-import UIKit
-
+// not used for now
 struct Strings {
     static let APP_TITLE = "FOODY"
     static let APP_SUBTITLE = "Find your meal".localized
@@ -42,5 +41,4 @@ struct Strings {
     static let REMOVE_ACCOUNT = "Remove account".localized
     static let PRICE_ = "Price:".localized
     static let SEK = "100 kr".localized
-    
 }

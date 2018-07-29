@@ -24,7 +24,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
             self.favoritesView.collectionView.reloadData()
         })
         
-        setupNavigationBar(title: Strings.FAVORITES)
+        setupNavigationBar(title: "Favorites".localized)
         setupView()
     }
     
