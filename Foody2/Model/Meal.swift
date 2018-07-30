@@ -12,6 +12,7 @@ struct Meal: Codable {
     
     var title: String?
     var imageUrlString: String?
+    var image100UrlString: String?
     var rating: Double?
     var date: String?
     var isFavorite: Bool?
@@ -22,6 +23,7 @@ struct Meal: Codable {
     
     init(title: String,
          imageUrlString: String,
+         image100UrlString: String,
          rating: Double,
          date: String,
          isFavorite: Bool,
@@ -32,6 +34,7 @@ struct Meal: Codable {
         
         self.title = title
         self.imageUrlString = imageUrlString
+        self.image100UrlString = imageUrlString
         self.rating = rating
         self.date = date
         self.isFavorite = isFavorite

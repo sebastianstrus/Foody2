@@ -98,17 +98,38 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
                         KVNProgress.showError(withStatus: "Couldn't save new meal!".localized)
                         return
                     }
-                    if let mealImageUrl = url?.absoluteString {
-                        let values = ["title": self.addMealView.titleTF.text! ,
-                                      "imageUrlString": mealImageUrl,
-                                      "rating": self.addMealView.cosmosView.rating,
-                                      "date": self.addMealView.dateLabel.text!,
-                                      "isFavorite": self.addMealView.favoriteSwitch.isOn,
-                                      "mealDescription": self.addMealView.mealDescriptionTV.text,
-                                      "placeLatitude": self.currentMealLatitude,
-                                      "placeLongitude": self.currentMealLongitude,
-                                      "price": self.addMealView.priceTF.text!] as [String: AnyObject]
-                        self.saveMealWith(uid: userUid!, values: values)
+                    
+                    let image100 = self.scaleImage(image: self.addMealView.mealImageView.image!, maximumWidth: 100)
+                    if let upload100Data = image100.pngData() {
+                        storageRef.putData(upload100Data, metadata: nil) { (metadata, error) in
+                            if error != nil {
+                                print(error!)
+                                KVNProgress.showError(withStatus: "Couldn't save new meal!".localized)
+                                return
+                            }
+                            
+                            storageRef.downloadURL(completion: { (url100, error) in
+                                if error != nil {
+                                    print(error!.localizedDescription)
+                                    KVNProgress.showError(withStatus: "Couldn't save new meal!".localized)
+                                    return
+                                }
+                                
+                                if let mealImageUrl = url?.absoluteString, let mealImage100Url = url100?.absoluteString {
+                                    let values = ["title": self.addMealView.titleTF.text!,
+                                                  "imageUrlString": mealImageUrl,
+                                                  "image100UrlString": mealImage100Url,
+                                                  "rating": self.addMealView.cosmosView.rating,
+                                                  "date": self.addMealView.dateLabel.text!,
+                                                  "isFavorite": self.addMealView.favoriteSwitch.isOn,
+                                                  "mealDescription": self.addMealView.mealDescriptionTV.text,
+                                                  "placeLatitude": self.currentMealLatitude,
+                                                  "placeLongitude": self.currentMealLongitude,
+                                                  "price": self.addMealView.priceTF.text!] as [String: AnyObject]
+                                    self.saveMealWith(uid: userUid!, values: values)
+                                }
+                            })
+                        }
                     }
                 })
             }
@@ -181,6 +202,12 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         addMealView.priceTF.text = "100 kr".localized
         addMealView.favoriteSwitch.isOn = false
         addMealView.mapView.removeAnnotations(addMealView.mapView.annotations)
+    }
+    
+    func scaleImage(image: UIImage, maximumWidth: CGFloat) -> UIImage {
+        let rect: CGRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        let cgImage: CGImage = image.cgImage!.cropping(to: rect)!
+        return UIImage(cgImage: cgImage, scale: image.size.width / maximumWidth, orientation: image.imageOrientation)
     }
     
     // MARK: - CLLocationManagerDelegate functions

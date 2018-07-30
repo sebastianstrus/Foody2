@@ -77,7 +77,7 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: myCellId, for: indexPath) as! MealListCell
         cell.titleLabel.text = allMeals[indexPath.item].title
-        cell.pictureImageView.loadImageUsingUrlString(allMeals[indexPath.item].imageUrlString!)
+        cell.pictureImageView.loadImageUsingUrlString(allMeals[indexPath.item].image100UrlString!)
         cell.cosmosView.rating = allMeals[indexPath.item].rating!
         // set distance
         if let useLoc = userLocation {

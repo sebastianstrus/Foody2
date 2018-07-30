@@ -24,6 +24,7 @@ class FirebaseHandler {
                     let mJson = json.value as! [String : AnyObject]
                     guard let title = mJson["title"] as? String else { return }
                     guard let imageUrlString = mJson["imageUrlString"] as? String else { return }
+                    guard let image100UrlString = mJson["image100UrlString"] as? String else { return }
                     guard let rating = mJson["rating"] as? Double else { return }
                     guard let date = mJson["date"] as? String else { return }
                     guard let isFavorite = mJson["isFavorite"] as? Bool else { return }
@@ -34,6 +35,7 @@ class FirebaseHandler {
                     
                     let meal = Meal(title: title,
                                     imageUrlString: imageUrlString,
+                                    image100UrlString: image100UrlString,
                                     rating: rating,
                                     date: date,
                                     isFavorite: isFavorite,
