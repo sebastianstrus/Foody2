@@ -62,6 +62,13 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
         return cell
     }
     
+    // MARK: - UICollectionViewDelegate functions
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let mealController = MealController()
+        mealController.meal = favoritesMeals[indexPath.row]
+        navigationController?.pushViewController(mealController, animated: true)
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout functions
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let side = view.frame.width / 3 -  (Device.IS_IPHONE ? 12 : 24)
