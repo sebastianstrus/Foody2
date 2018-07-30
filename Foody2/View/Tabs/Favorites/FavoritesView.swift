@@ -40,6 +40,4 @@ class FavoritesView: UIView {
         addSubview(collectionView)
         collectionView.pinToEdges(view: self)
     }
-    
-    
 }

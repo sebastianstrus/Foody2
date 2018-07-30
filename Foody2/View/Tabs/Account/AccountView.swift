@@ -10,7 +10,6 @@ import UIKit
 
 class AccountView: UIView {
     
-    
     private let imageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -28,8 +27,6 @@ class AccountView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    
     
     // views to imageContainer
     let profileImageView: UIImageView = {
@@ -51,7 +48,6 @@ class AccountView: UIView {
         button.addTarget(self, action: #selector(handleLibrary), for: .touchUpInside)
         return button
     }()
-    
     
     // views to info container
     let userNameLabel: UILabel = {
@@ -99,7 +95,6 @@ class AccountView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func setup() {
         [imageContainer, infoContainer, buttonsContainer].forEach({addSubview($0)})
@@ -177,13 +172,7 @@ class AccountView: UIView {
                             height: Device.IS_IPHONE ? 70 : 140)
         stackView.centerYAnchor.constraint(equalTo: buttonsContainer.centerYAnchor).isActive = true
         stackView.centerXAnchor.constraint(equalTo: buttonsContainer.centerXAnchor).isActive = true
-        
-        //        buttonsContainer.addSubview(accountView.logoutButton)
-        //        buttonsContainer.addSubview(accountView.removeAccountButton)
-        
-        
     }
-    
     
     // Actions
     var cameraAction: (() -> Void)?

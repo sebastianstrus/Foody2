@@ -40,20 +40,5 @@ struct Meal: Codable {
         self.placeLongitude = placeLongitude
         self.price = price
     }
-    
-//    init(json: [String : Any]) {
-//        if let title = json["title"] as? String, let imageUrlString = json["imageUrlString"] as? String, let rating = json["rating"] as? Double, let date = json["date"] as? String, let isFavorite = json["isFavorite"] as? Bool, let mealDescription = json["mealDescription"] as? String, let placeLatitude = json["placeLatitude"] as? Double, let placeLongitude = json["placeLongitude"] as? Double, let price = json["price"] as? String {
-//            
-//            self.title = title
-//            self.imageUrlString = imageUrlString
-//            self.rating = rating
-//            self.date = date
-//            self.isFavorite = isFavorite
-//            self.mealDescription = mealDescription
-//            self.placeLatitude = placeLatitude
-//            self.placeLongitude = placeLongitude
-//            self.price = price
-//        }
-//    }
 }
 

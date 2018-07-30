@@ -10,7 +10,6 @@ import UIKit
 
 class WelcomeController: UIViewController {
     
-    
     var welcomeView: WelcomeView!
     
     override func viewDidLoad() {

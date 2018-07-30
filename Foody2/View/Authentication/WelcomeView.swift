@@ -10,7 +10,6 @@ import UIKit
 
 class WelcomeView: UIView {
     
-    
     var toLoginAction: (() -> Void)?
     var toSignupAction: (() -> Void)?
     
@@ -19,36 +18,24 @@ class WelcomeView: UIView {
         setup()
     }
     
-    
     func setup() {
-        
         let titlesStackView = createStackView(views: [firstLabel, secondLabel])
         addSubview(titlesStackView)
-        titlesStackView.setAnchor(top: nil,
+        titlesStackView.setAnchor(top: topAnchor,
                                   leading: nil,
                                   bottom: nil,
                                   trailing: nil,
-                                  paddingTop: 0,
+                                  paddingTop: Device.IS_IPHONE ? 120 : 240,
                                   paddingLeft: 0,
                                   paddingBottom: 0,
                                   paddingRight: 0,
                                   width: self.frame.width,
                                   height: Device.IS_IPHONE ? 160 : 320)
         titlesStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        let kPaddingTop: CGFloat = Device.IS_IPHONE ? 120 : 240
-        titlesStackView.setAnchor(top: topAnchor,
-                                  leading: nil,
-                                  bottom: nil,
-                                  trailing: nil,
-                                  paddingTop: kPaddingTop,
-                                  paddingLeft: 0,
-                                  paddingBottom: 0,
-                                  paddingRight: 0)
         
-        let stackView = createStackView(views: [loginButton, signupButton])
-        addSubview(stackView)
-        //TODO remove one function
-        stackView.setAnchor(top: nil,
+        let buttonsStackView = createStackView(views: [loginButton, signupButton])
+        addSubview(buttonsStackView)
+        buttonsStackView.setAnchor(top: nil,
                             leading: nil,
                             bottom: bottomAnchor,
                             trailing: nil,
@@ -58,7 +45,7 @@ class WelcomeView: UIView {
                             paddingRight: 0,
                             width: self.frame.width - (Device.IS_IPHONE ? 60 : 300),
                             height: Device.IS_IPHONE ? 130 : 250)
-        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true        
+        buttonsStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true        
     }
     
     let firstLabel: UILabel = {
@@ -81,8 +68,6 @@ class WelcomeView: UIView {
         return label
     }()
     
-
-    
     let loginButton: UIButton = {
         let button = UIButton(title: "Login".localized, color: AppColors.DODGER_BLUE, filled: true)
         button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
@@ -94,8 +79,6 @@ class WelcomeView: UIView {
         button.addTarget(self, action: #selector(handleGoToSignup), for: .touchUpInside)
         return button
     }()
-    
-    
     
     @objc func handleGoToLogin() {
         toLoginAction?()

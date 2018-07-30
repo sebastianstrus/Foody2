@@ -17,28 +17,23 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for i in 1...30 {
-            let meal = Meal(title: "Title\(i)",
-                imageUrlString: "image\(i).png",
-                rating: 3.0,
-                date: "10.10.2000",
-                isFavorite: true,
-                mealDescription: "Description\(i)",
-                placeLatitude: Double(((Float.random(in: 0 ..< 1)) - 0.5) * 140),
-                placeLongitude: Double(((Float.random(in: 0 ..< 1)) - 0.5) * 140),
-                price: "2\(i)")
-            self.favoritesMeals.append(meal)
+        FirebaseHandler.getMeals(favorites: true) { (meals) in
+            self.favoritesMeals = meals
+            self.favoritesView.collectionView.reloadData()
         }
-        
-        //get data from FireBase on background thread
-//        FirebaseHandler.getMeals(complition: { (meals) in
-//            self.favoritesMeals = meals
-//            self.favoritesView.collectionView.reloadData()
-//        })
-        
+
         setupNavigationBar(title: "Favorites".localized)
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        FirebaseHandler.getMeals(favorites: true) { (meals) in
+            if (meals.count != self.favoritesMeals.count) {
+                self.favoritesMeals = meals
+                self.favoritesView.collectionView.reloadData()
+            }
+        }
     }
     
     private func setupView() {
@@ -63,6 +58,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MealCollectionCell
+        cell.iv.load(urlString: favoritesMeals[indexPath.row].imageUrlString!)
         return cell
     }
     
@@ -75,7 +71,5 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             let space: CGFloat = Device.IS_IPHONE ? 8 : 16
             return UIEdgeInsets(top: space, left: space, bottom: space, right: space)
-        
     }
-    
 }

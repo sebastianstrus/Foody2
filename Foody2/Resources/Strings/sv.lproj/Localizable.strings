@@ -22,6 +22,7 @@
 "Map" = "Karta";
 "Favorites" = "Favoriter";
 "Account" = "Konto";
+"Meal" = "Måltid";
 "Enter title" = "Ange titel";
 "Camera" = "Kamera";
 "Library" = "Bibliotek";
@@ -39,5 +40,13 @@
 "Remove account" = "Radera konto";
 "Price:" = "Pris:";
 "100 kr" = "100 kr";
-"Title can't be empty!" = "Titeln kan inte vara tom.";
+"Title text field can't be empty." = "Textfältet för namn kan inte vara tomt.";
 "Description:" = "Beskrivning:";
+"Couldn't save new meal!" = "Kunde inte spara ny måltid.";
+"Adding annotation" = "Ny anteckning";
+"Logout" = "Logga ut";
+"Logout from Foody" = "Logga ut från programmet";
+"Are you sure you want to logout?" = "Är du säker på att du vill logga ut?";
+"Remove account from Foody" = "Ta bort konto från Foody";
+"Are you sure you want to remove your account permanently?" = "Är du säker på att du vill ta bort ditt konto permanent?";
+"Remove" = "Ta bort";

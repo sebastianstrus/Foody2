@@ -20,7 +20,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         
         setupViews()
         hideKeyboardWhenTappedAround()
-        
     }
     
     func setupViews() {
@@ -96,7 +95,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         } else if let originalImage = info[.originalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
-        
         if let selectedImage = selectedImageFromPicker {
             signUpView.profileImageView.image = selectedImage
         }
@@ -105,7 +103,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
     
     // MARK: - Helpers
     private func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: AppURLs.FOODY_DB)
         let usersReference = ref.child("users").child(uid)
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
             if err != nil {
@@ -114,16 +112,15 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
                 print(err!)
                 return
             }
-            
-            print("User saved successfully into Firebase database")
-            self.clearForm()
+            print("User saved successfully into Firebase")
+            self.resetForm()
             KVNProgress.dismiss()
             let tabBarVC = TabBarController()
             self.present(tabBarVC, animated: true, completion: nil)
         })
     }
     
-    private func clearForm() {
+    private func resetForm() {
         signUpView.nameTF.text = ""
         signUpView.emailTF.text = ""
         signUpView.passwordTF.text = ""

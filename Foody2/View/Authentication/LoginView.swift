@@ -15,10 +15,8 @@ class LoginView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setup()
     }
-    
     
     func setup() {
         let stackView = createStackView(views: [emailTextField, passwordTextField, loginButton, cancelButton])
@@ -32,6 +30,7 @@ class LoginView: UIView {
                                       paddingLeft: 0,
                                       paddingBottom: 0,
                                       paddingRight: 0)
+        
         stackView.setAnchor(top: nil,
                             leading: nil,
                             bottom: nil,

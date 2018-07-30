@@ -15,6 +15,7 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
     var mainMapView: MapView!
     var allMeals: [Meal] = []
     var thumbnailImageByAnnotation = [NSValue : UIImage]()
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,29 +23,34 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         setupNavigationBar(title: "Map".localized)
         setupMapView()
         
-        allMeals = getMealsFromFirebase()
+        FirebaseHandler.getMeals(favorites: nil) { (meals) in
+            self.allMeals = meals
+            self.addImageAnnotations()
+        }
         
-        //TODO
-        perform(#selector(addImageAnnotations), with: nil, afterDelay: 1.0)
-        //self.addImageAnnotations()
-        
-        
-//        TestData.getMeals(complition: { (meals) in
-//            self.allMeals = meals
-//            self.addImageAnnotations()
-//        })
+        locationManager = CLLocationManager()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mainMapView.mapView.removeAnnotations(mainMapView.mapView.annotations)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Swift.print("viewDidAppear run")
-        print("count: \(self.allMeals.count)")
         addImageAnnotations()
+        
+        FirebaseHandler.getMeals(favorites: nil) { (meals) in
+            if (self.allMeals.count != meals.count) {
+                self.allMeals = meals
+                self.mainMapView.mapView.removeAnnotations(self.mainMapView.mapView.annotations)
+                self.addImageAnnotations()
+            }
+        }
     }
     
     private func setupMapView() {
@@ -54,14 +60,16 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         view.addSubview(mainMapView)
         mainMapView.pinToEdges(view: view)
         mainMapView.mapView.delegate = self
+        mainMapView.mapView.showsUserLocation = true
     }
     
     // MARK: - CLLocationManagerDelegate functions
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            let span = MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
-            let lookHereRegion = MKCoordinateRegion(center: location.coordinate, span: span)
-            mainMapView.mapView.setRegion(lookHereRegion, animated: true)
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            self.mainMapView.mapView.setRegion(region, animated: true)
+            locationManager.stopUpdatingLocation()
         }
     }
     
@@ -73,13 +81,12 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
             annotationView?.canShowCallout = true
         }
         /// Set the "pin" image of the annotation view
-        annotationView?.image = getOurThumbnailForAnnotation(annotation: annotation)
-        
+        annotationView?.image = getThumbnailForAnnotation(annotation: annotation)
         return annotationView
     }
     
     // MARK: - Helpers
-    func getOurThumbnailForAnnotation(annotation : MKAnnotation) -> UIImage?{
+    func getThumbnailForAnnotation(annotation : MKAnnotation) -> UIImage?{
         return thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)]
     }
     
@@ -89,66 +96,24 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         return UIImage(cgImage: cgImage, scale: image.size.width / maximumWidth, orientation: image.imageOrientation)
     }
     
-    @objc func addImageAnnotations() {
-        print("Adding annotations - count: \(self.allMeals.count)")
+    func addImageAnnotations() {
         for meal in (allMeals) {
             let coordinate = CLLocationCoordinate2D(latitude: meal.placeLatitude!, longitude: meal.placeLongitude!)
             let  annotation = MKPointAnnotation()
-            //var myImage = UIImage(data: meal.image as! Data)!
-            var myImage = UIImage(named: "chicken")!//for testing
-            //scale image
-            myImage = scaleImage(image: myImage, maximumWidth: 50)
-            thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)] = myImage
-            annotation.title = meal.title
-            mapView(mainMapView.mapView, viewFor: annotation)?.annotation = annotation
-            annotation.coordinate = coordinate
-            mainMapView.mapView.addAnnotation(annotation)
-        }
-    }
-    
-    func getMealsFromFirebase() -> [Meal] {
-        var meals: [Meal] = []
-        let ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("users").child(userID!).child("meals").observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let mealsDict = snapshot.value as? NSDictionary
-            print("Meals:")
-            if mealsDict != nil {
-                print(mealsDict!)
-
-                for json in (mealsDict!) {
-                    let mJson = json.value as! [String : AnyObject]
-                    //print("mealJson: \(mealJson["title"])")
-                    guard let title = mJson["title"] as? String else { return }
-                    guard let imageUrlString = mJson["imageUrlString"] as? String else { return }
-                    guard let rating = mJson["rating"] as? Double else { return }
-                    guard let date = mJson["date"] as? String else { return }
-                    guard let isFavorite = mJson["isFavorite"] as? Bool else { return }
-                    guard let mealDescription = mJson["mealDescription"] as? String else { return }
-                    guard let placeLatitude = mJson["placeLatitude"] as? Double else { return }
-                    guard let placeLongitude = mJson["placeLongitude"] as? Double else { return }
-                    guard let price = mJson["price"] as? String else { return }
-                        
-                    let meal = Meal(title: title,
-                                    imageUrlString: imageUrlString,
-                                    rating: rating,
-                                    date: date,
-                                    isFavorite: isFavorite,
-                                    mealDescription: mealDescription,
-                                    placeLatitude: placeLatitude,
-                                    placeLongitude: placeLongitude,
-                                    price: price)
-                    self.allMeals.append(meal)
-                    print("title: \(meal.title) isFavorite: \(meal.isFavorite)")
-                    print("count: \(self.allMeals.count)")
+            let imageUrlString = meal.imageUrlString
+            let imageUrl:URL = URL(string: imageUrlString!)!
+            DispatchQueue.global(qos: .userInitiated).async {
+                let imageData:NSData = NSData(contentsOf: imageUrl)!
+                DispatchQueue.main.async {
+                    var image = UIImage(data: imageData as Data)
+                    image = self.scaleImage(image: image!, maximumWidth: 50)
+                    self.thumbnailImageByAnnotation[NSValue(nonretainedObject: annotation)] = image
+                    annotation.title = meal.title
+                    self.mapView(self.mainMapView.mapView, viewFor: annotation)?.annotation = annotation
+                    annotation.coordinate = coordinate
+                    self.mainMapView.mapView.addAnnotation(annotation)
                 }
-            } else {
-                print("No meals found")
             }
-        }) { (error) in
-            print(error.localizedDescription)
         }
-        return meals
     }
 }

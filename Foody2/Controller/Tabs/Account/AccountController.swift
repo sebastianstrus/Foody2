@@ -40,7 +40,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         self.accountView.pinToEdges(view: view)
     }
     
-    
     // MARK: - Buttons Actions
     private func cameraPressed() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
@@ -63,11 +62,11 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func logoutPressed() {
-        let alert = UIAlertController(title: "Logout from Foody", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { (UIAlertAction) in
+        let alert = UIAlertController(title: "Logout from Foody".localized, message: "Are you sure you want to logout?".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Logout".localized, style: .default, handler: { (UIAlertAction) in
             self.handleLogout()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: Device.IS_IPAD ? .default : .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: Device.IS_IPAD ? .default : .cancel, handler: nil))
         
         // support for iPAD:
         if Device.IS_IPAD {
@@ -79,11 +78,11 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func removeAccountPressed() {
-        let alert = UIAlertController(title: "Remove account from Foody", message: "Are you sure you want to remove your account?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { (UIAlertAction) in
+        let alert = UIAlertController(title: "Remove account from Foody", message: "Are you sure you want to remove your account permanently?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Remove".localized, style: .destructive, handler: { (UIAlertAction) in
             self.handleRemoveAccount()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: Device.IS_IPAD ? .default : .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: Device.IS_IPAD ? .default : .cancel, handler: nil))
         
         // support for iPAD:
         if Device.IS_IPAD {
@@ -146,15 +145,11 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UIPi
         ref.child("users").child(uid!).observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
             
-            //let user = UserClass(snapshot: snapshot)
-            //user?.photoURL
-            
             if let dict = snapshot.value as? [String: AnyObject] {
                 let username = dict["name"] as! String
                 let email = dict["email"] as! String
                 let imageUrl = dict["profileImageUrl"] as! String
                 let meals = dict["meals"]
-                //print("meals: \(meals)")
 
                 self.accountView.numberOfMealsLabel.text = "Saved meals: ".localized + "\(meals?.count ?? 0)"
                 self.accountView.profileImageView.load(urlString: imageUrl)

@@ -67,10 +67,5 @@ class LoginController: UIViewController {
     func cancelPressed() {
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
 }
 

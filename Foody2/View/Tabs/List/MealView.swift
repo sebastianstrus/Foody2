@@ -12,8 +12,6 @@ import MapKit
 
 class MealView: UIView {
     
-    
-    
     // scroll view
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -54,12 +52,7 @@ class MealView: UIView {
         cv.backgroundColor = .white
         return cv
     }()
-    
-//    private let selectDateButton: UIButton = {
-//        let button = UIButton(title: "Date".localized, color: AppColors.DODGER_BLUE)
-//        return button
-//    }()
-    
+
     let dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.darkGray
@@ -105,7 +98,6 @@ class MealView: UIView {
         let button = UIButton(title: "Save meal".localized, color: AppColors.DODGER_BLUE)
         return button
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

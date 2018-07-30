@@ -16,7 +16,6 @@ class TabBarController: UITabBarController {
         setupTabBar()
     }
     
-    
     // TODO: add images with two colors
     func setupTabBar() {
         tabBar.barTintColor = AppColors.SILVER_GREY

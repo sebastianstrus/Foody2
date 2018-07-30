@@ -13,8 +13,6 @@ import MapKit
 
 class AddMealView: UIView {
     
-
-    
     // scroll view
     private lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -49,10 +47,6 @@ class AddMealView: UIView {
         return iv
     }()
 
-//    @objc func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
-//        mapAction?()
-//    }
-    
     private let cameraButton: UIButton = {
         let button = UIButton(title: "Camera".localized, color: AppColors.DODGER_BLUE)
         button.addTarget(self, action: #selector(handleCamera), for: .touchUpInside)
@@ -64,7 +58,6 @@ class AddMealView: UIView {
         button.addTarget(self, action: #selector(handleLibrary), for: .touchUpInside)
         return button
     }()
-    
     
     let cosmosView: CosmosView = {
         let cv = CosmosView()
@@ -88,7 +81,7 @@ class AddMealView: UIView {
     let dateLabel: UILabel = {
         let label = UILabel()
         //set current Date as default
-        let date = Date()//just for now
+        let date = Date()//temp
         label.text = date.formatedString()
         label.textColor = UIColor.darkGray
         return label
@@ -158,7 +151,6 @@ class AddMealView: UIView {
         return button
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -170,10 +162,6 @@ class AddMealView: UIView {
     func setup() {
         setupScrollView()
         setupViews()
-        
-//        //handle keyboard
-//        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(AddMealControler.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupScrollView() {
@@ -271,13 +259,11 @@ class AddMealView: UIView {
                             height: Device.IS_IPHONE ? 32 : 64)
         dateLabel.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
         
-        
         priceTF.setAnchor(top: nil, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 70 : 140, height: Device.IS_IPHONE ? 32 : 64)
         priceTF.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
         
         priceLabel.setAnchor(top: nil, leading: nil, bottom: nil, trailing: priceTF.leadingAnchor, paddingTop: Device.IS_IPHONE ? 10 : 20, paddingLeft: 0, paddingBottom: 0, paddingRight: Device.IS_IPHONE ? 10 : 20, width: Device.IS_IPHONE ? 70 : 140, height: Device.IS_IPHONE ? 32 : 64)
         priceLabel.centerYAnchor.constraint(equalTo: selectDateButton.centerYAnchor).isActive = true
-        
         
         descriptionLabel.setAnchor(top: selectDateButton.bottomAnchor, leading: selectDateButton.leadingAnchor, bottom: nil, trailing: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 160 : 200, height: Device.IS_IPHONE ? 32 : 64)
         favoriteSwitch.setAnchor(top: selectDateButton.bottomAnchor, leading: nil, bottom: nil, trailing: mealImageView.trailingAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ? 50 : 100, height: Device.IS_IPHONE ? 32 : 64)
@@ -319,13 +305,11 @@ class AddMealView: UIView {
         saveButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    
     // Actions
     var cameraAction: (() -> Void)?
     var libraryAction: (() -> Void)?
     var popupAction: (() -> Void)?
     var saveAction: (() -> Void)?
-    //var mapAction: (() -> Void)?
     
     @objc func handleCamera() {
         cameraAction?()
@@ -342,7 +326,5 @@ class AddMealView: UIView {
     @objc func handleSave() {
         saveAction?()
     }
-    
-
 }
 

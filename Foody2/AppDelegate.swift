@@ -23,15 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //create main window without storyboard
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        
-        //let vc = AccountViewController()
-        //let vc = ListViewController()
-        //let vc = AddMealViewController()
-        
-//        let vc = WelcomeController()
-//        let navController = UINavigationController(rootViewController: vc)
-//        window?.rootViewController = navController
-        
+
         let tabBarVC = TabBarController()
         window?.rootViewController = tabBarVC
         
@@ -61,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
     // MARK: - Helpers
     func presetProgressHUD() {
         basicConfiguration = KVNProgressConfiguration.default()
@@ -72,11 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KVNProgress.setConfiguration(self.basicConfiguration)
         
         //! workaround to solve problem with displaying "frosted glass" for the full screen messages
-        KVNProgress.show(0.0, status: "Loading".localized, on: nil)
+        KVNProgress.show(0.0, status: "Loading", on: nil)
         KVNProgress.dismiss()
     }
-    
-    
-    
 }
-

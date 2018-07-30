@@ -22,6 +22,7 @@
 "Map" = "Map";
 "Favorites" = "Favorites";
 "Account" = "Account";
+"Meal" = "Meal";
 "Enter title" = "Enter title";
 "Camera" = "Camera";
 "Library" = "Library";
@@ -39,5 +40,13 @@
 "Remove account" = "Remove account";
 "Price:" = "Price:";
 "100 kr" = "100 kr";
-"Title can't be empty!" = "Title can't be empty!";
+"Title text field can't be empty!" = "Title text field can't be empty!";
 "Description:" = "Description:";
+"Couldn't save new meal!" = "Couldn't save new meal!";
+"Adding annotation" = "Adding annotation";
+"Logout" = "Logout";
+"Logout from Foody" = "Logout from Foody";
+"Are you sure you want to logout?" = "Are you sure you want to logout?";
+"Remove account from Foody" = "Remove account from Foody";
+"Are you sure you want to remove your account permanently?" = "Are you sure you want to remove your account permanently?";
+"Remove" = "Remove";

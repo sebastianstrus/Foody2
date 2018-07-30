@@ -39,6 +39,5 @@ struct AppLayoutParams {
 // Constants for URL
 struct AppURLs {
     static let HOME_PAGE = "http://sebastianstrus.github.io"
+    static let FOODY_DB = "https://foody-4454f.firebaseio.com/"
 }
-
-

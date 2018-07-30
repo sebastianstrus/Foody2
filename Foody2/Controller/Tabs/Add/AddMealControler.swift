@@ -13,21 +13,28 @@ import Cosmos
 import MapKit
 import KVNProgress
 
-class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate  {
+class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate  {
     
     private var addMealView: AddMealView!
     private var meal: Meal?
     
     private var goal : MKPointAnnotation?
-    private var currentLatitude = 0.0
-    private var currentLongitude = 0.0
+    private var currentMealLatitude = 0.0
+    private var currentMealLongitude = 0.0
+    
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar(title: "Add meal".localized)
         setupView()
-
+        locationManager = CLLocationManager()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func setupView() {
@@ -37,7 +44,6 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         addMealView.libraryAction = libraryPressed
         addMealView.popupAction = showPopupPressed
         addMealView.saveAction = saveMealPressed
-        
         setupMapView()
         
         view.addSubview(addMealView)
@@ -66,7 +72,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     }
     
     private func showPopupPressed() {
-        
+        //TODO: Create pop-up for selecting date
     }
     
     private func saveMealPressed() {
@@ -82,14 +88,14 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print(error!)
-                    KVNProgress.showError(withStatus: "Couln't save new meal!")
+                    KVNProgress.showError(withStatus: "Couldn't save new meal!".localized)
                     return
                 }
                 
                 storageRef.downloadURL(completion: { (url, error) in
                     if error != nil {
                         print(error!.localizedDescription)
-                        KVNProgress.showError(withStatus: "Couln't save new meal!")
+                        KVNProgress.showError(withStatus: "Couldn't save new meal!".localized)
                         return
                     }
                     if let mealImageUrl = url?.absoluteString {
@@ -99,8 +105,8 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
                                       "date": self.addMealView.dateLabel.text!,
                                       "isFavorite": self.addMealView.favoriteSwitch.isOn,
                                       "mealDescription": self.addMealView.mealDescriptionTV.text,
-                                      "placeLatitude": self.currentLatitude,
-                                      "placeLongitude": self.currentLongitude,
+                                      "placeLatitude": self.currentMealLatitude,
+                                      "placeLongitude": self.currentMealLongitude,
                                       "price": self.addMealView.priceTF.text!] as [String: AnyObject]
                         self.saveMealWith(uid: userUid!, values: values)
                     }
@@ -117,7 +123,6 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         } else if let originalImage = info[.originalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
-        
         if let selectedImage = selectedImageFromPicker {
             addMealView.mealImageView.image = selectedImage
         }
@@ -133,13 +138,13 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     
     @objc func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
         if (addMealView.titleTF.text?.isEmpty)! {
-            showMessage("Title can't be empty!".localized, withTitle: "Adding marker")
+            showMessage("Title text field can't be empty!".localized, withTitle: "Adding annotation".localized)
         } else {
             if sender.state == UIGestureRecognizer.State.began {
                 let position = sender.location(in: addMealView.mapView)
                 let coordinate = addMealView.mapView.convert(position, toCoordinateFrom: addMealView.mapView)
-                currentLatitude = coordinate.latitude
-                currentLongitude = coordinate.longitude
+                currentMealLatitude = coordinate.latitude
+                currentMealLongitude = coordinate.longitude
                 if let existing = goal {
                     addMealView.mapView.removeAnnotation(existing)
                 }
@@ -154,15 +159,37 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
     
     // MARK: - Helpers
     private func saveMealWith(uid: String, values: [String: AnyObject]) {
-        let ref = Database.database().reference(fromURL: "https://foody-4454f.firebaseio.com/")
+        let ref = Database.database().reference(fromURL: AppURLs.FOODY_DB)
         let key = ref.child("meals").childByAutoId().key
         let childUpdates = ["/users/\(uid)/meals/\(key)/": values]
         ref.updateChildValues(childUpdates) { (error, ref) in
             if error != nil {
                 debugPrint(error!)
-                KVNProgress.showError(withStatus: "Couln't save new meal!")
+                KVNProgress.showError(withStatus: "Couldn't save new meal!".localized)
             }
-            KVNProgress.showSuccess(withStatus: "Successfully saved!")
+            KVNProgress.showSuccess(withStatus: "Successfully saved!", completion: {
+                self.resetForm()
+                self.tabBarController?.selectedIndex = 0
+            })
+        }
+    }
+    
+    func resetForm() {
+        addMealView.titleTF.text = ""
+        addMealView.mealImageView.image = #imageLiteral(resourceName: "table")
+        addMealView.mealDescriptionTV.text = "It was very tasty. :)".localized
+        addMealView.priceTF.text = "100 kr".localized
+        addMealView.favoriteSwitch.isOn = false
+        addMealView.mapView.removeAnnotations(addMealView.mapView.annotations)
+    }
+    
+    // MARK: - CLLocationManagerDelegate functions
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.addMealView.mapView.setRegion(region, animated: true)
+            locationManager.stopUpdatingLocation()
         }
     }
 }
