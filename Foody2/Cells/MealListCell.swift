@@ -18,8 +18,8 @@ class MealListCell: UITableViewCell {
         return view
     }()
     
-    let pictureImageView: UIImageView = {
-        var iv = UIImageView()
+    let pictureImageView: CustomImageView = {
+        var iv = CustomImageView()
         iv.contentMode = .scaleAspectFit
         return iv
     }()

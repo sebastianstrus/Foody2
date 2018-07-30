@@ -59,7 +59,6 @@ class MealController : UIViewController, CLLocationManagerDelegate  {
     
     // MARK: - CLLocationManagerDelegate functions
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("locationManager run")
         if locations.last != nil{
             let region = MKCoordinateRegion(center: coordinate!, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mealView.mapView.setRegion(region, animated: true)
