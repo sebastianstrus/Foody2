@@ -51,7 +51,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             let imageName = NSUUID().uuidString
             
             let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
-            if let uploadData = self.signUpView.profileImageView.image!.pngData() {
+            if let uploadData = self.signUpView.profileImageView.image!.jpegData(compressionQuality: 0.5) {
                 storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                     if error != nil {
                         print(error!)

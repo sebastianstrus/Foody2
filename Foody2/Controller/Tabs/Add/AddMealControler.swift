@@ -84,7 +84,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         let storageRef = Storage.storage().reference().child("meals_images").child("\(mealImageName).png")
         
         KVNProgress.show(withStatus: "Saving...")
-        if let uploadData = addMealView.mealImageView.image!.pngData() {
+        if let uploadData = addMealView.mealImageView.image!.jpegData(compressionQuality: 0.75) {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print(error!)
@@ -178,7 +178,7 @@ class AddMealControler : UIViewController, UIImagePickerControllerDelegate, UIPi
         addMealView.titleTF.text = ""
         addMealView.mealImageView.image = #imageLiteral(resourceName: "table")
         addMealView.mealDescriptionTV.text = "It was very tasty. :)".localized
-        addMealView.priceTF.text = "100 kr".localized
+        addMealView.priceTF.text = "0"
         addMealView.favoriteSwitch.isOn = false
         addMealView.mapView.removeAnnotations(addMealView.mapView.annotations)
     }

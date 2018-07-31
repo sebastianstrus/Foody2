@@ -29,10 +29,8 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         FirebaseHandler.getMeals(favorites: true) { (meals) in
-            if (meals.count != self.favoritesMeals.count) {
-                self.favoritesMeals = meals
-                self.favoritesView.collectionView.reloadData()
-            }
+            self.favoritesMeals = meals
+            self.favoritesView.collectionView.reloadData()
         }
     }
     
@@ -58,7 +56,7 @@ class FavoritesController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MealCollectionCell
-        cell.iv.load(urlString: favoritesMeals[indexPath.row].imageUrlString!)
+        cell.imageView.load(urlString: favoritesMeals[indexPath.row].imageUrlString!)
         return cell
     }
     

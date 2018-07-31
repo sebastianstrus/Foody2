@@ -45,11 +45,9 @@ class MapController: UIViewController, CLLocationManagerDelegate, MKMapViewDeleg
         addImageAnnotations()
         
         FirebaseHandler.getMeals(favorites: nil) { (meals) in
-            if (self.allMeals.count != meals.count) {
-                self.allMeals = meals
-                self.mainMapView.mapView.removeAnnotations(self.mainMapView.mapView.annotations)
-                self.addImageAnnotations()
-            }
+            self.allMeals = meals
+            self.mainMapView.mapView.removeAnnotations(self.mainMapView.mapView.annotations)
+            self.addImageAnnotations()
         }
     }
     

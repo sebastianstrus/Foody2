@@ -29,6 +29,7 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             setupNavigationBar(title: "List".localized)
             setupView()
             FirebaseHandler.getMeals(favorites: nil) { (meals) in
+                print("have: \(meals.count) meals")
                 self.allMeals = meals
                 self.locationManager.startUpdatingLocation()
             }
@@ -43,15 +44,12 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if isLoggedIn {
-            FirebaseHandler.getMeals(favorites: nil) { (meals) in
-                // prevent reloading data if there is no new meal
-                if (meals.count != self.allMeals.count) {
-                    self.allMeals = meals
-                    self.locationManager.startUpdatingLocation()
-                }
-            }
-        }
+//        if isLoggedIn {
+//            FirebaseHandler.getMeals(favorites: nil) { (meals) in
+//                self.allMeals = meals
+//                self.locationManager.startUpdatingLocation()
+//            }
+//        }
     }
     
     private func setupView() {
