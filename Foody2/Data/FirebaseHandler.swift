@@ -46,7 +46,6 @@ class FirebaseHandler {
                             meals.append(meal)
                         }
                     } else {
-                        print("append meal")
                         meals.append(meal)
                     }
                 }

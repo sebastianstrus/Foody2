@@ -33,4 +33,18 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
     }
+    
+    func showWarning() {
+        let warningView = UIImageView(frame: CGRect(x: 0, y: 0, width: Device.IS_IPHONE ? 40 : 80, height: Device.IS_IPHONE ? 30 : 60))
+        warningView.image = UIImage(named: "warning_icon")
+        warningView.contentMode = .scaleAspectFit
+        self.rightViewMode = .always
+        self.rightView = warningView
+        //warningView.setAnchor(top: topAnchor, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 5, paddingRight: 5, width: 30, height: 0)
+    }
+    
+    func hideWarning() {
+        self.rightViewMode = .never
+        self.rightView = nil
+    }
 }

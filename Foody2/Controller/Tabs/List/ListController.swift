@@ -29,7 +29,6 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             setupNavigationBar(title: "List".localized)
             setupView()
             FirebaseHandler.getMeals(favorites: nil) { (meals) in
-                print("have: \(meals.count) meals")
                 self.allMeals = meals
                 self.locationManager.startUpdatingLocation()
             }
