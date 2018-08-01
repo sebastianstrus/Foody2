@@ -45,11 +45,13 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
     
     // MARK: - Events
     func handleSubmit() {
-        guard let name = signUpView.nameTF.text, let email = signUpView.emailTF.text, let password = signUpView.passwordTF.text else {
-            print("Wrong user data")
-            return
-        }
-
+        validateForm()
+        
+        guard let name = signUpView.nameTF.text, signUpView.nameTF.text != "" else { return }
+        guard let email = signUpView.emailTF.text, email.isValidEmail() else { return }
+        guard let password = signUpView.passwordTF.text, signUpView.passwordTF.text != "" else { return }
+        guard signUpView.confirmPasswordTF.text != "" else { return }
+        
         KVNProgress.show(withStatus: "Creating account...")
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error != nil {
@@ -69,7 +71,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
                         print(error!)
                         return
                     }
-                    
                     storageRef.downloadURL(completion: { (url, error) in
                         if error != nil {
                             print(error!.localizedDescription)
@@ -148,10 +149,52 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         })
     }
     
+    private func validateForm() {
+        if signUpView.nameTF.text == "" {
+            signUpView.nameTF.showWarning()
+        } else {
+            signUpView.nameTF.rightViewMode = .never
+        }
+        
+        if !signUpView.emailTF.text!.isValidEmail() {
+            signUpView.emailTF.showWarning()
+        } else {
+            signUpView.emailTF.rightViewMode = .never
+        }
+        
+        if signUpView.passwordTF.text == "" {
+            signUpView.passwordTF.showWarning()
+        } else {
+            signUpView.passwordTF.rightViewMode = .never
+        }
+        
+        if signUpView.confirmPasswordTF.text == "" {
+            signUpView.confirmPasswordTF.showWarning()
+        } else {
+            signUpView.confirmPasswordTF.rightViewMode = .never
+        }
+        
+        if signUpView.passwordTF.text != signUpView.confirmPasswordTF.text {
+            signUpView.passwordTF.showWarning()
+            signUpView.confirmPasswordTF.showWarning()
+        } else {
+            if signUpView.passwordTF.text != "" && signUpView.confirmPasswordTF.text != "" {
+                signUpView.passwordTF.rightViewMode = .never
+                signUpView.confirmPasswordTF.rightViewMode = .never
+            }
+        }
+    }
+    
     private func resetForm() {
         signUpView.nameTF.text = ""
         signUpView.emailTF.text = ""
         signUpView.passwordTF.text = ""
         signUpView.confirmPasswordTF.text = ""
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
 }

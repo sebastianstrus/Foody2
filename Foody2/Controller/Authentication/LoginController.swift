@@ -61,7 +61,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Events
     func handleLogin() {
-        guard let email = loginView.emailTextField.text, let password = loginView.passwordTextField.text else {
+        
+        validateForm()
+        
+        guard let email = loginView.emailTextField.text, email.isValidEmail(), let password = loginView.passwordTextField.text, loginView.passwordTextField.text != "" else {
             print("Wrong user data")
             return
         }
@@ -84,6 +87,22 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     func handleCancel() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helpers
+    private func validateForm() {
+        if !loginView.emailTextField.text!.isValidEmail() {
+            loginView.emailTextField.showWarning()
+        } else {
+            loginView.emailTextField.rightViewMode = .never
+        }
+        
+        if loginView.passwordTextField.text == "" {
+            loginView.passwordTextField.showWarning()
+        } else {
+            loginView.passwordTextField.rightViewMode = .never
+        }
+
     }
 }
 

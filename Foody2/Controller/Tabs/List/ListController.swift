@@ -30,6 +30,7 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             setupView()
             FirebaseHandler.getMeals(favorites: nil) { (meals) in
                 self.allMeals = meals
+                self.listView.tableView.reloadData()
                 self.locationManager.startUpdatingLocation()
             }
         } else {
@@ -43,12 +44,12 @@ class ListController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        if isLoggedIn {
-//            FirebaseHandler.getMeals(favorites: nil) { (meals) in
-//                self.allMeals = meals
-//                self.locationManager.startUpdatingLocation()
-//            }
-//        }
+        if isLoggedIn {
+            FirebaseHandler.getMeals(favorites: nil) { (meals) in
+                self.allMeals = meals
+                self.locationManager.startUpdatingLocation()
+            }
+        }
     }
     
     private func setupView() {
