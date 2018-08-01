@@ -11,7 +11,11 @@ import Firebase
 import FirebaseAuth
 import KVNProgress
 
-class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate  {
+class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPickerViewDelegate, UINavigationControllerDelegate, UITextFieldDelegate  {
+    
+    let kNameTextFieldTag = 1
+    let kEmailTextFieldTag = 2
+    let kPasswordTextFieldTag = 3
     
     var signUpView: SignUpView!
     
@@ -25,14 +29,22 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
     func setupViews() {
         let signUpView = SignUpView(frame: self.view.frame)
         self.signUpView = signUpView
-        self.signUpView.submitAction = submitPressed
-        self.signUpView.cancelAction = cancelPressed
+        self.signUpView.submitAction = handleSubmit
+        self.signUpView.cancelAction = handleCancel
         self.signUpView.selectProfileImageViewAction = imageViewTapped
         view.addSubview(signUpView)
+        
+        self.signUpView.nameTF.delegate = self
+        self.signUpView.nameTF.tag = kNameTextFieldTag
+        self.signUpView.emailTF.delegate = self
+        self.signUpView.emailTF.tag = kEmailTextFieldTag
+        self.signUpView.passwordTF.delegate = self
+        self.signUpView.passwordTF.tag = kPasswordTextFieldTag
+        self.signUpView.confirmPasswordTF.delegate = self
     }
     
     // MARK: - Events
-    func submitPressed() {
+    func handleSubmit() {
         guard let name = signUpView.nameTF.text, let email = signUpView.emailTF.text, let password = signUpView.passwordTF.text else {
             print("Wrong user data")
             return
@@ -73,7 +85,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
         }
     }
     
-    func cancelPressed() {
+    func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -99,6 +111,22 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UIPic
             signUpView.profileImageView.image = selectedImage
         }
         picker.dismiss(animated: true)
+    }
+    
+    // MARK: - UITextFieldDelegate functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {        
+        textField.resignFirstResponder()
+        switch textField.tag {
+        case kNameTextFieldTag:
+            signUpView.emailTF.becomeFirstResponder()
+        case kEmailTextFieldTag:
+            signUpView.passwordTF.becomeFirstResponder()
+        case kPasswordTextFieldTag:
+            signUpView.confirmPasswordTF.becomeFirstResponder()
+        default:
+            handleSubmit()
+        }
+        return false
     }
     
     // MARK: - Helpers

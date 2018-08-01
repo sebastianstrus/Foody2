@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import KVNProgress
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
+    
+    let kLoginTextFieldTag = 1
     
     var loginView: LoginView!
     
@@ -28,8 +30,8 @@ class LoginController: UIViewController {
     
     func setupView() {
         self.loginView = LoginView(frame: self.view.frame)
-        self.loginView.loginAction = loginPressed
-        self.loginView.cancelAction = cancelPressed
+        self.loginView.loginAction = handleLogin
+        self.loginView.cancelAction = handleCancel
         self.view.addSubview(loginView)
         loginView.setAnchor(top: view.topAnchor,
                             leading: view.leadingAnchor,
@@ -39,10 +41,26 @@ class LoginController: UIViewController {
                             paddingLeft: 0,
                             paddingBottom: 0,
                             paddingRight: 0)
+        
+        self.loginView.emailTextField.delegate = self
+        self.loginView.emailTextField.tag = kLoginTextFieldTag
+        self.loginView.passwordTextField.delegate = self
+        
     }
     
-     // MARK: - Events
-    func loginPressed() {
+    // MARK: - UITextFieldDelegate functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField.tag == kLoginTextFieldTag {
+            loginView.passwordTextField.becomeFirstResponder()
+        } else {
+            handleLogin()
+        }
+        return false
+    }
+    
+    // MARK: - Events
+    func handleLogin() {
         guard let email = loginView.emailTextField.text, let password = loginView.passwordTextField.text else {
             print("Wrong user data")
             return
@@ -64,7 +82,7 @@ class LoginController: UIViewController {
         }
     }
     
-    func cancelPressed() {
+    func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
 }
